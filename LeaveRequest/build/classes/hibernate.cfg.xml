@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">leave_request</property>
-    <property name="hibernate.connection.password">admin</property>
+    <property name="hibernate.connection.password">hahaha</property>
     <mapping class="models.JenisCuti"/>
     <mapping class="models.Karyawan"/>
     <mapping class="models.KeteranganCuti"/>
