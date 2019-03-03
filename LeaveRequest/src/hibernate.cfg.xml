@@ -46,6 +46,9 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">leave_request</property>
     <property name="hibernate.connection.password">admin</property>
+    <property name="hibernate.connection.autocommit">true</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.default_schema">LEAVE_REQUEST</property>
     <mapping class="models.JenisCuti"/>
     <mapping class="models.Karyawan"/>
     <mapping class="models.KeteranganCuti"/>

@@ -8,6 +8,7 @@ package controllers;
 import static com.mchange.v2.c3p0.impl.C3P0Defaults.user;
 import daos.KaryawanDAO;
 import java.util.List;
+import mainTools.BCrypt;
 import models.Karyawan;
 import org.hibernate.SessionFactory;
 
