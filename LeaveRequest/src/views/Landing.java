@@ -17,6 +17,8 @@ public class Landing extends javax.swing.JFrame {
     public Landing() {
         initComponents();
         this.setLocationRelativeTo(null);
+        pnLogin.setVisible(true);
+        pnSignUp.setVisible(false);
     }
 
     /**
@@ -348,6 +350,8 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        pnLogin.setVisible(false);
+        pnSignUp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btRegSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegSignUpActionPerformed
@@ -356,6 +360,8 @@ public class Landing extends javax.swing.JFrame {
 
     private void btRegLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegLoginActionPerformed
         // TODO add your handling code here:
+        pnLogin.setVisible(true);
+        pnSignUp.setVisible(false);
     }//GEN-LAST:event_btRegLoginActionPerformed
 
     /**
