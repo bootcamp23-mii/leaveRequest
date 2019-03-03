@@ -55,5 +55,9 @@ public class CutiController {
     public List<Pengajuan> getByID(String key){
         return cdao.getId(key);
     }
+    
+    public List<Pengajuan> getAll(String key){
+        return cdao.getId("");
+    }
 
 }

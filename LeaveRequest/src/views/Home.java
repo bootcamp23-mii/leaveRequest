@@ -5,12 +5,20 @@
  */
 package views;
 
+import controllers.CutiController;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseMotionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import mainTools.HibernateUtil;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -18,16 +26,27 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class Home extends javax.swing.JInternalFrame {
 
+    private SessionFactory factory = HibernateUtil.getSessionFactory();
+
+    private CutiController cc = new CutiController(factory);
+    DefaultTableModel myTable = new DefaultTableModel();
+    Date date = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
         setColor(btnHome);
+        tableData(cc.getByID("11205"));
+
+        //PANEL CONTROL
         pnHome.setVisible(true);
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
+        lbCurrentDate.setText(dateFormat.format(date));
     }
 
     /**
@@ -58,7 +77,7 @@ public class Home extends javax.swing.JInternalFrame {
         pnDescription = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbCurrentDate = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         dynamicPane = new javax.swing.JLayeredPane();
@@ -294,35 +313,17 @@ public class Home extends javax.swing.JInternalFrame {
                 pnBarMousePressed(evt);
             }
         });
+        pnBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setBackground(new java.awt.Color(123, 156, 225));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
         jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
+        pnBar.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 141, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_search_24px.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnBarLayout = new javax.swing.GroupLayout(pnBar);
-        pnBar.setLayout(pnBarLayout);
-        pnBarLayout.setHorizontalGroup(
-            pnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBarLayout.createSequentialGroup()
-                .addContainerGap(701, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addGap(42, 42, 42))
-        );
-        pnBarLayout.setVerticalGroup(
-            pnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBarLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(pnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        pnBar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 14, -1, 30));
 
         getContentPane().add(pnBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 920, 50));
 
@@ -333,10 +334,10 @@ public class Home extends javax.swing.JInternalFrame {
 
         jPanel5.setBackground(new java.awt.Color(84, 127, 206));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("19:30 - 03/03/2019");
+        lbCurrentDate.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        lbCurrentDate.setForeground(new java.awt.Color(255, 255, 255));
+        lbCurrentDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCurrentDate.setText("19:30 - 03/03/2019");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -344,14 +345,14 @@ public class Home extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbCurrentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbCurrentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -606,6 +607,27 @@ public class Home extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_pnBarMousePressed
 
     //SELF METHOD
+    private void tableData(List<models.Pengajuan> req) {
+        Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type"};
+        Object[][] data = new Object[req.size()][columnNames.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i][0] = (i + 1);
+            data[i][1] = req.get(i).getId();
+            data[i][2] = req.get(i).getTanggalmulai();
+            data[i][3] = req.get(i).getTanggalakhir();
+            data[i][4] = req.get(i).getJumlah();
+//            data[i][5] = req.get(i).getKaryawan();
+//            data[i][5] = req.get(i).getJeniscuti();
+
+//            if (req.get(i).getKaryawan()!=null)data[i][5] = req.get(i).getKaryawan().getId()+"";
+//            else data[i][5] = "";
+//            if (req.get(i).getJeniscuti()!=null)data[i][6] = req.get(i).getJeniscuti().getId()+"";
+//            else data[i][6] = "";
+        }
+        myTable = new DefaultTableModel(data, columnNames);
+        tbHistory.setModel(myTable);
+    }
+
     private void setColor(JPanel pane) {
         pane.setBackground(new Color(41, 57, 80));
     }
@@ -621,6 +643,7 @@ public class Home extends javax.swing.JInternalFrame {
 
     }
 
+    //PRINTHILAN TEXT
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnHistory;
@@ -636,7 +659,6 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -654,6 +676,7 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lbCurrentDate;
     private javax.swing.JPanel pnBar;
     private javax.swing.JPanel pnCntentFill;
     private javax.swing.JPanel pnDescription;
