@@ -31,4 +31,8 @@ public class KaryawanController {
                     return true;
         return false;
     }
+
+    public Object getById(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -5,11 +5,20 @@
  */
 package views;
 
+import controllers.KaryawanController;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+import mainTools.HibernateUtil;
+import org.hibernate.SessionFactory;
+
 /**
  *
  * @author Pandu
  */
 public class Landing extends javax.swing.JFrame {
+
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    KaryawanController kc = new KaryawanController(sessionFactory);
 
     /**
      * Creates new form Landing
@@ -67,7 +76,7 @@ public class Landing extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("First Name");
 
-        tfRegFirstName.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegFirstName.setBackground(new java.awt.Color(120, 168, 252));
         tfRegFirstName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegFirstName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegFirstName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -75,7 +84,7 @@ public class Landing extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel10.setText("Last Name");
 
-        tfRegLastName.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegLastName.setBackground(new java.awt.Color(120, 168, 252));
         tfRegLastName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegLastName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegLastName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -83,7 +92,7 @@ public class Landing extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("Email");
 
-        tfRegEmail.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegEmail.setBackground(new java.awt.Color(120, 168, 252));
         tfRegEmail.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegEmail.setForeground(new java.awt.Color(255, 255, 255));
         tfRegEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -101,7 +110,7 @@ public class Landing extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("Username");
 
-        tfRegUsername.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegUsername.setBackground(new java.awt.Color(120, 168, 252));
         tfRegUsername.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegUsername.setForeground(new java.awt.Color(255, 255, 255));
         tfRegUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -109,11 +118,11 @@ public class Landing extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("Password");
 
-        tfRegPass1.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegPass1.setBackground(new java.awt.Color(120, 168, 252));
         tfRegPass1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegPass1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        tfRegPass2.setBackground(new java.awt.Color(0, 191, 255));
+        tfRegPass2.setBackground(new java.awt.Color(120, 168, 252));
         tfRegPass2.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegPass2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -249,7 +258,7 @@ public class Landing extends javax.swing.JFrame {
 
         pnLogin.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBackground(new java.awt.Color(0, 191, 255));
+        jTextField1.setBackground(new java.awt.Color(120, 168, 252));
         jTextField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -258,6 +267,7 @@ public class Landing extends javax.swing.JFrame {
         jButton1.setText("LOGIN");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -270,7 +280,7 @@ public class Landing extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Password");
 
-        jPasswordField1.setBackground(new java.awt.Color(0, 191, 255));
+        jPasswordField1.setBackground(new java.awt.Color(120, 168, 252));
         jPasswordField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         jPasswordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -300,12 +310,9 @@ public class Landing extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnLoginLayout.createSequentialGroup()
-                        .addGroup(pnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(184, 184, 184)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         pnLoginLayout.setVerticalGroup(
@@ -356,6 +363,32 @@ public class Landing extends javax.swing.JFrame {
 
     private void btRegSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegSignUpActionPerformed
         // TODO add your handling code here:
+//        String pass = "";
+//        String passconf = "";
+//        for (char c : tfRegPass1.getPassword()) {
+//            pass += c;
+//        }
+//        for (char c : tfRegPass2.getPassword()) {
+//            passconf += c;
+//        }
+//        if (tfRegFirstName.getText().isEmpty()
+//                || tfRegLastName.getText().isEmpty()
+//                || tfRegUsername.getText().isEmpty()
+//                || tfRegPass1.getText().isEmpty()
+//                || tfRegPass2.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "PLEASE FILL ALL OF YOUR DATA");
+//        } else if (kc.getById(tfRegUsername.getText()).size() != 0) {
+//            JOptionPane.showMessageDialog(null, "Username sudah digunakan");
+//        } else if (!Arrays.equals(tfRegPass1.getPassword(), tfRegPass2.getPassword())) {
+//            JOptionPane.showMessageDialog(null, "PASSWORD AREN'T MATCH");
+//        } else if (tfRegPass1.getPassword().length < 6) {
+//            JOptionPane.showMessageDialog(null, "Password minimal 6 karakter");
+//        } else {
+//            JOptionPane.showMessageDialog(null, kc.register(tfRegUsername.getText(), pass));
+//            pnSignUp.setVisible(false);
+//            pnLogin.setVisible(true);
+//
+//        }
     }//GEN-LAST:event_btRegSignUpActionPerformed
 
     private void btRegLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegLoginActionPerformed
