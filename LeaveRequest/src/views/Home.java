@@ -13,8 +13,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.HibernateUtil;
@@ -27,7 +29,7 @@ import org.hibernate.SessionFactory;
 public class Home extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
-
+    JDesktopPane desktop;
     private CutiController cc = new CutiController(factory);
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
@@ -38,6 +40,7 @@ public class Home extends javax.swing.JInternalFrame {
      */
     public Home() {
         initComponents();
+        getRidTheBar();
         setColor(btnHome);
         tableData(cc.getByID("11205"));
 
@@ -74,6 +77,7 @@ public class Home extends javax.swing.JInternalFrame {
         pnBar = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        btExit = new javax.swing.JLabel();
         pnDescription = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -331,10 +335,19 @@ public class Home extends javax.swing.JInternalFrame {
         jTextField1.setBorder(null);
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
         jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
-        pnBar.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 141, -1));
+        pnBar.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 10, 150, 30));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_search_24px.png"))); // NOI18N
-        pnBar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 14, -1, 30));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_search_more_24px.png"))); // NOI18N
+        pnBar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 30, 30));
+
+        btExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_exit_24px.png"))); // NOI18N
+        btExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btExitMouseClicked(evt);
+            }
+        });
+        pnBar.add(btExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 30));
 
         getContentPane().add(pnBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 920, 50));
 
@@ -716,20 +729,33 @@ public class Home extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         //source to drag
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - xy);
+//        int x = evt.getXOnScreen();
+//        int y = evt.getYOnScreen();
+//        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_pnBarMouseDragged
 
     int xx, xy;
     private void pnBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBarMousePressed
         // TODO add your handling code here:
         //drag this pane
-        xx = evt.getX();
-        xy = evt.getY();
+//        xx = evt.getX();
+//        xy = evt.getY();
     }//GEN-LAST:event_pnBarMousePressed
 
+    private void btExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExitMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new Landing().setVisible(true);
+    }//GEN-LAST:event_btExitMouseClicked
+
     //SELF METHOD
+    private void getRidTheBar() {
+        putClientProperty("Home.isPallete", Boolean.TRUE);
+        getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        this.setBorder(null);
+    }
+
     private void tableData(List<models.Pengajuan> req) {
         Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type"};
         Object[][] data = new Object[req.size()][columnNames.length];
@@ -769,6 +795,7 @@ public class Home extends javax.swing.JInternalFrame {
     //PRINTHILAN TEXT
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btExit;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnRequest;
