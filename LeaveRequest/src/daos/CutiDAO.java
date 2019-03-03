@@ -64,6 +64,24 @@ public class CutiDAO {
         }
         return result;
     }
+    
+    public List<Pengajuan> getId(Object keyword) {
+        List<Pengajuan> pengajuan = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            pengajuan = session.createQuery("FROM Pengajuan where id = '" + keyword+"'").list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return pengajuan;
+    }
 }
 
 

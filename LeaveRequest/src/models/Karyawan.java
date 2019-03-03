@@ -70,6 +70,17 @@ public class Karyawan implements Serializable {
 
     public Karyawan() {
     }
+    
+    public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager) {
+        this.id=id;
+        this.nama=name;
+        this.jeniskelamin=gender;
+        this.jumlahcuti=jumlahcuti;
+        this.email=email;
+        this.password=password;
+        this.statusnikah=statusNikah;
+        this.idmanager=manager;
+    }
 
     public Karyawan(String id) {
         this.id = id;

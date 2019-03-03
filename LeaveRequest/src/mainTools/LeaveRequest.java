@@ -10,6 +10,8 @@ import daos.CutiDAO;
 import java.text.ParseException;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
+import models.Karyawan;
+import models.Pengajuan;
 
 /**
  *
@@ -27,8 +29,25 @@ public class LeaveRequest {
         CutiDAO cdao = new CutiDAO(sessionFactory);
         CutiController cc = new CutiController(sessionFactory);
         
-        System.out.println(cc.insert("P3", "2018-03-03", "2018-03-04", "1", "11205", "JC1"));
+//        INSERT/UPDATE/DELETE
+//        System.out.println(cc.insert("P3", "2018-03-03", "2018-03-04", "1", "11205", "JC1"));
 
+//        System.out.println(cc.getByID("11205"));
+
+
+//        GET DATA BASED ON KARYAWAN ID
+        for (Pengajuan pengajuan : cc.getByID("11205")) {
+            System.out.println("==============================");
+            System.out.println("ID      : "+pengajuan.getId());
+            System.out.println("START   : "+pengajuan.getTanggalmulai());
+            System.out.println("END     : "+pengajuan.getTanggalakhir());
+            System.out.println("TOTAL   : "+pengajuan.getJumlah());
+                
+            //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
+            System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
+            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+
+        }
     }
 
 }
