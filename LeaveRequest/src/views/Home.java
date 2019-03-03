@@ -20,6 +20,8 @@ public class Home extends javax.swing.JInternalFrame {
     public Home() {
         initComponents();
         setColor(btnHome);
+        pnHistory.setVisible(false);
+        pnRequest.setVisible(false);
     }
 
     /**
@@ -393,12 +395,14 @@ public class Home extends javax.swing.JInternalFrame {
                 .addGap(90, 90, 90))
         );
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tbHistory.setBackground(new java.awt.Color(255, 255, 255));
         tbHistory.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tbHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -444,6 +448,9 @@ public class Home extends javax.swing.JInternalFrame {
         setColor(btnHome);
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btnHistory, btnUser, btnRequest}, new JPanel[]{ind_2, ind_3, ind_4});
+        
+        pnHistory.setVisible(false);
+        pnRequest.setVisible(false);
     }//GEN-LAST:event_btnHomeMousePressed
 
     private void btnHistoryMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseReleased
