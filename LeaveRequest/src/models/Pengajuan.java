@@ -64,6 +64,15 @@ public class Pengajuan implements Serializable {
     public Pengajuan() {
     }
 
+    public Pengajuan(String id, Date start, Date end, Short jumlah, Karyawan karyawan, JenisCuti jenisCuti ) {
+        this.id=id;
+        this.tanggalmulai=start;
+        this.tanggalakhir=end;
+        this.jumlah=jumlah;
+        this.karyawan=karyawan;
+        this.jeniscuti=jenisCuti;
+    }
+    
     public Pengajuan(String id) {
         this.id = id;
     }

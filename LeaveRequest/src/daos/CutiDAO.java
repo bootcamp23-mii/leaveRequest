@@ -22,6 +22,9 @@ public class CutiDAO {
     private Session session;
     private Transaction transaction;
     
+    public CutiDAO(SessionFactory factory){
+        this.factory=factory;
+    }
     
     
     public List<RiwayatCuti> getAll(Object keyword) {
