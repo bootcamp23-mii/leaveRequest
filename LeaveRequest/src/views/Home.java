@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.awt.Color;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Pandu
@@ -361,7 +364,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Launch dates for the items listed ");
+        jLabel14.setText("This Description about the history table");
 
         javax.swing.GroupLayout pnCntentFillLayout = new javax.swing.GroupLayout(pnCntentFill);
         pnCntentFill.setLayout(pnCntentFillLayout);
@@ -370,7 +373,7 @@ public class Home extends javax.swing.JInternalFrame {
             .addGroup(pnCntentFillLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel14)
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
         pnCntentFillLayout.setVerticalGroup(
             pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,12 +463,33 @@ public class Home extends javax.swing.JInternalFrame {
         this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_pnBarMouseDragged
 
+    
+    int xx, xy;
     private void pnBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBarMousePressed
         // TODO add your handling code here:
         //drag this pane
         xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_pnBarMousePressed
+
+    
+    
+    //SELF METHOD
+      
+    private void setColor(JPanel pane) {
+        pane.setBackground(new Color(41, 57, 80));
+    }
+
+    private void resetColor(JPanel[] pane, JPanel[] indicators) {
+        for (int i = 0; i < pane.length; i++) {
+            pane[i].setBackground(new Color(23, 35, 51));
+
+        }
+        for (int i = 0; i < indicators.length; i++) {
+            indicators[i].setOpaque(false);
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
