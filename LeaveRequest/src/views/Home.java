@@ -532,9 +532,9 @@ public class Home extends javax.swing.JInternalFrame {
             .addGroup(pnHistoryLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(pnCntentFill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));

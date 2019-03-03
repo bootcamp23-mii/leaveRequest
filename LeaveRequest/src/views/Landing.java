@@ -56,7 +56,6 @@ public class Landing extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 610));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jTextField1.setBackground(new java.awt.Color(0, 191, 255));
         jTextField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
@@ -81,7 +80,6 @@ public class Landing extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(0, 191, 255));
         jPasswordField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
