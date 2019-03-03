@@ -347,8 +347,8 @@ public class Landing extends javax.swing.JFrame {
         // TODO add your handling code here:
         Home ev = new Home();
         mainPanel.add(ev);
-        pnGimmick.setVisible(false);
-        pnLogin.setVisible(false);
+//        pnGimmick.setVisible(false);
+//        pnLogin.setVisible(false);
         ev.setVisible(true);
 //        jIFEmployee.setBounds(5, 5, 200, 300);
         ev.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);

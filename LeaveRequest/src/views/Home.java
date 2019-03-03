@@ -745,7 +745,9 @@ public class Home extends javax.swing.JInternalFrame {
     private void btExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExitMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new Landing().setVisible(true);
+        Landing land = null;
+        land.setVisible(true);
+        //new Landing().setVisible(true);
     }//GEN-LAST:event_btExitMouseClicked
 
     //SELF METHOD
