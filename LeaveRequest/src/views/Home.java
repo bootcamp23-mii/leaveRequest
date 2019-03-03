@@ -6,7 +6,11 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.MouseMotionListener;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -20,6 +24,8 @@ public class Home extends javax.swing.JInternalFrame {
     public Home() {
         initComponents();
         setColor(btnHome);
+        pnHome.setVisible(true);
+        pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
     }
@@ -56,9 +62,20 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         dynamicPane = new javax.swing.JLayeredPane();
+        pnHome = new javax.swing.JPanel();
+        pnHomeHeader = new javax.swing.JPanel();
+        pnHomeContent = new javax.swing.JPanel();
+        pnUser = new javax.swing.JPanel();
         pnRequest = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         pnHistory = new javax.swing.JPanel();
         pnCntentFill = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -316,7 +333,10 @@ public class Home extends javax.swing.JInternalFrame {
 
         jPanel5.setBackground(new java.awt.Color(84, 127, 206));
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("19:30 - 03/03/2019");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -324,21 +344,21 @@ public class Home extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, -1, 130));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 270, 130));
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 86, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Pandu Galang");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, 30));
@@ -347,7 +367,7 @@ public class Home extends javax.swing.JInternalFrame {
         pnDescription.setLayout(pnDescriptionLayout);
         pnDescriptionLayout.setHorizontalGroup(
             pnDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnDescriptionLayout.setVerticalGroup(
             pnDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,13 +380,94 @@ public class Home extends javax.swing.JInternalFrame {
 
         dynamicPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        pnHome.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnHomeHeader.setBackground(new java.awt.Color(230, 230, 230));
+
+        javax.swing.GroupLayout pnHomeHeaderLayout = new javax.swing.GroupLayout(pnHomeHeader);
+        pnHomeHeader.setLayout(pnHomeHeaderLayout);
+        pnHomeHeaderLayout.setHorizontalGroup(
+            pnHomeHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        pnHomeHeaderLayout.setVerticalGroup(
+            pnHomeHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        pnHomeContent.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout pnHomeContentLayout = new javax.swing.GroupLayout(pnHomeContent);
+        pnHomeContent.setLayout(pnHomeContentLayout);
+        pnHomeContentLayout.setHorizontalGroup(
+            pnHomeContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        pnHomeContentLayout.setVerticalGroup(
+            pnHomeContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnHomeLayout = new javax.swing.GroupLayout(pnHome);
+        pnHome.setLayout(pnHomeLayout);
+        pnHomeLayout.setHorizontalGroup(
+            pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnHomeHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnHomeContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnHomeLayout.setVerticalGroup(
+            pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnHomeLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(pnHomeHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(325, Short.MAX_VALUE))
+            .addGroup(pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHomeLayout.createSequentialGroup()
+                    .addGap(0, 214, Short.MAX_VALUE)
+                    .addComponent(pnHomeContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        dynamicPane.add(pnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+
+        javax.swing.GroupLayout pnUserLayout = new javax.swing.GroupLayout(pnUser);
+        pnUser.setLayout(pnUserLayout);
+        pnUserLayout.setHorizontalGroup(
+            pnUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        pnUserLayout.setVerticalGroup(
+            pnUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+
+        dynamicPane.add(pnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+
         pnRequest.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 299, 180, -1));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jButton1.setText("SUBMIT");
+        pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 210, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnRequest.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 180, -1));
+        pnRequest.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
+        pnRequest.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 40));
+        pnRequest.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 210, 40));
+
+        jLabel3.setText("Start Leave");
+        pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+
+        jLabel4.setText("jLabel4");
+        pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+
+        jLabel5.setText("Leave Type");
+        pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
+
+        jTextField2.setEditable(false);
+        pnRequest.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
+
+        jLabel6.setText("TOTAL");
+        pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
@@ -448,7 +549,8 @@ public class Home extends javax.swing.JInternalFrame {
         setColor(btnHome);
         ind_1.setOpaque(true);
         resetColor(new JPanel[]{btnHistory, btnUser, btnRequest}, new JPanel[]{ind_2, ind_3, ind_4});
-        
+        pnHome.setVisible(true);
+        pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
     }//GEN-LAST:event_btnHomeMousePressed
@@ -458,6 +560,8 @@ public class Home extends javax.swing.JInternalFrame {
         setColor(btnHistory);
         ind_2.setOpaque(true);
         resetColor(new JPanel[]{btnHome, btnUser, btnRequest}, new JPanel[]{ind_1, ind_3, ind_4});
+        pnHome.setVisible(false);
+        pnUser.setVisible(false);
         pnHistory.setVisible(true);
         pnRequest.setVisible(false);
     }//GEN-LAST:event_btnHistoryMouseReleased
@@ -467,6 +571,10 @@ public class Home extends javax.swing.JInternalFrame {
         setColor(btnUser);
         ind_3.setOpaque(true);
         resetColor(new JPanel[]{btnHistory, btnHome, btnRequest}, new JPanel[]{ind_2, ind_1, ind_4});
+        pnHome.setVisible(false);
+        pnUser.setVisible(true);
+        pnHistory.setVisible(false);
+        pnRequest.setVisible(false);
     }//GEN-LAST:event_btnUserMousePressed
 
     private void btnRequestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRequestMousePressed
@@ -474,6 +582,8 @@ public class Home extends javax.swing.JInternalFrame {
         setColor(btnRequest);
         ind_4.setOpaque(true);
         resetColor(new JPanel[]{btnHistory, btnUser, btnHome}, new JPanel[]{ind_2, ind_3, ind_1});
+        pnHome.setVisible(false);
+        pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(true);
     }//GEN-LAST:event_btnRequestMousePressed
@@ -487,7 +597,6 @@ public class Home extends javax.swing.JInternalFrame {
         this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_pnBarMouseDragged
 
-    
     int xx, xy;
     private void pnBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBarMousePressed
         // TODO add your handling code here:
@@ -496,10 +605,7 @@ public class Home extends javax.swing.JInternalFrame {
         xy = evt.getY();
     }//GEN-LAST:event_pnBarMousePressed
 
-    
-    
     //SELF METHOD
-      
     private void setColor(JPanel pane) {
         pane.setBackground(new Color(41, 57, 80));
     }
@@ -521,6 +627,8 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private datechooser.beans.DateChooserCombo dateChooserCombo2;
     private javax.swing.JLayeredPane dynamicPane;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
@@ -534,6 +642,10 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -541,12 +653,17 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel pnBar;
     private javax.swing.JPanel pnCntentFill;
     private javax.swing.JPanel pnDescription;
     private javax.swing.JPanel pnHistory;
+    private javax.swing.JPanel pnHome;
+    private javax.swing.JPanel pnHomeContent;
+    private javax.swing.JPanel pnHomeHeader;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnRequest;
+    private javax.swing.JPanel pnUser;
     private javax.swing.JTable tbHistory;
     // End of variables declaration//GEN-END:variables
 }
