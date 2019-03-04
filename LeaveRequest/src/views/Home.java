@@ -32,7 +32,7 @@ public class Home extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
-    private CutiControllerInterface cc;
+    private CutiControllerInterface cc = new CutiController(factory);
 //    private CutiController cc = new CutiControllerInterface(factory, new Pengajuan());
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
