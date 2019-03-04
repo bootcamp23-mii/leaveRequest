@@ -24,7 +24,7 @@ import org.hibernate.SessionFactory;
  *
  * @author Pandu
  */
-public class Home extends javax.swing.JInternalFrame {
+public class HomeUser extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
@@ -38,7 +38,7 @@ public class Home extends javax.swing.JInternalFrame {
     /**
      * Creates new form Home
      */
-    public Home() {
+    public HomeUser() {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
@@ -558,6 +558,11 @@ public class Home extends javax.swing.JInternalFrame {
         jTextField7.setBackground(new java.awt.Color(120, 168, 252));
         jTextField7.setForeground(new java.awt.Color(255, 255, 255));
         jTextField7.setBorder(null);
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jTextField5.setBackground(new java.awt.Color(120, 168, 252));
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
@@ -583,6 +588,7 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Username");
 
+        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton2.setText("SUBMIT");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -602,10 +608,10 @@ public class Home extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel13))
                 .addGap(63, 63, 63))
         );
@@ -628,8 +634,8 @@ public class Home extends javax.swing.JInternalFrame {
                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -665,21 +671,27 @@ public class Home extends javax.swing.JInternalFrame {
         jButton1.setText("SUBMIT");
         pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 210, -1));
 
+        jComboBox1.setBackground(new java.awt.Color(120, 168, 252));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnRequest.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
+
+        dateChooserCombo1.setCalendarBackground(new java.awt.Color(51, 153, 255));
         pnRequest.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 40));
+
+        dateChooserCombo2.setCalendarBackground(new java.awt.Color(51, 153, 255));
         pnRequest.add(dateChooserCombo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 210, 40));
 
         jLabel3.setText("Start Leave");
         pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("End Leave");
         pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
 
         jLabel5.setText("Leave Type");
         pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
         jTextField2.setEditable(false);
+        jTextField2.setBackground(new java.awt.Color(120, 168, 252));
         pnRequest.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
 
         jLabel6.setText("TOTAL");
@@ -828,6 +840,10 @@ public class Home extends javax.swing.JInternalFrame {
 //        land.setVisible(true);
         new Landing().setVisible(true);
     }//GEN-LAST:event_btExitMouseClicked
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     //SELF METHOD
     private void getRidTheBar() {
