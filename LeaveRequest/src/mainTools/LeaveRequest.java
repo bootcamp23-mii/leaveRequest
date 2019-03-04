@@ -11,7 +11,6 @@ import daosBackup.CutiDAO;
 import java.text.ParseException;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
-import models.Karyawan;
 import models.Pengajuan;
 
 /**
