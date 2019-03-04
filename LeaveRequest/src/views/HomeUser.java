@@ -79,7 +79,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         }
 
         for (JenisCuti jenisCuti : jc.getAll("")) {
-            cbJenisCuti.addItem(jenisCuti.getJenis());
+            cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
         }
 
         for (Karyawan karyawan : kc.getKar(var)) {
@@ -89,7 +89,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             tfUserPassword.setText(karyawan.getPassword().toString());
         }
         for (Karyawan karyawan : kc.getKar(var)) {
-            lbDescriptionManager.setText("Managed by "+karyawan.getIdmanager().getNama()); 
+            lbDescriptionManager.setText("Managed by " + karyawan.getIdmanager().getNama());
         }
 
     }
@@ -770,7 +770,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     jLabel5.setText("Leave Type");
     pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
-    tfUserTotal.setEditable(false);
     tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
     pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
 
@@ -926,19 +925,24 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void btUserSubmitRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserSubmitRequestActionPerformed
         // TODO add your handling code here:
 
-        tfUserTotal.setText(dcStart.getText());
-        if (konfirmasi()) {
-            if (isEmpty()) {
-                JOptionPane.showMessageDialog(null, cc.save(var, dcStart.getText(), dcEnd.getText(), tfUserTotal.getText(), var, cbJenisCuti.getSelectedItem().toString()));
-                clear();
-            } else {
-                tableData(cc.getByIdKaryawan(var));
-            }
-        }
+        cc.save("P5",
+                dcStart.getText().toString(),
+                dcEnd.getText().toString(),
+                tfUserTotal.getText(),
+                var,
+                cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
+//        tfUserTotal.setText(dcStart.getText());
+//        if (konfirmasi()) {
+//            if (isEmpty()) {
+//                JOptionPane.showMessageDialog(null, cc.save("P5", dcStart.getText().toString(), dcEnd.getText().toString(), tfUserTotal.getText(), var, cbJenisCuti.getSelectedItem().toString()));
+//                clear();
+//            } else {
+//                tableData(cc.getByIdKaryawan(var));
+//            }
+//        }
     }//GEN-LAST:event_btUserSubmitRequestActionPerformed
 
     //SELF METHOD
-
     private boolean konfirmasi() {
         if (dcStart.getText().equals("")
                 || dcEnd.getText().equals("")
@@ -954,17 +958,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
         return cc.getData(var).isEmpty();
     }
     
+    private void clear() {
+        tfUserTotal.setText("");
+        cbJenisCuti.setSelectedIndex(0);
+    }
+    
     private void getRidTheBar() {
         putClientProperty("Home.isPallete", Boolean.TRUE);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.setBorder(null);
     }
-    
-    private void clear(){
-        tfUserTotal.setText("");
-        cbJenisCuti.setSelectedIndex(0);
-    }
+
 
     private void tableData(List<models.Pengajuan> req) {
         Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type", "Status"};

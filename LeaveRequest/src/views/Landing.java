@@ -344,6 +344,9 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //Define manager or User using for i, when manager ID match the Login ID, so define as Manager
+        //Else, if 
+        
         HomeUser ev = new HomeUser();
         mainPanel.add(ev);
         pnGimmick.setVisible(false);
