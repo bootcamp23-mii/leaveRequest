@@ -42,7 +42,7 @@ public class Home extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
-        tableData(cc.getByID("11205"));
+        tableData(cc.getByKaryawan("11205"));
 
         //PANEL CONTROL
         pnHome.setVisible(true);

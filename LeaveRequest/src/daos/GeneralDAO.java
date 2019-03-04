@@ -19,6 +19,7 @@ import org.hibernate.Transaction;
 /**
  *
  * @author Pandu
+ * @param <T>
  */
 public class GeneralDAO<T> implements Interface<T> {
 
@@ -33,7 +34,6 @@ public class GeneralDAO<T> implements Interface<T> {
     }
 
     public GeneralDAO() {
-
     }
 
     private String getQuery(String keyword) {
@@ -65,6 +65,21 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
+    @Override
+    public List<T> getByKar(Object id) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + id + "'").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj;
+    }
 
     @Override
     public T getById(Object id) {
@@ -81,7 +96,8 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
-
+    
+    
     @Override
     public boolean saveOrDelete(T entity, boolean isSave) {
         boolean result = false;

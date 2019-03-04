@@ -14,13 +14,15 @@ import models.Pengajuan;
  */
 public interface CutiControllerInterface {
 
-    public Pengajuan getByid(String id);
+    public Pengajuan getById(String id);
+    
+    public List<Pengajuan> getByKaryawan(String id);
 
-    public List<Pengajuan> getAll();
+    public List<Pengajuan> getAll(String key);
 
     public List<Pengajuan> search(Object keyword);
 
-    public String save(String id, String nama, String region);
-
+    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti);
+    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti);
     public String delete(String id);
 }

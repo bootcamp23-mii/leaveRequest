@@ -5,11 +5,15 @@
  */
 package controllers;
 
+import daos.GeneralDAO;
+import daos.Interface;
 import daosBackup.CutiDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.JenisCuti;
 import models.Karyawan;
 import models.Pengajuan;
@@ -19,45 +23,72 @@ import org.hibernate.SessionFactory;
  *
  * @author Pandu
  */
-public class CutiController {
+public class CutiController implements CutiControllerInterface{
 
-    private CutiDAO cdao;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+    private Interface<Pengajuan> cdao;
 
     public CutiController(SessionFactory sessionFactory)  {
-        cdao = new CutiDAO(sessionFactory);
+        cdao = new GeneralDAO<>(sessionFactory, new Pengajuan());
     }
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 
-    public String insert(String id, String start, String end, String total, String karyawan, String jenisCuti) throws ParseException {
-        if (cdao.saveordelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
-            return "LEAVE REQUEST INPUTED";
-        } else {
-            return "FAILED INPUT LEAVE REQUEST";
+    
+    @Override
+    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti)  {
+        try {
+            if (cdao.saveOrDelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
+                return "LEAVE REQUEST INPUTED";
+            } else {
+                return "FAILED INPUT LEAVE REQUEST";
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(CutiController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "FAIL";
     }
 
-    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti) throws ParseException {
-        if (cdao.saveordelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
-            return "DATA UPDATED FOR ID = " + id;
-        } else {
-            return "UPDATE FAILED";
+    @Override
+    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti){
+        try {
+            if (cdao.saveOrDelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
+                return "DATA UPDATED FOR ID = " + id;
+            } else {
+                return "UPDATE FAILED";
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(CutiController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "FAIL";
     }
 
+    @Override
     public String delete(String id) {
-        if (cdao.saveordelete(new Pengajuan(id), false))  {
+        if (cdao.saveOrDelete(new Pengajuan(id), false))  {
             return "RECORD SUCCESSFULLY DELETED";
         } else {
             return "DELETE FAILED";
         }
     }
     
-    public List<Pengajuan> getByID(String key){
-        return cdao.getId(key);
+    @Override
+    public Pengajuan getById(String key){
+        return cdao.getById(key);
     }
     
+    @Override
+    public List<Pengajuan> getByKaryawan(String key){
+        return cdao.getByKar(key);
+        
+    }
+    
+    @Override
     public List<Pengajuan> getAll(String key){
-        return cdao.getId("");
+        return cdao.getData("");
+    }
+
+    @Override
+    public List<Pengajuan> search(Object keyword) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

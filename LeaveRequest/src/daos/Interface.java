@@ -11,11 +11,12 @@ import java.util.List;
  *
  * @author Pandu
  */
-interface Interface<T> {
+public interface Interface<T> {
 
     public boolean saveOrDelete(T entity, boolean isSave);
 
     public List<T> getData(Object keyword);
+    public List<T> getByKar(Object keyword);
 
     public T getById(Object id);
 }
