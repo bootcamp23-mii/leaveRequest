@@ -45,6 +45,8 @@ public class LeaveRequest {
             System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
             System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
 //            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
+System.out.println(karyawanInterface.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
+            System.out.println(karyawanInterface.login("loli", "qdasd"));
 
         }
     }
