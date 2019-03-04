@@ -7,6 +7,8 @@ package mainTools;
 
 import controllers.CutiController;
 import controllers.CutiControllerInterface;
+import controllers.KaryawanController;
+import controllers.KaryawanInterface;
 import daosBackup.CutiDAO;
 import java.text.ParseException;
 import org.hibernate.SessionFactory;
@@ -28,6 +30,7 @@ public class LeaveRequest {
 
         CutiDAO cdao = new CutiDAO(sessionFactory);
         CutiControllerInterface cc = new CutiController(sessionFactory);
+        KaryawanInterface karyawanInterface = new KaryawanController(sessionFactory);
 //        CutiController cc = new CutiController(sessionFactory);
 
 //        INSERT/UPDATE/DELETE
@@ -46,7 +49,7 @@ public class LeaveRequest {
             System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
 //            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
 System.out.println(karyawanInterface.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
-            System.out.println(karyawanInterface.login("loli", "qdasd"));
+//            System.out.println(karyawanInterface.login("loli", "qdasd"));
 
         }
     }
