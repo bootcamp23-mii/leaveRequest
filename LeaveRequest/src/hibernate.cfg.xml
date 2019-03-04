@@ -49,6 +49,7 @@ Contributor(s):
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.default_schema">LEAVE_REQUEST</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping class="models.JenisCuti"/>
     <mapping class="models.Karyawan"/>
     <mapping class="models.KeteranganCuti"/>

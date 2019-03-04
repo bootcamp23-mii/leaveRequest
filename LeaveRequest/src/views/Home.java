@@ -767,8 +767,8 @@ public class Home extends javax.swing.JInternalFrame {
             data[i][2] = req.get(i).getTanggalmulai();
             data[i][3] = req.get(i).getTanggalakhir();
             data[i][4] = req.get(i).getJumlah();
-//            data[i][5] = req.get(i).getKaryawan();
-//            data[i][5] = req.get(i).getJeniscuti();
+            data[i][5] = req.get(i).getKaryawan();
+            data[i][5] = req.get(i).getJeniscuti();
 
 //            if (req.get(i).getKaryawan()!=null)data[i][5] = req.get(i).getKaryawan().getId()+"";
 //            else data[i][5] = "";

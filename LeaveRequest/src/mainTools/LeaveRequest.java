@@ -45,7 +45,7 @@ public class LeaveRequest {
                 
             //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
             System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
-//            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
 //            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
 
         }
