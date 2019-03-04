@@ -70,7 +70,7 @@ public class CutiDAO {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            pengajuan = session.createQuery("FROM Pengajuan where karyawan = '" + keyword+"'").list();
+            pengajuan = session.createQuery("FROM Pengajuan where id = '" + keyword+"'").list();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();

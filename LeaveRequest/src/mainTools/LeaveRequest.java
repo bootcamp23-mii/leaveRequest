@@ -36,7 +36,7 @@ public class LeaveRequest {
 
 
 //        GET DATA BASED ON KARYAWAN ID
-        for (Pengajuan pengajuan : cc.getByID("11205")) {
+        for (Pengajuan pengajuan : cc.getByID("P1")) {
             System.out.println("==============================");
             System.out.println("ID      : "+pengajuan.getId());
             System.out.println("START   : "+pengajuan.getTanggalmulai());
@@ -45,7 +45,8 @@ public class LeaveRequest {
                 
             //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
             System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
-            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+//            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+//            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
 
         }
     }
