@@ -342,7 +342,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         pnMenu.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 150, -1));
 
-        getContentPane().add(pnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 590));
+        getContentPane().add(pnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 660));
 
         pnBar.setBackground(new java.awt.Color(71, 120, 197));
         pnBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -425,10 +425,10 @@ public class Home extends javax.swing.JInternalFrame {
             pnDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnDescriptionLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 270, 540));
+        getContentPane().add(pnDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 270, 630));
 
         dynamicPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
