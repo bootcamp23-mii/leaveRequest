@@ -23,18 +23,17 @@ import org.hibernate.SessionFactory;
  *
  * @author Pandu
  */
-public class CutiController implements CutiControllerInterface{
+public class CutiController implements CutiControllerInterface {
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-    private Interface<Pengajuan> cdao;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+    private final Interface<Pengajuan> cdao;
 
-    public CutiController(SessionFactory sessionFactory)  {
+    public CutiController(SessionFactory sessionFactory) {
         cdao = new GeneralDAO<>(sessionFactory, new Pengajuan());
     }
 
-    
     @Override
-    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti)  {
+    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti) {
         try {
             if (cdao.saveOrDelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
                 return "LEAVE REQUEST INPUTED";
@@ -48,7 +47,7 @@ public class CutiController implements CutiControllerInterface{
     }
 
     @Override
-    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti){
+    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti) {
         try {
             if (cdao.saveOrDelete(new Pengajuan(id, sdf.parse(start), sdf.parse(end), new Short(total), new Karyawan(karyawan), new JenisCuti(jenisCuti)), true)) {
                 return "DATA UPDATED FOR ID = " + id;
@@ -63,26 +62,26 @@ public class CutiController implements CutiControllerInterface{
 
     @Override
     public String delete(String id) {
-        if (cdao.saveOrDelete(new Pengajuan(id), false))  {
+        if (cdao.saveOrDelete(new Pengajuan(id), false)) {
             return "RECORD SUCCESSFULLY DELETED";
         } else {
             return "DELETE FAILED";
         }
     }
-    
+
     @Override
-    public Pengajuan getById(String key){
+    public Pengajuan getById(String key) {
         return cdao.getById(key);
     }
-    
+
     @Override
-    public List<Pengajuan> getByKaryawan(String key){
+    public List<Pengajuan> getByKaryawan(String key) {
         return cdao.getByKar(key);
-        
+
     }
-    
+
     @Override
-    public List<Pengajuan> getAll(String key){
+    public List<Pengajuan> getAll(String key) {
         return cdao.getData("");
     }
 

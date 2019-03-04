@@ -7,6 +7,8 @@ package views;
 
 import controllers.CutiController;
 import controllers.CutiControllerInterface;
+import controllers.JenisCutiController;
+import controllers.JenisCutiInterface;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +19,7 @@ import javax.swing.JRootPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.HibernateUtil;
+import models.JenisCuti;
 import models.Pengajuan;
 import org.hibernate.SessionFactory;
 
@@ -28,7 +31,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
-    private CutiControllerInterface cc = new CutiController(factory);
+//    CONTROLLER
+    private final CutiControllerInterface cc = new CutiController(factory);
+    private final JenisCutiInterface jc = new JenisCutiController(factory);
 //    private CutiController cc = new CutiControllerInterface(factory, new Pengajuan());
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
@@ -129,7 +134,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         pnRequest = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbJenisCuti = new javax.swing.JComboBox<>();
         dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
         dateChooserCombo2 = new datechooser.beans.DateChooserCombo();
         jLabel3 = new javax.swing.JLabel();
@@ -588,7 +593,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Username");
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton2.setText("SUBMIT");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
@@ -669,11 +674,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setText("SUBMIT");
-        pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 210, -1));
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 255, 210, 40));
 
-        jComboBox1.setBackground(new java.awt.Color(120, 168, 252));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnRequest.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
+        cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
+        cbJenisCuti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
 
         dateChooserCombo1.setCalendarBackground(new java.awt.Color(51, 153, 255));
         pnRequest.add(dateChooserCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 40));
@@ -781,6 +788,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
+        cbJenisCutiKu();
     }//GEN-LAST:event_btnHomeMousePressed
 
     private void btnHistoryMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseReleased
@@ -852,6 +860,16 @@ public class HomeUser extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.setBorder(null);
     }
+    
+    private void cbJenisCutiKu(){
+        for (JenisCuti jenisCuti : jc.getAll("")) {
+            cbJenisCuti.addItem(jenisCuti.getJenis());
+        }
+        
+        for (models.JenisCuti jenisCuti : jc.getAll("")) {
+            cbJenisCuti.addItem(jenisCuti.getJenis());
+        }
+    }
 
     private void tableData(List<models.Pengajuan> req) {
         Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type"};
@@ -897,6 +915,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
+    private javax.swing.JComboBox<String> cbJenisCuti;
     private javax.swing.JLabel cutiDiambilCounter;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private datechooser.beans.DateChooserCombo dateChooserCombo2;
@@ -908,7 +927,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
