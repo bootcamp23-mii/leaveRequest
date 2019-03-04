@@ -3,57 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package daosBackup;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Pengajuan;
-import models.RiwayatCuti;
+import models.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
  *
- * @author Pandu
+ * @author Panji Sadewo
  */
-public class CutiDAO {
+public class RoleDAO {
     private SessionFactory factory;
     private Session session;
     private Transaction transaction;
     
-    public CutiDAO(SessionFactory factory){
-        this.factory=factory;
-    }
-    
-    
-    public List<RiwayatCuti> getAll(Object keyword) {
-        List<RiwayatCuti> riwayatCuti = new ArrayList<>();
-        session = this.factory.openSession();
-        transaction = session.beginTransaction();
-        try {
-            riwayatCuti = session.createQuery("FROM Riwayat_cuti").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return riwayatCuti;
-    }
-    
-    public boolean saveordelete(Pengajuan req, Boolean isSave) {
+    public boolean saveOrDelete(Role role, boolean isSave) {
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
             if (isSave) {
-                session.saveOrUpdate(req);
+                session.saveOrUpdate(role);
             } else {
-                session.delete(req);
+                session.delete(role);
             }
             transaction.commit();
-            result = true;
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
@@ -61,16 +39,16 @@ public class CutiDAO {
             }
         } finally {
             session.close();
-        }
-        return result;
+        }        
+        return true;
     }
     
-    public List<Pengajuan> getId(Object keyword) {
-        List<Pengajuan> pengajuan = new ArrayList<>();
+    public Role getById(int id) {
+        Role role = new Role();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            pengajuan = session.createQuery("FROM Pengajuan where id = '" + keyword+"'").list();
+            role = (Role) session.createQuery("FROM Role where id = "+id).list().get(0);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,8 +58,26 @@ public class CutiDAO {
         } finally {
             session.close();
         }
-        return pengajuan;
+        return role;
     }
+    
+    public List<Role> getData(Object keyword) {
+        List<Role> roles = new ArrayList<Role>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            roles = session.createQuery("FROM Role where id like '%"+keyword+"%'").list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        
+        return roles;
+    }
+    
 }
-
-

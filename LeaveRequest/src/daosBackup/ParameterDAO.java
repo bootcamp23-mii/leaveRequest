@@ -3,34 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package daosBackup;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Pekerjaan;
+import models.Parameter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 
 /**
  *
  * @author Panji Sadewo
  */
-public class PekerjaanDAO {
+public class ParameterDAO {
     private SessionFactory factory;
     private Session session;
     private Transaction transaction;
+
+    public ParameterDAO(SessionFactory factory) {
+        this.factory = factory;
+    }
+
+    public ParameterDAO() {
+    }
     
-    public boolean saveOrDelete(Pekerjaan pekerjaan, boolean isSave) {
+    public boolean saveOrDelete(Parameter parameter, boolean isSave) {
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
             if (isSave) {
-                session.saveOrUpdate(pekerjaan);
+                session.saveOrUpdate(parameter);
             } else {
-                session.delete(pekerjaan);
+                session.delete(parameter);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -44,12 +50,12 @@ public class PekerjaanDAO {
         return true;
     }
     
-    public Pekerjaan getById(int id) {
-        Pekerjaan pekerjaan = new Pekerjaan();
+    public Parameter getById(int id) {
+        Parameter parameter = new Parameter();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            pekerjaan = (Pekerjaan) session.createQuery("FROM Pekerjaan where id = "+id).list().get(0);
+            parameter = (Parameter) session.createQuery("FROM Parameter where id = "+id).list().get(0);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,15 +65,15 @@ public class PekerjaanDAO {
         } finally {
             session.close();
         }
-        return pekerjaan;
+        return parameter;
     }
     
-    public List<Pekerjaan> getData(Object keyword) {
-        List<Pekerjaan> pekerjaans = new ArrayList<Pekerjaan>();
+    public List<Parameter> getData(Object keyword) {
+        List<Parameter> parameters = new ArrayList<Parameter>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            pekerjaans = session.createQuery("FROM Pekerjaan where name like '%"+keyword+"%' or jeniskelamin like '%"+keyword+"%' order by 1").list();
+            parameters = session.createQuery("FROM Parameter where name id '%"+keyword+"%'").list();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,9 +84,7 @@ public class PekerjaanDAO {
             session.close();
         }
         
-        return pekerjaans;
+        return parameters;
     }
-    
-    
     
 }

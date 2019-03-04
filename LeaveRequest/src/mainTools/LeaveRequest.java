@@ -6,7 +6,7 @@
 package mainTools;
 
 import controllers.CutiController;
-import daos.CutiDAO;
+import daosBackup.CutiDAO;
 import java.text.ParseException;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
@@ -36,19 +36,19 @@ public class LeaveRequest {
 
 
 //        GET DATA BASED ON KARYAWAN ID
-        for (Pengajuan pengajuan : cc.getByID("P1")) {
-            System.out.println("==============================");
-            System.out.println("ID      : "+pengajuan.getId());
-            System.out.println("START   : "+pengajuan.getTanggalmulai());
-            System.out.println("END     : "+pengajuan.getTanggalakhir());
-            System.out.println("TOTAL   : "+pengajuan.getJumlah());
-                
+//        for (Pengajuan pengajuan : cc.getByID("P1")) {
+//            System.out.println("==============================");
+//            System.out.println("ID      : "+pengajuan.getId());
+//            System.out.println("START   : "+pengajuan.getTanggalmulai());
+//            System.out.println("END     : "+pengajuan.getTanggalakhir());
+//            System.out.println("TOTAL   : "+pengajuan.getJumlah());
+//                
             //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
-            System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
-            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+//            System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
+//            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
 //            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
 
-        }
+//        }
     }
 
 }

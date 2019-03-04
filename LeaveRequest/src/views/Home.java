@@ -29,7 +29,7 @@ import org.hibernate.SessionFactory;
 public class Home extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
-    JDesktopPane desktop;
+//    JDesktopPane desktop;
     private CutiController cc = new CutiController(factory);
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
@@ -745,9 +745,9 @@ public class Home extends javax.swing.JInternalFrame {
     private void btExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExitMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        Landing land = null;
-        land.setVisible(true);
-        //new Landing().setVisible(true);
+//        Landing land = null;
+//        land.setVisible(true);
+        new Landing().setVisible(true);
     }//GEN-LAST:event_btExitMouseClicked
 
     //SELF METHOD
@@ -767,8 +767,8 @@ public class Home extends javax.swing.JInternalFrame {
             data[i][2] = req.get(i).getTanggalmulai();
             data[i][3] = req.get(i).getTanggalakhir();
             data[i][4] = req.get(i).getJumlah();
-            data[i][5] = req.get(i).getKaryawan();
-            data[i][5] = req.get(i).getJeniscuti();
+            data[i][5] = req.get(i).getKaryawan().getNama();
+            data[i][6] = req.get(i).getJeniscuti().getJenis();
 
 //            if (req.get(i).getKaryawan()!=null)data[i][5] = req.get(i).getKaryawan().getId()+"";
 //            else data[i][5] = "";

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package daosBackup;
 
 /**
  *
  * @author Panji Sadewo
  */
-public class StatusNikahDAO {
+public class StatusPengajuanDAO {
     
 }

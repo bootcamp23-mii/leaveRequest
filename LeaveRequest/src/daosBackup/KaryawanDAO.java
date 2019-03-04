@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package daosBackup;
 
+import java.sql.Connection;
+import models.Karyawan;
 import java.util.ArrayList;
 import java.util.List;
-import models.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,20 +17,48 @@ import org.hibernate.Transaction;
  *
  * @author Panji Sadewo
  */
-public class RoleDAO {
+public class KaryawanDAO {
     private SessionFactory factory;
     private Session session;
     private Transaction transaction;
+
+    public KaryawanDAO(SessionFactory factory) {
+        this.factory = factory;
+    }
+
+    public KaryawanDAO() {
+    }
     
-    public boolean saveOrDelete(Role role, boolean isSave) {
+    
+    public List<Karyawan> login(Object username) {
+        List<Karyawan> karyawans = new ArrayList<Karyawan>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            karyawans = session.createQuery("FROM Karyawan WHERE id = '"+username+"'").list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        
+        return karyawans;
+    }
+    
+    
+    public boolean saveOrDelete(Karyawan karyawan, boolean isSave) {
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
             if (isSave) {
-                session.saveOrUpdate(role);
+                session.saveOrUpdate(karyawan);
             } else {
-                session.delete(role);
+                session.delete(karyawan);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -43,12 +72,12 @@ public class RoleDAO {
         return true;
     }
     
-    public Role getById(int id) {
-        Role role = new Role();
+    public Karyawan getById(Object id) {
+        Karyawan karyawan = new Karyawan();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            role = (Role) session.createQuery("FROM Role where id = "+id).list().get(0);
+            karyawan = (Karyawan) session.createQuery("FROM Karyawan where id = "+id).list().get(0);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,15 +87,15 @@ public class RoleDAO {
         } finally {
             session.close();
         }
-        return role;
+        return karyawan;
     }
     
-    public List<Role> getData(Object keyword) {
-        List<Role> roles = new ArrayList<Role>();
+    public List<Karyawan> getData(Object keyword) {
+        List<Karyawan> regions = new ArrayList<Karyawan>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            roles = session.createQuery("FROM Role where id like '%"+keyword+"%'").list();
+            regions = session.createQuery("FROM Karyawan where name like '%"+keyword+"%' or jeniskelamin like '%"+keyword+"%' order by 1").list();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +106,7 @@ public class RoleDAO {
             session.close();
         }
         
-        return roles;
+        return regions;
     }
     
 }

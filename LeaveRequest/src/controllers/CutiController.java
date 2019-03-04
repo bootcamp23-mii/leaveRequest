@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import daos.CutiDAO;
+import daosBackup.CutiDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +23,7 @@ public class CutiController {
 
     private CutiDAO cdao;
 
-    public CutiController(SessionFactory sessionFactory) {
+    public CutiController(SessionFactory sessionFactory)  {
         cdao = new CutiDAO(sessionFactory);
     }
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");

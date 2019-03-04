@@ -3,42 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package daosBackup;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Parameter;
+import models.Pengajuan;
+import models.RiwayatCuti;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
  *
- * @author Panji Sadewo
+ * @author Pandu
  */
-public class ParameterDAO {
+public class CutiDAO {
     private SessionFactory factory;
     private Session session;
     private Transaction transaction;
-
-    public ParameterDAO(SessionFactory factory) {
-        this.factory = factory;
-    }
-
-    public ParameterDAO() {
+    
+    public CutiDAO(SessionFactory factory){
+        this.factory=factory;
     }
     
-    public boolean saveOrDelete(Parameter parameter, boolean isSave) {
+    
+    public List<RiwayatCuti> getAll(Object keyword) {
+        List<RiwayatCuti> riwayatCuti = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            riwayatCuti = session.createQuery("FROM Riwayat_cuti").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return riwayatCuti;
+    }
+    
+    public boolean saveordelete(Pengajuan req, Boolean isSave) {
         boolean result = false;
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
             if (isSave) {
-                session.saveOrUpdate(parameter);
+                session.saveOrUpdate(req);
             } else {
-                session.delete(parameter);
+                session.delete(req);
             }
             transaction.commit();
+            result = true;
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
@@ -46,16 +61,16 @@ public class ParameterDAO {
             }
         } finally {
             session.close();
-        }        
-        return true;
+        }
+        return result;
     }
     
-    public Parameter getById(int id) {
-        Parameter parameter = new Parameter();
+    public List<Pengajuan> getId(Object keyword) {
+        List<Pengajuan> pengajuan = new ArrayList<>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            parameter = (Parameter) session.createQuery("FROM Parameter where id = "+id).list().get(0);
+            pengajuan = session.createQuery("FROM Pengajuan where karyawan = '" + keyword+"'").list();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,26 +80,8 @@ public class ParameterDAO {
         } finally {
             session.close();
         }
-        return parameter;
+        return pengajuan;
     }
-    
-    public List<Parameter> getData(Object keyword) {
-        List<Parameter> parameters = new ArrayList<Parameter>();
-        session = this.factory.openSession();
-        transaction = session.beginTransaction();
-        try {
-            parameters = session.createQuery("FROM Parameter where name id '%"+keyword+"%'").list();
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        
-        return parameters;
-    }
-    
 }
+
+
