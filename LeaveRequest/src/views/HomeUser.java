@@ -865,10 +865,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         for (JenisCuti jenisCuti : jc.getAll("")) {
             cbJenisCuti.addItem(jenisCuti.getJenis());
         }
-        
-        for (models.JenisCuti jenisCuti : jc.getAll("")) {
-            cbJenisCuti.addItem(jenisCuti.getJenis());
-        }
+//        
+//        for (models.JenisCuti jenisCuti : jc.getAll("")) {
+//            cbJenisCuti.addItem(jenisCuti.getJenis());
+//        }
     }
 
     private void tableData(List<models.Pengajuan> req) {
