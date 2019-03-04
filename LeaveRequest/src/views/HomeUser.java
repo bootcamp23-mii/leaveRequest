@@ -49,16 +49,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         tableData(cc.getByKaryawan(var));
-        
-//        cbJenisCutiKu();
 
+//        cbJenisCutiKu();
         //PANEL CONTROL
         pnHome.setVisible(true);
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
-        tfUserTotal.setText(cc.getByKaryawan(var).toString());
+//        tfUserTotal.setText(cc.getByKaryawan(var).toString());
 
         //CONTENT BASED SESSION CONTROLL
         userCutiInit();
@@ -867,7 +866,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 //        }
 //    }
     private void tableData(List<models.Pengajuan> req) {
-        Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type"};
+        Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type", "Status"};
         Object[][] data = new Object[req.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);
@@ -877,6 +876,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             data[i][4] = req.get(i).getJumlah();
             data[i][5] = req.get(i).getKaryawan().getNama();
             data[i][6] = req.get(i).getJeniscuti().getJenis();
+//            data[i][7] = req.get(i).;
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbHistory.setModel(myTable);
