@@ -882,11 +882,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
             data[i][4] = req.get(i).getJumlah();
             data[i][5] = req.get(i).getKaryawan().getNama();
             data[i][6] = req.get(i).getJeniscuti().getJenis();
-
-//            if (req.get(i).getKaryawan()!=null)data[i][5] = req.get(i).getKaryawan().getId()+"";
-//            else data[i][5] = "";
-//            if (req.get(i).getJeniscuti()!=null)data[i][6] = req.get(i).getJeniscuti().getId()+"";
-//            else data[i][6] = "";
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbHistory.setModel(myTable);
