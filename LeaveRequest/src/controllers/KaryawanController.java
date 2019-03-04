@@ -22,16 +22,12 @@ public class KaryawanController implements KaryawanInterface {
 
 //    private KaryawanDAO kdao;
     private Interface<Karyawan> kdao;
-
     public KaryawanController(SessionFactory sessionFactory) {
         kdao = new GeneralDAO<>(sessionFactory, new Karyawan());
     }
 
-    @Override
-    public void getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+    
     @Override
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -40,15 +36,10 @@ public class KaryawanController implements KaryawanInterface {
         }
         return "Maaf coba lagi";
     }
-
-    @Override
-    public Karyawan getById(String key) {
-        return kdao.getById(key);
-    }
-
+    
     @Override
     public boolean login(String username, String password) {
-        List<Karyawan> list = kdao.login(username);
+        List<Karyawan> list = kdao.getData(username);
         if (!list.isEmpty()) {
             for (Karyawan karyawan : list) {
                 if (BCrypt.checkpw(password, karyawan.getPassword())) {
@@ -57,6 +48,16 @@ public class KaryawanController implements KaryawanInterface {
             }
         }
         return false;
+    }
+
+    @Override
+    public Karyawan getById(String key) {
+        return kdao.getById(key);
+    }
+
+    @Override
+    public List<Karyawan> getAll() {
+        return kdao.getData("");
     }
 
     @Override

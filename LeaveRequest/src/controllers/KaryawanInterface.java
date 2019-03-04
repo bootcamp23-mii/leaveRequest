@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import daos.GeneralDAO;
+import java.util.List;
 import models.Karyawan;
 
 /**
@@ -13,9 +13,9 @@ import models.Karyawan;
  * @author Panji Sadewo
  */
 public interface KaryawanInterface{
-    public boolean login(String username, String password);
-    public Karyawan getData();
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
+    public boolean login(String username, String password);
+    public List<Karyawan> getAll();
     public Karyawan getById(String key);
     public void delete(String key);
     public void update(String key);

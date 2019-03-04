@@ -16,6 +16,7 @@ public interface CutiControllerInterface {
 
     public Pengajuan getById(String id);
     
+    //OPTIONAL BY GALANG
     public List<Pengajuan> getByKaryawan(String id);
 
     public List<Pengajuan> getAll(String key);
