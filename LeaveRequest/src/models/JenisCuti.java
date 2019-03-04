@@ -45,8 +45,15 @@ public class JenisCuti implements Serializable {
     public JenisCuti() {
     }
 
+    
+    
     public JenisCuti(String id) {
         this.id = id;
+    }
+
+    public JenisCuti(String id, String jenis) {
+        this.id = id;
+        this.jenis=jenis;
     }
 
     public String getId() {

@@ -344,7 +344,7 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Home ev = new Home();
+        HomeUser ev = new HomeUser();
         mainPanel.add(ev);
         pnGimmick.setVisible(false);
         pnLogin.setVisible(false);
