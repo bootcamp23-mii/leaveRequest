@@ -9,7 +9,6 @@ package daos;
  *
  * @author Pandu
  */
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +27,6 @@ public class GeneralDAO<T> implements Interface<T> {
     private Transaction transaction;
     private T t;
 
-//    public GeneralDAO2(SessionFactory factory) {
-//        this.factory = factory;
-//        
-//    }
     public GeneralDAO(SessionFactory factory, T t) {
         this.factory = factory;
         this.t = t;
