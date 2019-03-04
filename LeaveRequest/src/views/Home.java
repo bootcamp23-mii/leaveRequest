@@ -6,6 +6,7 @@
 package views;
 
 import controllers.CutiController;
+import controllers.CutiControllerInterface;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseMotionListener;
@@ -20,6 +21,7 @@ import javax.swing.JRootPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.HibernateUtil;
+import models.Pengajuan;
 import org.hibernate.SessionFactory;
 
 /**
@@ -30,7 +32,8 @@ public class Home extends javax.swing.JInternalFrame {
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
-    private CutiController cc = new CutiController(factory);
+    private CutiControllerInterface cc;
+//    private CutiController cc = new CutiControllerInterface(factory, new Pengajuan());
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
