@@ -19,5 +19,7 @@ public interface Interface<T> {
 
     public List<T> getByKar(Object keyword);
 
+    public List<T> login(Object keyword);
+
     public T getById(Object id);
 }

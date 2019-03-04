@@ -12,6 +12,7 @@ package daos;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import models.Karyawan;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -65,6 +66,7 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
+
     @Override
     public List<T> getByKar(Object id) {
         List<T> obj = new ArrayList<>();
@@ -96,8 +98,7 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
-    
-    
+
     @Override
     public boolean saveOrDelete(T entity, boolean isSave) {
         boolean result = false;
@@ -121,7 +122,23 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return result;
     }
-    
-    
+
+    public List<T> login(Object username) {
+        List<T> t = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            t = session.createQuery("FROM Karyawan where id = '" + username + "'").list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return t;
+    }
 
 }

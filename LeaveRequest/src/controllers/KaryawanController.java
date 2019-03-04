@@ -22,11 +22,10 @@ public class KaryawanController implements KaryawanInterface {
 
 //    private KaryawanDAO kdao;
     private Interface<Karyawan> kdao;
+    
     public KaryawanController(SessionFactory sessionFactory) {
         kdao = new GeneralDAO<>(sessionFactory, new Karyawan());
     }
-
-
     
     @Override
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
@@ -39,7 +38,7 @@ public class KaryawanController implements KaryawanInterface {
     
     @Override
     public boolean login(String username, String password) {
-        List<Karyawan> list = kdao.getData(username);
+        List<Karyawan> list = kdao.login(username);
         if (!list.isEmpty()) {
             for (Karyawan karyawan : list) {
                 if (BCrypt.checkpw(password, karyawan.getPassword())) {
@@ -49,22 +48,22 @@ public class KaryawanController implements KaryawanInterface {
         }
         return false;
     }
-
+    
     @Override
     public Karyawan getById(String key) {
         return kdao.getById(key);
     }
-
+    
     @Override
     public List<Karyawan> getAll() {
         return kdao.getData("");
     }
-
+    
     @Override
     public void delete(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void update(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

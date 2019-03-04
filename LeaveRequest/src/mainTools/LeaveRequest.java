@@ -52,14 +52,14 @@ public class LeaveRequest {
 //
 ////        LOGIN
         System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
-        System.out.println(kc.login("loli", "qdasd"));
-        
-        for (JenisCuti jenisCuti : jc.getAll("")) {
-            System.out.println("===================");
-            System.out.println(jenisCuti.getId());
-            System.out.println(jenisCuti.getJenis());
-            
-        }
+//        System.out.println(kc.login("loli", "qdasd"));
+//        
+//        for (JenisCuti jenisCuti : jc.getAll("")) {
+//            System.out.println("===================");
+//            System.out.println(jenisCuti.getId());
+//            System.out.println(jenisCuti.getJenis());
+//            
+//        }
     }
 
 }
