@@ -6,8 +6,6 @@
 package views;
 
 import controllers.KaryawanController;
-import java.util.Arrays;
-import javax.swing.JOptionPane;
 import mainTools.HibernateUtil;
 import org.hibernate.SessionFactory;
 

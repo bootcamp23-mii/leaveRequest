@@ -8,14 +8,10 @@ package views;
 import controllers.CutiController;
 import controllers.CutiControllerInterface;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.MouseMotionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -37,6 +33,7 @@ public class Home extends javax.swing.JInternalFrame {
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    String var = "11205";
 
     /**
      * Creates new form Home
@@ -45,7 +42,7 @@ public class Home extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
-        tableData(cc.getByKaryawan("11205"));
+        tableData(cc.getByKaryawan(var));
 
         //PANEL CONTROL
         pnHome.setVisible(true);
@@ -53,6 +50,27 @@ public class Home extends javax.swing.JInternalFrame {
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
+
+        //CONTENT BASED SESSION CONTROLL
+        userCutiInit();
+    }
+
+    private void userCutiInit() {
+        for (Pengajuan pengajuan : cc.getByKaryawan(var)) {
+//            System.out.println("==============================");
+//            System.out.println("ID      : " + pengajuan.getId());
+//            System.out.println("START   : " + pengajuan.getTanggalmulai());
+//            System.out.println("END     : " + pengajuan.getTanggalakhir());
+            //System.out.println("TOTAL   : " + pengajuan.getJumlah());
+
+            homeUserName.setText(pengajuan.getKaryawan().getNama().toString());
+            cutiDiambilCounter.setText(pengajuan.getJumlah().toString());
+            //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
+
+//            System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
+//            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
+//            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
+        }
     }
 
     /**
@@ -85,12 +103,18 @@ public class Home extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         lbCurrentDate = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        profilePic = new javax.swing.JLabel();
+        homeUserName = new javax.swing.JLabel();
         dynamicPane = new javax.swing.JLayeredPane();
         pnHome = new javax.swing.JPanel();
         pnHomeHeader = new javax.swing.JPanel();
         pnHomeContent = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        sisaCutiCounter = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        cutiDiambilCounter = new javax.swing.JLabel();
         pnUser = new javax.swing.JPanel();
         pnUserHeader = new javax.swing.JPanel();
         pnUserContent = new javax.swing.JPanel();
@@ -384,12 +408,12 @@ public class Home extends javax.swing.JInternalFrame {
         );
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 270, 130));
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 86, -1));
+        jPanel4.add(profilePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 86, -1));
 
-        jLabel12.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Pandu Galang");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, 30));
+        homeUserName.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
+        homeUserName.setForeground(new java.awt.Color(255, 255, 255));
+        homeUserName.setText("Pandu Galang");
+        jPanel4.add(homeUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, 30));
 
         javax.swing.GroupLayout pnDescriptionLayout = new javax.swing.GroupLayout(pnDescription);
         pnDescription.setLayout(pnDescriptionLayout);
@@ -424,17 +448,69 @@ public class Home extends javax.swing.JInternalFrame {
         );
 
         pnHomeContent.setBackground(new java.awt.Color(240, 240, 240));
+        pnHomeContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout pnHomeContentLayout = new javax.swing.GroupLayout(pnHomeContent);
-        pnHomeContent.setLayout(pnHomeContentLayout);
-        pnHomeContentLayout.setHorizontalGroup(
-            pnHomeContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel20.setText("SISA CUTI ANDA");
+        pnHomeContent.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel21.setText("CUTI YANG TELAH ANDA AMBIL");
+        pnHomeContent.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, 30));
+
+        jPanel2.setBackground(new java.awt.Color(120, 168, 252));
+
+        sisaCutiCounter.setBackground(new java.awt.Color(120, 168, 252));
+        sisaCutiCounter.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        sisaCutiCounter.setForeground(new java.awt.Color(255, 255, 255));
+        sisaCutiCounter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sisaCutiCounter.setText("10");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sisaCutiCounter, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        pnHomeContentLayout.setVerticalGroup(
-            pnHomeContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sisaCutiCounter)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnHomeContent.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 46, 70, 70));
+
+        jPanel1.setBackground(new java.awt.Color(120, 168, 252));
+
+        cutiDiambilCounter.setBackground(new java.awt.Color(120, 168, 252));
+        cutiDiambilCounter.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        cutiDiambilCounter.setForeground(new java.awt.Color(255, 255, 255));
+        cutiDiambilCounter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cutiDiambilCounter.setText("2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cutiDiambilCounter, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cutiDiambilCounter)
+                .addGap(86, 86, 86))
+        );
+
+        pnHomeContent.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 156, 70, 70));
 
         javax.swing.GroupLayout pnHomeLayout = new javax.swing.GroupLayout(pnHome);
         pnHome.setLayout(pnHomeLayout);
@@ -452,8 +528,8 @@ public class Home extends javax.swing.JInternalFrame {
                 .addContainerGap(325, Short.MAX_VALUE))
             .addGroup(pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHomeLayout.createSequentialGroup()
-                    .addGap(0, 214, Short.MAX_VALUE)
-                    .addComponent(pnHomeContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 215, Short.MAX_VALUE)
+                    .addComponent(pnHomeContent, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         dynamicPane.add(pnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
@@ -805,9 +881,11 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
+    private javax.swing.JLabel cutiDiambilCounter;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private datechooser.beans.DateChooserCombo dateChooserCombo2;
     private javax.swing.JLayeredPane dynamicPane;
+    private javax.swing.JLabel homeUserName;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
@@ -818,12 +896,12 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -831,6 +909,8 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -853,6 +933,8 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnUser;
     private javax.swing.JPanel pnUserContent;
     private javax.swing.JPanel pnUserHeader;
+    private javax.swing.JLabel profilePic;
+    private javax.swing.JLabel sisaCutiCounter;
     private javax.swing.JTable tbHistory;
     // End of variables declaration//GEN-END:variables
 }
