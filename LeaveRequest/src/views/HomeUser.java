@@ -49,7 +49,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         tableData(cc.getByKaryawan(var));
-        cbJenisCutiKu();
+        
+//        cbJenisCutiKu();
 
         //PANEL CONTROL
         pnHome.setVisible(true);
@@ -57,6 +58,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
+        tfUserTotal.setText(cc.getByKaryawan(var).toString());
 
         //CONTENT BASED SESSION CONTROLL
         userCutiInit();
@@ -67,6 +69,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
             homeUserName.setText(pengajuan.getKaryawan().getNama());
             cutiDiambilCounter.setText(pengajuan.getJumlah().toString());
         }
+
+        for (JenisCuti jenisCuti : jc.getAll("")) {
+            cbJenisCuti.addItem(jenisCuti.getJenis());
+        }
+
     }
 
     /**
@@ -131,7 +138,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tfUserTotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         pnHistory = new javax.swing.JPanel();
         pnCntentFill = new javax.swing.JPanel();
@@ -687,9 +694,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel5.setText("Leave Type");
         pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(120, 168, 252));
-        pnRequest.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
+        tfUserTotal.setEditable(false);
+        tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
+        pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
 
         jLabel6.setText("TOTAL");
         pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
@@ -778,7 +785,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
-        cbJenisCutiKu();
     }//GEN-LAST:event_btnHomeMousePressed
 
     private void btnHistoryMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseReleased
@@ -851,16 +857,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
-    private void cbJenisCutiKu() {
-        for (JenisCuti jenisCuti : jc.getAll("")) {
-            cbJenisCuti.addItem(jenisCuti.getJenis());
-        }
+//    private void cbJenisCutiKu() {
+//        for (JenisCuti jenisCuti : jc.getAll("")) {
+//            cbJenisCuti.addItem(jenisCuti.getJenis());
+//        }
 //        
 //        for (models.JenisCuti jenisCuti : jc.getAll("")) {
 //            cbJenisCuti.addItem(jenisCuti.getJenis());
 //        }
-    }
-
+//    }
     private void tableData(List<models.Pengajuan> req) {
         Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type"};
         Object[][] data = new Object[req.size()][columnNames.length];
@@ -934,7 +939,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
@@ -955,5 +959,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel profilePic;
     private javax.swing.JLabel sisaCutiCounter;
     private javax.swing.JTable tbHistory;
+    private javax.swing.JTextField tfUserTotal;
     // End of variables declaration//GEN-END:variables
 }

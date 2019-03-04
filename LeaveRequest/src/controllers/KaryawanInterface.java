@@ -6,6 +6,7 @@
 package controllers;
 
 import daos.GeneralDAO;
+import models.Karyawan;
 
 /**
  *
@@ -13,10 +14,10 @@ import daos.GeneralDAO;
  */
 public interface KaryawanInterface{
     public boolean login(String username, String password);
-    public void getData();
+    public Karyawan getData();
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
-    public void getById();
-    public void delete();
-    public void update();
+    public Karyawan getById(String key);
+    public void delete(String key);
+    public void update(String key);
     
 }
