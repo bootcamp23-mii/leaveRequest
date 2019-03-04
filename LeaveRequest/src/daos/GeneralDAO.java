@@ -12,7 +12,6 @@ package daos;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import models.Karyawan;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -69,6 +68,22 @@ public class GeneralDAO<T> implements Interface<T> {
 
     @Override
     public List<T> getByKar(Object id) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE id = '" + id + "'").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj;
+    }
+    
+    @Override
+    public List<T> getByIdKar(Object id) {
         List<T> obj = new ArrayList<>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();

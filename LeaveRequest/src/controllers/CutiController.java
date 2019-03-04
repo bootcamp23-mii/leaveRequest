@@ -7,10 +7,8 @@ package controllers;
 
 import daos.GeneralDAO;
 import daos.Interface;
-import daosBackup.CutiDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,7 +75,11 @@ public class CutiController implements CutiControllerInterface {
     @Override
     public List<Pengajuan> getByKaryawan(String key) {
         return cdao.getByKar(key);
-
+    }
+    
+    @Override
+    public List<Pengajuan> getByIdKaryawan(String key) {
+        return cdao.getByIdKar(key);
     }
 
     @Override
@@ -86,8 +88,8 @@ public class CutiController implements CutiControllerInterface {
     }
 
     @Override
-    public List<Pengajuan> search(Object keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Pengajuan> getData(String key) {
+        return cdao.getData(key);
     }
 
 }

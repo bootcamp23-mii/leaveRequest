@@ -55,6 +55,16 @@ public class KaryawanController implements KaryawanInterface {
     }
     
     @Override
+    public List<Karyawan> getKar(String key){
+        return kdao.getByKar(key);
+    }
+    
+    @Override
+    public List<Karyawan> getIdKar(String key){
+        return kdao.getByIdKar(key);
+    }
+    
+    @Override
     public List<Karyawan> getAll() {
         return kdao.getData("");
     }
@@ -68,4 +78,5 @@ public class KaryawanController implements KaryawanInterface {
     public void update(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

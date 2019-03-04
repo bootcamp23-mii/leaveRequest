@@ -16,6 +16,7 @@ import java.text.ParseException;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
 import models.JenisCuti;
+import models.Karyawan;
 import models.Pengajuan;
 
 /**
@@ -51,7 +52,14 @@ public class LeaveRequest {
 //        }
 //
 ////        LOGIN
-        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
+//        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
+//        
+//        for (Karyawan karyawan : kc.getKar("11205")) {
+//            System.out.println(karyawan.getNama());
+//            System.out.println(karyawan.getEmail());
+//            System.out.println(karyawan.getId());
+//            System.out.println(karyawan.getPassword().toString());
+//        }
 //        System.out.println(kc.login("loli", "qdasd"));
 //        
 //        for (JenisCuti jenisCuti : jc.getAll("")) {

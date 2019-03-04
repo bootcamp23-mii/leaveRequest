@@ -18,10 +18,12 @@ public interface CutiControllerInterface {
     
     //OPTIONAL BY GALANG
     public List<Pengajuan> getByKaryawan(String id);
+    
+    public List<Pengajuan> getByIdKaryawan(String id);
 
     public List<Pengajuan> getAll(String key);
-
-    public List<Pengajuan> search(Object keyword);
+    
+    public List<Pengajuan> getData(String key);
 
     public String save(String id, String start, String end, String total, String karyawan, String jenisCuti);
     public String update(String id, String start, String end, String total, String karyawan, String jenisCuti);

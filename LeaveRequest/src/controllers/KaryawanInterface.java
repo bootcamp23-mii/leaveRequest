@@ -12,12 +12,22 @@ import models.Karyawan;
  *
  * @author Panji Sadewo
  */
-public interface KaryawanInterface{
+public interface KaryawanInterface {
+
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
+
     public boolean login(String username, String password);
+
     public List<Karyawan> getAll();
+
+    public List<Karyawan> getKar(String key);
+
+    public List<Karyawan> getIdKar(String key);
+
     public Karyawan getById(String key);
+
     public void delete(String key);
+
     public void update(String key);
-    
+
 }
