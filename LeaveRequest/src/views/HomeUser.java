@@ -38,6 +38,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
     String var = "11205";
 
     /**
@@ -48,6 +49,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         tableData(cc.getByKaryawan(var));
+        cbJenisCutiKu();
 
         //PANEL CONTROL
         pnHome.setVisible(true);
@@ -62,19 +64,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private void userCutiInit() {
         for (Pengajuan pengajuan : cc.getByKaryawan(var)) {
-//            System.out.println("==============================");
-//            System.out.println("ID      : " + pengajuan.getId());
-//            System.out.println("START   : " + pengajuan.getTanggalmulai());
-//            System.out.println("END     : " + pengajuan.getTanggalakhir());
-            //System.out.println("TOTAL   : " + pengajuan.getJumlah());
-
-            homeUserName.setText(pengajuan.getKaryawan().getNama().toString());
+            homeUserName.setText(pengajuan.getKaryawan().getNama());
             cutiDiambilCounter.setText(pengajuan.getJumlah().toString());
-            //I DONT EXACTLY KNOW WHAT'S WRONG WITH THIS LIL SHIT
-
-//            System.out.println("KARYAWAN: "+pengajuan.getKaryawan().getNama());
-//            System.out.println("TYPE    : "+pengajuan.getJeniscuti().getJenis());
-//            System.out.println("STATUS  : "+pengajuan.getStatusPengajuanCollection());
         }
     }
 
@@ -679,7 +670,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnRequest.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 255, 210, 40));
 
         cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
-        cbJenisCuti.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
 
         dateChooserCombo1.setCalendarBackground(new java.awt.Color(51, 153, 255));
@@ -860,8 +850,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.setBorder(null);
     }
-    
-    private void cbJenisCutiKu(){
+
+    private void cbJenisCutiKu() {
         for (JenisCuti jenisCuti : jc.getAll("")) {
             cbJenisCuti.addItem(jenisCuti.getJenis());
         }
