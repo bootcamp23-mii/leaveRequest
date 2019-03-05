@@ -724,10 +724,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btUserSubmitRequestActionPerformed(evt);
             }
         });
-        pnRequest.add(btUserSubmitRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 255, 210, 40));
+        pnRequest.add(btUserSubmitRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 210, 40));
 
         cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
-        pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 210, 40));
+        pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 210, 40));
 
         dcStart.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
@@ -771,25 +771,25 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 false,
                 true)));
     dcStart.setCalendarBackground(new java.awt.Color(51, 153, 255));
-    pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 40));
+    pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 85, 210, 40));
 
     dcEnd.setCalendarBackground(new java.awt.Color(51, 153, 255));
-    pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 210, 40));
+    pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 85, 210, 40));
 
     jLabel3.setText("Start Leave");
-    pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+    pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
     jLabel4.setText("End Leave");
-    pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+    pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
     jLabel5.setText("Leave Type");
-    pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
+    pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
     tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
-    pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 174, 210, 40));
+    pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 210, 40));
 
     jLabel6.setText("TOTAL");
-    pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+    pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
     jTextArea1.setBackground(new java.awt.Color(120, 168, 252));
     jTextArea1.setColumns(20);
@@ -1034,7 +1034,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             data[i][4] = req.get(i).getJumlah();
             data[i][5] = req.get(i).getKaryawan().getNama();
             data[i][6] = req.get(i).getJeniscuti().getJenis();
-//            data[i][7] = req.get(i).;
+            data[i][7] = req.get(i).getStatusPengajuanCollection();
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbHistory.setModel(myTable);
