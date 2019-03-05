@@ -261,9 +261,14 @@ public class Landing extends javax.swing.JFrame {
         pnLogin.setBackground(new java.awt.Color(255, 255, 255));
 
         jTFUsernameLogin.setBackground(new java.awt.Color(120, 168, 252));
-        jTFUsernameLogin.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        jTFUsernameLogin.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jTFUsernameLogin.setForeground(new java.awt.Color(255, 255, 255));
-        jTFUsernameLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTFUsernameLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jTFUsernameLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFUsernameLoginActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setText("LOGIN");
@@ -283,8 +288,13 @@ public class Landing extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         jPFPasswordLogin.setBackground(new java.awt.Color(120, 168, 252));
-        jPFPasswordLogin.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
-        jPFPasswordLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPFPasswordLogin.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jPFPasswordLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPFPasswordLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPFPasswordLoginActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton2.setText("SIGN UP");
@@ -403,6 +413,14 @@ public class Landing extends javax.swing.JFrame {
         pnLogin.setVisible(true);
         pnSignUp.setVisible(false);
     }//GEN-LAST:event_btRegLoginActionPerformed
+
+    private void jTFUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFUsernameLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFUsernameLoginActionPerformed
+
+    private void jPFPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPFPasswordLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPFPasswordLoginActionPerformed
 
     /**
      * @param args the command line arguments
