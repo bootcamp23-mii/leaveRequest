@@ -144,8 +144,7 @@ public class GeneralDAO<T> implements Interface<T> {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            System.out.println(t.getClass().getSimpleName());
-            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + keyword + "'").list();
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE id = '" + keyword + "'").list();
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {

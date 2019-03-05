@@ -81,9 +81,9 @@ public class LeaveRequest {
 //            System.out.println(jenisCuti.getJenis());
 //            
 //        }
-        for (Karyawan karyawan : kc.getKar("11204")) {
+        for (Pengajuan pengajuan : cc.getByKaryawan("11204")) {
             System.out.println("===================");
-            System.out.println(karyawan.getNama());
+            System.out.println(pengajuan.getKaryawan().getNama());
             
         }
     }
