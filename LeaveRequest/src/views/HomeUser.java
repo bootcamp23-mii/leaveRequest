@@ -13,6 +13,7 @@ import controllers.KaryawanController;
 import controllers.KaryawanInterface;
 import controllers.StatusPengajuanController;
 import controllers.StatusPengajuanInterface;
+import java.awt.Button;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.HibernateUtil;
@@ -1168,7 +1170,20 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
+//    private boolean isCellEditable(int row, int column) {
+//        return false;
+//    }
+//
+//    private void acc(java.awt.event.ActionEvent evt){
+//        
+//    }
+//    
     private void tableEmployeeRequestOnManager(List<models.StatusPengajuan> kar) {
+        tbManagerUserRequest.setDefaultRenderer(Object.class, new ButtonRender());
+        JButton acc = new JButton("Accept");
+        
+        JButton rej = new JButton("Reject");
+
         Object[] columnNames = {"Nomor", "ID", "Date", "Status", "Action", "Description"};
         Object[][] data = new Object[kar.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
@@ -1176,11 +1191,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
             data[i][1] = kar.get(i).getId();
             data[i][2] = kar.get(i).getDatetime();
             data[i][3] = kar.get(i).getStatus().getTipe();
-            data[i][4] = "ACCEPT/REJECT";
-//            data[i][5] = "DESC";
+            data[i][4] = acc;
+            if (kar.get(i).getKeterangan() != null) {
+                data[i][5] = kar.get(i).getKeterangan() + "";
+            } else {
+            }
+            myTable = new DefaultTableModel(data, columnNames);
+            tbManagerUserRequest.setModel(myTable);
         }
-        myTable = new DefaultTableModel(data, columnNames);
-        tbManagerUserRequest.setModel(myTable);
+
     }
 
     private void tableRequestStatus(List<models.StatusPengajuan> req) {
