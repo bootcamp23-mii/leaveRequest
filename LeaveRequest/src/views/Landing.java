@@ -59,6 +59,8 @@ public class Landing extends javax.swing.JFrame {
         btRegSignUp = new javax.swing.JButton();
         btRegLogin = new javax.swing.JButton();
         pnGimmick = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         pnLogin = new javax.swing.JPanel();
         jTFUsernameLogin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -245,15 +247,32 @@ public class Landing extends javax.swing.JFrame {
 
         pnGimmick.setBackground(new java.awt.Color(71, 120, 197));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/BG.png"))); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Cocogoose Pro Thin", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("HAVE A SAFE LEAVE");
+
         javax.swing.GroupLayout pnGimmickLayout = new javax.swing.GroupLayout(pnGimmick);
         pnGimmick.setLayout(pnGimmickLayout);
         pnGimmickLayout.setHorizontalGroup(
             pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(pnGimmickLayout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addGroup(pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         pnGimmickLayout.setVerticalGroup(
             pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnGimmickLayout.createSequentialGroup()
+                .addContainerGap(172, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addGap(217, 217, 217))
         );
 
         getContentPane().add(pnGimmick, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 610));
@@ -467,10 +486,12 @@ public class Landing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
