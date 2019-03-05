@@ -72,22 +72,6 @@ public class GeneralDAO<T> implements Interface<T> {
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE id = '" + id + "'").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return obj;
-    }
-    
-    @Override
-    public List<T> getByIdKar(Object id) {
-        List<T> obj = new ArrayList<>();
-        session = this.factory.openSession();
-        transaction = session.beginTransaction();
-        try {
             obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + id + "'").list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,22 +122,19 @@ public class GeneralDAO<T> implements Interface<T> {
         return result;
     }
 
+    @Override
     public List<T> login(Object username) {
-        List<T> t = new ArrayList<>();
+        List<T> obj = new ArrayList<>();
         session = this.factory.openSession();
         transaction = session.beginTransaction();
         try {
-            t = session.createQuery("FROM Karyawan where id = '" + username + "'").list();
-            transaction.commit();
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE nama = '" + username + "'").list();
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
-        } finally {
-            session.close();
         }
-        return t;
+        return obj;
     }
-
 }

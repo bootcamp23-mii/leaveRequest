@@ -6,6 +6,7 @@
 package daos;
 
 import java.util.List;
+import models.Karyawan;
 
 /**
  *

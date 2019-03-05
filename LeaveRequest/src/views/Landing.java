@@ -6,6 +6,8 @@
 package views;
 
 import controllers.KaryawanController;
+import controllers.KaryawanInterface;
+import javax.swing.JOptionPane;
 import mainTools.HibernateUtil;
 import org.hibernate.SessionFactory;
 
@@ -17,6 +19,7 @@ public class Landing extends javax.swing.JFrame {
 
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     KaryawanController kc = new KaryawanController(sessionFactory);
+    KaryawanInterface karyawanInterface = new KaryawanController(sessionFactory);
 
     /**
      * Creates new form Landing
@@ -57,11 +60,11 @@ public class Landing extends javax.swing.JFrame {
         btRegLogin = new javax.swing.JButton();
         pnGimmick = new javax.swing.JPanel();
         pnLogin = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFUsernameLogin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jPFPasswordLogin = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -257,10 +260,10 @@ public class Landing extends javax.swing.JFrame {
 
         pnLogin.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBackground(new java.awt.Color(120, 168, 252));
-        jTextField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTFUsernameLogin.setBackground(new java.awt.Color(120, 168, 252));
+        jTFUsernameLogin.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        jTFUsernameLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jTFUsernameLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton1.setText("LOGIN");
@@ -279,9 +282,9 @@ public class Landing extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Password");
 
-        jPasswordField1.setBackground(new java.awt.Color(120, 168, 252));
-        jPasswordField1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPFPasswordLogin.setBackground(new java.awt.Color(120, 168, 252));
+        jPFPasswordLogin.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        jPFPasswordLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jButton2.setText("SIGN UP");
@@ -303,8 +306,8 @@ public class Landing extends javax.swing.JFrame {
             .addGroup(pnLoginLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addGroup(pnLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFUsernameLogin, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jPFPasswordLogin, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnLoginLayout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -320,11 +323,11 @@ public class Landing extends javax.swing.JFrame {
                 .addGap(223, 223, 223)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFUsernameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPFPasswordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(4, 4, 4)
@@ -344,17 +347,19 @@ public class Landing extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //Define manager or User using for i, when manager ID match the Login ID, so define as Manager
-        //Else, if 
-        
-        HomeUser ev = new HomeUser();
-        mainPanel.add(ev);
-        pnGimmick.setVisible(false);
-        pnLogin.setVisible(false);
-        ev.setVisible(true);
+        if (karyawanInterface.login(jTFUsernameLogin.getText(), jPFPasswordLogin.getText())) {
+            HomeUser ev = new HomeUser();
+            mainPanel.add(ev);
+            pnGimmick.setVisible(false);
+            pnLogin.setVisible(false);
+            ev.setVisible(true);
 //        jIFEmployee.setBounds(5, 5, 200, 300);
-        ev.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        ev.revalidate();
+            ev.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+            ev.revalidate();
+        } else {
+            JOptionPane.showMessageDialog(this, "Maaf username atau password salah");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -451,8 +456,8 @@ public class Landing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPFPasswordLogin;
+    private javax.swing.JTextField jTFUsernameLogin;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel pnGimmick;
     private javax.swing.JPanel pnLogin;

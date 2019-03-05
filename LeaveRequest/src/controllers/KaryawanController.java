@@ -11,6 +11,7 @@ import daosBackup.KaryawanDAO;
 import java.util.List;
 import mainTools.BCrypt;
 import models.Karyawan;
+import models.Session;
 import models.StatusNikah;
 import org.hibernate.SessionFactory;
 
@@ -22,6 +23,7 @@ public class KaryawanController implements KaryawanInterface {
 
 //    private KaryawanDAO kdao;
     private Interface<Karyawan> kdao;
+    
     
     public KaryawanController(SessionFactory sessionFactory) {
         kdao = new GeneralDAO<>(sessionFactory, new Karyawan());
@@ -41,11 +43,13 @@ public class KaryawanController implements KaryawanInterface {
         List<Karyawan> list = kdao.login(username);
         if (!list.isEmpty()) {
             for (Karyawan karyawan : list) {
+                Session.setId(karyawan.getId());
                 if (BCrypt.checkpw(password, karyawan.getPassword())) {
                     return true;
                 }
             }
         }
+        System.out.println("List kosong");
         return false;
     }
     
@@ -55,18 +59,8 @@ public class KaryawanController implements KaryawanInterface {
     }
     
     @Override
-    public List<Karyawan> getKar(String key){
-        return kdao.getByKar(key);
-    }
-    
-    @Override
-    public List<Karyawan> getIdKar(String key){
-        return kdao.getByIdKar(key);
-    }
-    
-    @Override
-    public List<Karyawan> getAll() {
-        return kdao.getData("");
+    public List<Karyawan> getAll(String key) {
+        return kdao.getData(key);
     }
     
     @Override
