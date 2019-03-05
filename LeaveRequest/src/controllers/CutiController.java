@@ -81,6 +81,11 @@ public class CutiController implements CutiControllerInterface {
     public List<Pengajuan> getByIdKaryawan(String key) {
         return cdao.getByKar(key);
     }
+    
+//    @Override
+//    public List<Pengajuan> getHistory(String key) {
+//        return cdao.getHistory(key);
+//    }
 
     @Override
     public List<Pengajuan> getAll(String key) {

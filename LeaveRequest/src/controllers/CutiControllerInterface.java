@@ -20,6 +20,8 @@ public interface CutiControllerInterface {
     public List<Pengajuan> getByKaryawan(String id);
     
     public List<Pengajuan> getByIdKaryawan(String id);
+    
+//    public List<Pengajuan> getHistory(String id);
 
     public List<Pengajuan> getAll(String key);
     

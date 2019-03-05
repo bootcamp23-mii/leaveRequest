@@ -11,6 +11,8 @@ import controllers.JenisCutiController;
 import controllers.JenisCutiInterface;
 import controllers.KaryawanController;
 import controllers.KaryawanInterface;
+import controllers.StatusPengajuanController;
+import controllers.StatusPengajuanInterface;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,6 +42,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private final CutiControllerInterface cc = new CutiController(factory);
     private final JenisCutiInterface jc = new JenisCutiController(factory);
     private final KaryawanInterface kc = new KaryawanController(factory);
+    private final StatusPengajuanInterface spc = new StatusPengajuanController(factory);
 //    private CutiController cc = new CutiControllerInterface(factory, new Pengajuan());
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
@@ -54,13 +57,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
-        tableData(cc.getByIdKaryawan(var));
 
         pnHome.setVisible(true);
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
+
+//        FAKE THE ROLE
         if (var.equals("11205")) {
             btnManager.setVisible(false);
             pnManager.setVisible(false);
@@ -69,6 +73,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         //CONTENT BASED SESSION CONTROLL
         userCutiInit();
+        tableHistory(spc.getHistory(var, true));
+        tableRequestStatus(spc.getHistory(var, false));
     }
 
     private void userCutiInit() {
@@ -167,10 +173,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
         pnHistory = new javax.swing.JPanel();
         pnCntentFill = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbHistory = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbRequestStatus = new javax.swing.JTable();
         pnManager = new javax.swing.JPanel();
+        pnUserHeader1 = new javax.swing.JPanel();
+        cbSelectEmployee = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        pnUserContent1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbManagerUserRequest = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setClosable(true);
@@ -346,7 +360,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("History");
+        jLabel9.setText("History and Request");
 
         javax.swing.GroupLayout btnHistoryLayout = new javax.swing.GroupLayout(btnHistory);
         btnHistory.setLayout(btnHistoryLayout);
@@ -356,7 +370,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 .addComponent(ind_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel9)
-                .addGap(0, 74, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         btnHistoryLayout.setVerticalGroup(
             btnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,25 +820,24 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
 
-    jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-    jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-    jLabel14.setText("This Description about the history table");
+    jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
 
     javax.swing.GroupLayout pnCntentFillLayout = new javax.swing.GroupLayout(pnCntentFill);
     pnCntentFill.setLayout(pnCntentFillLayout);
     pnCntentFillLayout.setHorizontalGroup(
         pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnCntentFillLayout.createSequentialGroup()
-            .addGap(31, 31, 31)
-            .addComponent(jLabel14)
-            .addContainerGap(413, Short.MAX_VALUE))
+            .addContainerGap()
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(24, Short.MAX_VALUE))
     );
     pnCntentFillLayout.setVerticalGroup(
         pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnCntentFillLayout.createSequentialGroup()
-            .addGap(23, 23, 23)
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGap(78, 78, 78))
+            .addGap(22, 22, 22)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(15, Short.MAX_VALUE))
     );
 
     jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -843,26 +856,59 @@ public class HomeUser extends javax.swing.JInternalFrame {
         new String [] {
             "ID", "Start", "End", "Total", "Leave Type", "Status"
         }
-    ));
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false, false, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
     tbHistory.setGridColor(new java.awt.Color(255, 255, 255));
     tbHistory.setRowHeight(22);
     jScrollPane1.setViewportView(tbHistory);
+
+    tbRequestStatus.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+            "NO", "ID", "Request Date", "Status"
+        }
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
+    jScrollPane3.setViewportView(tbRequestStatus);
 
     javax.swing.GroupLayout pnHistoryLayout = new javax.swing.GroupLayout(pnHistory);
     pnHistory.setLayout(pnHistoryLayout);
     pnHistoryLayout.setHorizontalGroup(
         pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(pnHistoryLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-            .addContainerGap())
+            .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnHistoryLayout.createSequentialGroup()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnHistoryLayout.createSequentialGroup()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap())))
     );
     pnHistoryLayout.setVerticalGroup(
         pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnHistoryLayout.createSequentialGroup()
             .addGap(85, 85, 85)
-            .addComponent(pnCntentFill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGap(18, 18, 18)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -870,18 +916,97 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
+    pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
+
+    cbSelectEmployee.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            cbSelectEmployeeItemStateChanged(evt);
+        }
+    });
+
+    jLabel14.setText("Employee Name");
+
+    javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
+    pnUserHeader1.setLayout(pnUserHeader1Layout);
+    pnUserHeader1Layout.setHorizontalGroup(
+        pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(pnUserHeader1Layout.createSequentialGroup()
+            .addGap(21, 21, 21)
+            .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel14)
+                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(379, Short.MAX_VALUE))
+    );
+    pnUserHeader1Layout.setVerticalGroup(
+        pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserHeader1Layout.createSequentialGroup()
+            .addContainerGap(32, Short.MAX_VALUE)
+            .addComponent(jLabel14)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(29, 29, 29))
+    );
+
+    tbManagerUserRequest.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+            "NO", "ID", "Requested", "Type", "Action", "Description"
+        }
+    ) {
+        boolean[] canEdit = new boolean [] {
+            false, false, false, false, false, false
+        };
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    });
+    jScrollPane4.setViewportView(tbManagerUserRequest);
+
+    javax.swing.GroupLayout pnUserContent1Layout = new javax.swing.GroupLayout(pnUserContent1);
+    pnUserContent1.setLayout(pnUserContent1Layout);
+    pnUserContent1Layout.setHorizontalGroup(
+        pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(pnUserContent1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+            .addContainerGap())
+    );
+    pnUserContent1Layout.setVerticalGroup(
+        pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(pnUserContent1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+            .addContainerGap())
+    );
+
     javax.swing.GroupLayout pnManagerLayout = new javax.swing.GroupLayout(pnManager);
     pnManager.setLayout(pnManagerLayout);
     pnManagerLayout.setHorizontalGroup(
         pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 920, Short.MAX_VALUE)
+        .addGap(0, 650, Short.MAX_VALUE)
+        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnUserHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnUserContent1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     pnManagerLayout.setVerticalGroup(
         pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGap(0, 540, Short.MAX_VALUE)
+        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnManagerLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(pnUserHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(337, Short.MAX_VALUE)))
+        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnManagerLayout.createSequentialGroup()
+                .addGap(0, 203, Short.MAX_VALUE)
+                .addComponent(pnUserContent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
     );
 
-    dynamicPane.add(pnManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 540));
+    dynamicPane.add(pnManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
     getContentPane().add(dynamicPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 920, 540));
 
@@ -995,6 +1120,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnManager.setVisible(true);
     }//GEN-LAST:event_btnManagerMouseClicked
 
+    private void cbSelectEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSelectEmployeeItemStateChanged
+        // TODO add your handling code here:
+        
+        //KETIKA DIPILIH SI USER
+    }//GEN-LAST:event_cbSelectEmployeeItemStateChanged
+
     //SELF METHOD
     private boolean konfirmasi() {
         if (dcStart.getText().equals("")
@@ -1023,18 +1154,35 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
-    private void tableData(List<models.Pengajuan> req) {
-        Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type", "Status"};
+    private void tableRequestStatus(List<models.StatusPengajuan> req) {
+        Object[] columnNames = {"Nomor", "ID", "Date","Status"};
         Object[][] data = new Object[req.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);
             data[i][1] = req.get(i).getId();
-            data[i][2] = req.get(i).getTanggalmulai();
-            data[i][3] = req.get(i).getTanggalakhir();
-            data[i][4] = req.get(i).getJumlah();
-            data[i][5] = req.get(i).getKaryawan().getNama();
-            data[i][6] = req.get(i).getJeniscuti().getJenis();
-            data[i][7] = req.get(i).getStatusPengajuanList();
+            data[i][2] = req.get(i).getDatetime();
+            data[i][3] = req.get(i).getStatus().getTipe();
+        }
+        myTable = new DefaultTableModel(data, columnNames);
+        tbRequestStatus.setModel(myTable);
+    }
+
+    private void tableHistory(List<models.StatusPengajuan> req) {
+        Object[] columnNames = {"Nomor", "ID", "Date", "Description", "Status"};
+        Object[][] data = new Object[req.size()][columnNames.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i][0] = (i + 1);
+            data[i][1] = req.get(i).getId();
+            data[i][2] = req.get(i).getDatetime();
+//            data[i][3] = req.get(i).getKeterangan();
+//            data[i][4] = req.get(i).getStatus().getTipe();
+            if (req.get(i).getKeterangan() != null) {
+                data[i][3] = req.get(i).getKeterangan() + "";
+            } else {
+                data[i][3] = "";
+            }
+            data[i][4] = req.get(i).getStatus().getTipe();
+
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbHistory.setModel(myTable);
@@ -1066,6 +1214,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbJenisCuti;
+    private javax.swing.JComboBox<String> cbSelectEmployee;
     private datechooser.beans.DateChooserCombo dcEnd;
     private datechooser.beans.DateChooserCombo dcStart;
     private javax.swing.JLayeredPane dynamicPane;
@@ -1083,6 +1232,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1096,6 +1246,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCurrentDate;
@@ -1113,10 +1265,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnRequest;
     private javax.swing.JPanel pnUser;
     private javax.swing.JPanel pnUserContent;
+    private javax.swing.JPanel pnUserContent1;
     private javax.swing.JPanel pnUserHeader;
+    private javax.swing.JPanel pnUserHeader1;
     private javax.swing.JLabel profilePic;
     private javax.swing.JLabel sisaCutiCounter;
     private javax.swing.JTable tbHistory;
+    private javax.swing.JTable tbManagerUserRequest;
+    private javax.swing.JTable tbRequestStatus;
     private javax.swing.JTextField tfUserEmail;
     private javax.swing.JTextField tfUserName;
     private javax.swing.JPasswordField tfUserPassword;

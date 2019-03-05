@@ -88,4 +88,9 @@ public class KaryawanController implements KaryawanInterface {
         return kdao.getByIdKar(key);
     }
 
+    @Override
+    public List<Karyawan> getKarByMang(String key) {
+        return kdao.getByIdKar(key);
+    }
+
 }

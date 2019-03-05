@@ -22,6 +22,8 @@ public interface Interface<T> {
     
     public List<T> getByIdKar(Object keyword);
 
+    public List<T> getHistory(Object keyword, Boolean status);
+    
     public List<T> login(Object keyword);
 
     public T getById(Object id);

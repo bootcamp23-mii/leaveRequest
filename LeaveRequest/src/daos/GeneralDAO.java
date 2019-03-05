@@ -83,6 +83,22 @@ public class GeneralDAO<T> implements Interface<T> {
     }
 
     @Override
+    public List<T> getByIdKar(Object keyword) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE id = '" + keyword + "'").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj;
+    }
+
+    @Override
     public T getById(Object id) {
         T obj = null;
         session = this.factory.openSession();
@@ -96,6 +112,27 @@ public class GeneralDAO<T> implements Interface<T> {
             }
         }
         return obj;
+    }
+
+    @Override
+    public List<T> getHistory(Object keyword, Boolean isS1) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+//            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + keyword + "' AND ").list();
+            if (isS1) {
+                obj = session.createQuery("from StatusPengajuan where status is not 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+            } else {
+                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -129,22 +166,6 @@ public class GeneralDAO<T> implements Interface<T> {
         transaction = session.beginTransaction();
         try {
             obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE nama = '" + username + "'").list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return obj;
-    }
-
-    @Override
-    public List<T> getByIdKar(Object keyword) {
-        List<T> obj = new ArrayList<>();
-        session = this.factory.openSession();
-        transaction = session.beginTransaction();
-        try {
-            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE id = '" + keyword + "'").list();
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
