@@ -57,39 +57,43 @@ public class HomeUser extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
+        userCutiInit();
+//        FAKE THE ROLE
+//        if (var.equals("11205")) {
+//            btnManager.setVisible(false);
+//            pnManager.setVisible(false);
+//        }
 
+        //CONTENT BASED SESSION CONTROLL
+    }
+
+    private void userCutiInit() {
+
+//        PANEL CONTROLLER
         pnHome.setVisible(true);
         pnUser.setVisible(false);
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
+        pnManager.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
 
-//        FAKE THE ROLE
-        if (var.equals("11205")) {
-            btnManager.setVisible(false);
-            pnManager.setVisible(false);
-        }
-//        tfUserTotal.setText(cc.getByKaryawan(var).toString());
-
-        //CONTENT BASED SESSION CONTROLL
-        userCutiInit();
+//        TABLE CONTROLLER
         tableHistory(spc.getHistory(var, true));
         tableRequestStatus(spc.getHistory(var, false));
-    }
 
-    private void userCutiInit() {
-//        for (Pengajuan pengajuan : cc.getByKaryawan(var)) {
-//            homeUserName.setText(pengajuan.getKaryawan().getNama());
-//            cutiDiambilCounter.setText(pengajuan.getJumlah().toString());
-//        }
-//        
+//        COMBO BOX CONTROLLER
+        for (JenisCuti jenisCuti : jc.getAll("")) {
+            cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
+        }
+
+        for (Karyawan karyawan : kc.getKarByMang(var)) {
+            cbSelectEmployee.addItem(karyawan.getId() + " - " + karyawan.getNama());
+        }
+
+//        GIMMICK CONTROLLER
         for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionUserName.setText(karyawan.getNama());
             sisaCutiCounter.setText(karyawan.getJumlahcuti().toString());
-        }
-
-        for (JenisCuti jenisCuti : jc.getAll("")) {
-            cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
         }
 
         for (Karyawan karyawan : kc.getIdKar(var)) {
@@ -99,7 +103,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         }
 
         for (Karyawan karyawan : kc.getIdKar(var)) {
-            lbDescriptionManager.setText("Managed by " + karyawan.getIdmanager().getNama());
+            if (karyawan.getIdmanager() != null) {
+                lbDescriptionManager.setText("Managed by " + karyawan.getIdmanager().getNama());
+            } else {
+                lbDescriptionManager.setText("Ultra Supervisor");
+            }
+
         }
 
     }
@@ -918,12 +927,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
 
+    cbSelectEmployee.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
     cbSelectEmployee.addItemListener(new java.awt.event.ItemListener() {
         public void itemStateChanged(java.awt.event.ItemEvent evt) {
             cbSelectEmployeeItemStateChanged(evt);
         }
     });
 
+    jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
     jLabel14.setText("Employee Name");
 
     javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
@@ -940,7 +951,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     pnUserHeader1Layout.setVerticalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserHeader1Layout.createSequentialGroup()
-            .addContainerGap(32, Short.MAX_VALUE)
+            .addContainerGap(29, Short.MAX_VALUE)
             .addComponent(jLabel14)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -976,9 +987,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
     );
     pnUserContent1Layout.setVerticalGroup(
         pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnUserContent1Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContent1Layout.createSequentialGroup()
+            .addContainerGap(19, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -1122,8 +1133,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private void cbSelectEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSelectEmployeeItemStateChanged
         // TODO add your handling code here:
-        
         //KETIKA DIPILIH SI USER
+        tableEmployeeRequestOnManager(spc.getHistory(cbSelectEmployee.getSelectedItem().toString().split(" - ")[0], false));
     }//GEN-LAST:event_cbSelectEmployeeItemStateChanged
 
     //SELF METHOD
@@ -1154,8 +1165,23 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
+    private void tableEmployeeRequestOnManager(List<models.StatusPengajuan> kar) {
+        Object[] columnNames = {"Nomor", "ID", "Date", "Status", "Action", "Description"};
+        Object[][] data = new Object[kar.size()][columnNames.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i][0] = (i + 1);
+            data[i][1] = kar.get(i).getId();
+            data[i][2] = kar.get(i).getDatetime();
+            data[i][3] = kar.get(i).getStatus().getTipe();
+            data[i][4] = "ACCEPT/REJECT";
+//            data[i][5] = "DESC";
+        }
+        myTable = new DefaultTableModel(data, columnNames);
+        tbManagerUserRequest.setModel(myTable);
+    }
+
     private void tableRequestStatus(List<models.StatusPengajuan> req) {
-        Object[] columnNames = {"Nomor", "ID", "Date","Status"};
+        Object[] columnNames = {"Nomor", "ID", "Date", "Status"};
         Object[][] data = new Object[req.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);

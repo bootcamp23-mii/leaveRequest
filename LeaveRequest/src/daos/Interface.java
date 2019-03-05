@@ -20,6 +20,8 @@ public interface Interface<T> {
 
     public List<T> getByKar(Object keyword);
     
+    public List<T> getByKarByMang(Object keyword);
+    
     public List<T> getByIdKar(Object keyword);
 
     public List<T> getHistory(Object keyword, Boolean status);
