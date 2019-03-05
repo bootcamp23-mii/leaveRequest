@@ -25,6 +25,7 @@ import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
 import models.Pengajuan;
+import models.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -44,7 +45,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-    String var = "11205";
+    String var = Session.getId();
 
     /**
      * Creates new form Home
@@ -72,7 +73,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 //            cutiDiambilCounter.setText(pengajuan.getJumlah().toString());
 //        }
 //        
-        for (Karyawan karyawan : kc.getKar(var)) {
+        for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionUserName.setText(karyawan.getNama());
             sisaCutiCounter.setText(String.valueOf(12 - karyawan.getJumlahcuti()));
             cutiDiambilCounter.setText(karyawan.getJumlahcuti().toString());

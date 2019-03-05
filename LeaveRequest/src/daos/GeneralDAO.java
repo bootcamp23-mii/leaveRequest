@@ -137,4 +137,21 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
+
+    @Override
+    public List<T> getByIdKar(Object keyword) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            System.out.println(t.getClass().getSimpleName());
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + keyword + "'").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj;
+    }
 }

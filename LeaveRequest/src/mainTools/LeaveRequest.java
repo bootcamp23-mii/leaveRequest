@@ -72,8 +72,8 @@ public class LeaveRequest {
 //        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
 //        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qwe", "SN1", "11201"));
 //        System.out.println(kc.login("loli", "qwe"));
-        System.out.println(kc.login("loli", "qwe"));
-        System.out.println(Session.getId());
+//        System.out.println(kc.login("loli", "qwe"));
+//        System.out.println(Session.getId());
         //        
 //        for (JenisCuti jenisCuti : jc.getAll("")) {
 //            System.out.println("===================");
@@ -81,12 +81,11 @@ public class LeaveRequest {
 //            System.out.println(jenisCuti.getJenis());
 //            
 //        }
-//        for (Karyawan karyawan : kc.getAll("")) {
-//            System.out.println("===================");
-//            System.out.println(karyawan.getId());
-//            System.out.println(karyawan.getNama());
-//            
-//        }
+        for (Karyawan karyawan : kc.getKar("11204")) {
+            System.out.println("===================");
+            System.out.println(karyawan.getNama());
+            
+        }
     }
 
 }

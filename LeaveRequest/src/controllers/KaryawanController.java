@@ -73,4 +73,19 @@ public class KaryawanController implements KaryawanInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Karyawan> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Karyawan> getKar(String key) {
+        return kdao.getByKar(key);
+    }
+
+    @Override
+    public List<Karyawan> getIdKar(String key) {
+        return kdao.getByIdKar(key);
+    }
+
 }
