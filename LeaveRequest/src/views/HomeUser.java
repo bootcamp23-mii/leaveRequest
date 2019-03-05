@@ -458,8 +458,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setBackground(new java.awt.Color(123, 156, 225));
+        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
         jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
         pnBar.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 10, 150, 30));
@@ -736,6 +737,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         dynamicPane.add(pnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
+        pnRequest.setBackground(new java.awt.Color(255, 255, 255));
         pnRequest.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btUserSubmitRequest.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -819,6 +821,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
     jTextArea1.setLineWrap(true);
     jTextArea1.setRows(5);
+    jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
     jScrollPane2.setViewportView(jTextArea1);
 
     pnRequest.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 190));
@@ -942,20 +945,20 @@ public class HomeUser extends javax.swing.JInternalFrame {
     pnUserHeader1Layout.setHorizontalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnUserHeader1Layout.createSequentialGroup()
-            .addGap(21, 21, 21)
+            .addContainerGap()
             .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel14)
                 .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(379, Short.MAX_VALUE))
+            .addContainerGap(394, Short.MAX_VALUE))
     );
     pnUserHeader1Layout.setVerticalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserHeader1Layout.createSequentialGroup()
-            .addContainerGap(29, Short.MAX_VALUE)
+        .addGroup(pnUserHeader1Layout.createSequentialGroup()
+            .addGap(28, 28, 28)
             .addComponent(jLabel14)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(29, 29, 29))
+            .addContainerGap(30, Short.MAX_VALUE))
     );
 
     tbManagerUserRequest.setModel(new javax.swing.table.DefaultTableModel(
@@ -988,8 +991,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     pnUserContent1Layout.setVerticalGroup(
         pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContent1Layout.createSequentialGroup()
-            .addContainerGap(19, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(14, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -1013,7 +1016,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 .addContainerGap(337, Short.MAX_VALUE)))
         .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnManagerLayout.createSequentialGroup()
-                .addGap(0, 203, Short.MAX_VALUE)
+                .addGap(0, 200, Short.MAX_VALUE)
                 .addComponent(pnUserContent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
     );
 
