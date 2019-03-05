@@ -6,7 +6,7 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,13 +54,13 @@ public class Karyawan implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private Collection<Role> roleCollection;
+    private List<Role> roleList;
     @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private Collection<Pengajuan> pengajuanCollection;
+    private List<Pengajuan> pengajuanList;
     @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private Collection<RiwayatCuti> riwayatCutiCollection;
+    private List<RiwayatCuti> riwayatCutiList;
     @OneToMany(mappedBy = "idmanager", fetch = FetchType.LAZY)
-    private Collection<Karyawan> karyawanCollection;
+    private List<Karyawan> karyawanList;
     @JoinColumn(name = "IDMANAGER", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Karyawan idmanager;
@@ -70,8 +70,8 @@ public class Karyawan implements Serializable {
 
     public Karyawan() {
     }
-    
-    public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager) {
+
+      public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager) {
         this.id=id;
         this.nama=name;
         this.jeniskelamin=gender;
@@ -81,7 +81,7 @@ public class Karyawan implements Serializable {
         this.statusnikah=statusNikah;
         this.idmanager=manager;
     }
-
+      
     public Karyawan(String id) {
         this.id = id;
     }
@@ -135,39 +135,39 @@ public class Karyawan implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Role> getRoleCollection() {
-        return roleCollection;
+    public List<Role> getRoleList() {
+        return roleList;
     }
 
-    public void setRoleCollection(Collection<Role> roleCollection) {
-        this.roleCollection = roleCollection;
-    }
-
-    @XmlTransient
-    public Collection<Pengajuan> getPengajuanCollection() {
-        return pengajuanCollection;
-    }
-
-    public void setPengajuanCollection(Collection<Pengajuan> pengajuanCollection) {
-        this.pengajuanCollection = pengajuanCollection;
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 
     @XmlTransient
-    public Collection<RiwayatCuti> getRiwayatCutiCollection() {
-        return riwayatCutiCollection;
+    public List<Pengajuan> getPengajuanList() {
+        return pengajuanList;
     }
 
-    public void setRiwayatCutiCollection(Collection<RiwayatCuti> riwayatCutiCollection) {
-        this.riwayatCutiCollection = riwayatCutiCollection;
+    public void setPengajuanList(List<Pengajuan> pengajuanList) {
+        this.pengajuanList = pengajuanList;
     }
 
     @XmlTransient
-    public Collection<Karyawan> getKaryawanCollection() {
-        return karyawanCollection;
+    public List<RiwayatCuti> getRiwayatCutiList() {
+        return riwayatCutiList;
     }
 
-    public void setKaryawanCollection(Collection<Karyawan> karyawanCollection) {
-        this.karyawanCollection = karyawanCollection;
+    public void setRiwayatCutiList(List<RiwayatCuti> riwayatCutiList) {
+        this.riwayatCutiList = riwayatCutiList;
+    }
+
+    @XmlTransient
+    public List<Karyawan> getKaryawanList() {
+        return karyawanList;
+    }
+
+    public void setKaryawanList(List<Karyawan> karyawanList) {
+        this.karyawanList = karyawanList;
     }
 
     public Karyawan getIdmanager() {

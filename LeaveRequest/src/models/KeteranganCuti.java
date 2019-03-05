@@ -6,7 +6,7 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +40,7 @@ public class KeteranganCuti implements Serializable {
     @Column(name = "KETERANGAN")
     private String keterangan;
     @OneToMany(mappedBy = "keterangancuti", fetch = FetchType.LAZY)
-    private Collection<RiwayatCuti> riwayatCutiCollection;
+    private List<RiwayatCuti> riwayatCutiList;
 
     public KeteranganCuti() {
     }
@@ -66,12 +66,12 @@ public class KeteranganCuti implements Serializable {
     }
 
     @XmlTransient
-    public Collection<RiwayatCuti> getRiwayatCutiCollection() {
-        return riwayatCutiCollection;
+    public List<RiwayatCuti> getRiwayatCutiList() {
+        return riwayatCutiList;
     }
 
-    public void setRiwayatCutiCollection(Collection<RiwayatCuti> riwayatCutiCollection) {
-        this.riwayatCutiCollection = riwayatCutiCollection;
+    public void setRiwayatCutiList(List<RiwayatCuti> riwayatCutiList) {
+        this.riwayatCutiList = riwayatCutiList;
     }
 
     @Override

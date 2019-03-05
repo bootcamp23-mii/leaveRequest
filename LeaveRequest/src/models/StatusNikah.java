@@ -6,7 +6,7 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +40,7 @@ public class StatusNikah implements Serializable {
     @Column(name = "STATUS")
     private String status;
     @OneToMany(mappedBy = "statusnikah", fetch = FetchType.LAZY)
-    private Collection<Karyawan> karyawanCollection;
+    private List<Karyawan> karyawanList;
 
     public StatusNikah() {
     }
@@ -66,12 +66,12 @@ public class StatusNikah implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Karyawan> getKaryawanCollection() {
-        return karyawanCollection;
+    public List<Karyawan> getKaryawanList() {
+        return karyawanList;
     }
 
-    public void setKaryawanCollection(Collection<Karyawan> karyawanCollection) {
-        this.karyawanCollection = karyawanCollection;
+    public void setKaryawanList(List<Karyawan> karyawanList) {
+        this.karyawanList = karyawanList;
     }
 
     @Override

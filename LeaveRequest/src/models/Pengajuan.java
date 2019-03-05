@@ -6,8 +6,8 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,11 +59,12 @@ public class Pengajuan implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Karyawan karyawan;
     @OneToMany(mappedBy = "pengajuan", fetch = FetchType.LAZY)
-    private Collection<StatusPengajuan> statusPengajuanCollection;
+    private List<StatusPengajuan> statusPengajuanList;
 
     public Pengajuan() {
     }
 
+    
     public Pengajuan(String id, Date start, Date end, Short jumlah, Karyawan karyawan, JenisCuti jenisCuti ) {
         this.id=id;
         this.tanggalmulai=start;
@@ -126,12 +127,12 @@ public class Pengajuan implements Serializable {
     }
 
     @XmlTransient
-    public Collection<StatusPengajuan> getStatusPengajuanCollection() {
-        return statusPengajuanCollection;
+    public List<StatusPengajuan> getStatusPengajuanList() {
+        return statusPengajuanList;
     }
 
-    public void setStatusPengajuanCollection(Collection<StatusPengajuan> statusPengajuanCollection) {
-        this.statusPengajuanCollection = statusPengajuanCollection;
+    public void setStatusPengajuanList(List<StatusPengajuan> statusPengajuanList) {
+        this.statusPengajuanList = statusPengajuanList;
     }
 
     @Override
