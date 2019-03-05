@@ -75,21 +75,20 @@ public class HomeUser extends javax.swing.JInternalFrame {
 //        
         for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionUserName.setText(karyawan.getNama());
-            sisaCutiCounter.setText(String.valueOf(12 - karyawan.getJumlahcuti()));
-            cutiDiambilCounter.setText(karyawan.getJumlahcuti().toString());
+            sisaCutiCounter.setText(karyawan.getJumlahcuti().toString());
         }
 
         for (JenisCuti jenisCuti : jc.getAll("")) {
             cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
         }
 
-        for (Karyawan karyawan : kc.getKar(var)) {
+        for (Karyawan karyawan : kc.getIdKar(var)) {
             tfUserName.setText(karyawan.getNama());
             tfUserEmail.setText(karyawan.getEmail());
             tfUserUsername.setText(karyawan.getId());
-            tfUserPassword.setText(karyawan.getPassword().toString());
         }
-        for (Karyawan karyawan : kc.getKar(var)) {
+
+        for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionManager.setText("Managed by " + karyawan.getIdmanager().getNama());
         }
 
@@ -133,11 +132,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHomeHeader = new javax.swing.JPanel();
         pnHomeContent = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         sisaCutiCounter = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        cutiDiambilCounter = new javax.swing.JLabel();
         pnUser = new javax.swing.JPanel();
         pnUserHeader = new javax.swing.JPanel();
         pnUserContent = new javax.swing.JPanel();
@@ -477,19 +473,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        pnHomeContent.setBackground(new java.awt.Color(240, 240, 240));
         pnHomeContent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(120, 168, 252));
         jLabel20.setText("SISA CUTI ANDA");
         pnHomeContent.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
-
-        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(120, 168, 252));
-        jLabel21.setText("CUTI YANG TELAH ANDA AMBIL");
-        pnHomeContent.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, 30));
 
         jPanel2.setBackground(new java.awt.Color(120, 168, 252));
 
@@ -517,33 +506,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         );
 
         pnHomeContent.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 46, 70, 70));
-
-        jPanel1.setBackground(new java.awt.Color(120, 168, 252));
-
-        cutiDiambilCounter.setBackground(new java.awt.Color(120, 168, 252));
-        cutiDiambilCounter.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        cutiDiambilCounter.setForeground(new java.awt.Color(255, 255, 255));
-        cutiDiambilCounter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cutiDiambilCounter.setText("12");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cutiDiambilCounter, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cutiDiambilCounter)
-                .addGap(86, 86, 86))
-        );
-
-        pnHomeContent.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 156, 70, 70));
 
         javax.swing.GroupLayout pnHomeLayout = new javax.swing.GroupLayout(pnHome);
         pnHome.setLayout(pnHomeLayout);
@@ -582,8 +544,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        pnUserContent.setBackground(new java.awt.Color(240, 240, 240));
-
         tfUserName.setBackground(new java.awt.Color(120, 168, 252));
         tfUserName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfUserName.setForeground(new java.awt.Color(255, 255, 255));
@@ -608,19 +568,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tfUserPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Name");
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Email");
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Password");
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Username");
 
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -958,19 +914,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private boolean isEmpty() {
         return cc.getData(var).isEmpty();
     }
-    
+
     private void clear() {
         tfUserTotal.setText("");
         cbJenisCuti.setSelectedIndex(0);
     }
-    
+
     private void getRidTheBar() {
         putClientProperty("Home.isPallete", Boolean.TRUE);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.setBorder(null);
     }
-
 
     private void tableData(List<models.Pengajuan> req) {
         Object[] columnNames = {"Nomor", "ID", "Start Date", "End Date", "Total", "Employee", "Type", "Status"};
@@ -1014,7 +969,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbJenisCuti;
-    private javax.swing.JLabel cutiDiambilCounter;
     private datechooser.beans.DateChooserCombo dcEnd;
     private datechooser.beans.DateChooserCombo dcStart;
     private javax.swing.JLayeredPane dynamicPane;
@@ -1031,7 +985,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1039,7 +992,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

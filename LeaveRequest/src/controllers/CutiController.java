@@ -79,7 +79,7 @@ public class CutiController implements CutiControllerInterface {
 
     @Override
     public List<Pengajuan> getByIdKaryawan(String key) {
-        return cdao.getByIdKar(key);
+        return cdao.getByKar(key);
     }
 
     @Override

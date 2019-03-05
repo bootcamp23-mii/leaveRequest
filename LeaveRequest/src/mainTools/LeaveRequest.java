@@ -43,7 +43,7 @@ public class LeaveRequest {
         GeneralDAO gdao = new GeneralDAO(sessionFactory, kc);
 //        CutiController cc = new CutiController(sessionFactory);
 //        INSERT/UPDATE/DELETE
-//        System.out.println(cc.save("P5", "04/03/19", "05/03/19", "2", "11205", "JC2"));
+//        System.out.println(cc.save("", "04/03/19", "05/03/19", "2", "11205", "JC1"));
 //        System.out.println(cc.getByID("11205"));
 //        GET DATA BASED ON KARYAWAN ID
 //        for (Pengajuan pengajuan : cc.getByKaryawan("11205")) {
@@ -81,11 +81,11 @@ public class LeaveRequest {
 //            System.out.println(jenisCuti.getJenis());
 //            
 //        }
-        for (Pengajuan pengajuan : cc.getByKaryawan("11204")) {
-            System.out.println("===================");
-            System.out.println(pengajuan.getKaryawan().getNama());
-            
-        }
+//        for (Pengajuan pengajuan : cc.getByKaryawan("11204")) {
+//            System.out.println("===================");
+//            System.out.println(pengajuan.getKaryawan().getNama());
+//            
+//        }
     }
 
 }
