@@ -18,18 +18,25 @@ import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import mainTools.DBConnection;
 import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
 import models.Pengajuan;
 import models.Session;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.SessionFactory;
 
 /**
@@ -46,6 +53,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private final KaryawanInterface kc = new KaryawanController(factory);
     private final StatusPengajuanInterface spc = new StatusPengajuanController(factory);
 //    private CutiController cc = new CutiControllerInterface(factory, new Pengajuan());
+    DBConnection connection = new DBConnection();
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -193,6 +201,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUserHeader1 = new javax.swing.JPanel();
         cbSelectEmployee = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        btReport = new javax.swing.JButton();
         pnUserContent1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbManagerUserRequest = new javax.swing.JTable();
@@ -759,13 +768,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
         dcStart.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
             new datechooser.view.appearance.ViewAppearance("custom",
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
+                    new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.ButtonPainter()),
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
+                    new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     true,
                     true,
@@ -783,13 +792,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
+                    new java.awt.Color(0, 0, 0),
                     new java.awt.Color(0, 0, 255),
                     false,
                     true,
                     new datechooser.view.appearance.swing.LabelPainter()),
                 new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
+                    new java.awt.Color(0, 0, 0),
                     new java.awt.Color(255, 0, 0),
                     false,
                     false,
@@ -942,6 +951,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
     jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
     jLabel14.setText("Employee Name");
 
+    btReport.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+    btReport.setText("Report");
+    btReport.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btReportActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
     pnUserHeader1.setLayout(pnUserHeader1Layout);
     pnUserHeader1Layout.setHorizontalGroup(
@@ -950,8 +967,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addContainerGap()
             .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel14)
-                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(394, Short.MAX_VALUE))
+                .addGroup(pnUserHeader1Layout.createSequentialGroup()
+                    .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(125, 125, 125)
+                    .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(170, Short.MAX_VALUE))
     );
     pnUserHeader1Layout.setVerticalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -959,7 +979,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGap(28, 28, 28)
             .addComponent(jLabel14)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
             .addContainerGap(30, Short.MAX_VALUE))
     );
 
@@ -1142,6 +1164,20 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tableEmployeeRequestOnManager(spc.getHistory(cbSelectEmployee.getSelectedItem().toString().split(" - ")[0], false));
     }//GEN-LAST:event_cbSelectEmployeeItemStateChanged
 
+    private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
+        try {
+            String fileName = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jrxml";
+            String filetoFill = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jasper";
+            JasperCompileManager.compileReport(fileName);
+            Map param = new HashMap();
+            JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
+            JasperPrint jp = JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_btReportActionPerformed
+
     //SELF METHOD
     private boolean konfirmasi() {
         if (dcStart.getText().equals("")
@@ -1255,6 +1291,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btExit;
+    private javax.swing.JButton btReport;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;
