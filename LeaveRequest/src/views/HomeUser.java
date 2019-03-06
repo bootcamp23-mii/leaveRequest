@@ -58,6 +58,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    javax.swing.ImageIcon img;
 
     String var = Session.getId();
 
@@ -1218,9 +1219,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void btShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowActionPerformed
         fcFile.setVisible(true);
     }//GEN-LAST:event_btShowActionPerformed
-    File file;
-    javax.swing.ImageIcon img;
+    
     private void fcFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fcFileActionPerformed
+        File file;
         file = fcFile.getSelectedFile();
         img = new javax.swing.ImageIcon(file.getPath());
         lblShow.setIcon(img);
