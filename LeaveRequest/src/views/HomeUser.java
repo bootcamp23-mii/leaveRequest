@@ -69,10 +69,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         userCutiInit();
-
-//        if (kc.getById(var).get) {
 //
+//        if (kc.getById(var).get) {
+//            
 //        }
+//        
+//        
 //        FAKE THE ROLE
 //        if (var.equals("11205")) {
 //            btnManager.setVisible(false);
@@ -123,9 +125,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             } else {
                 lbDescriptionManager.setText("Ultra Supervisor");
             }
-
         }
-
     }
 
     /**
@@ -469,16 +469,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getContentPane().add(pnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 660));
 
         pnBar.setBackground(new java.awt.Color(71, 120, 197));
-        pnBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                pnBarMouseDragged(evt);
-            }
-        });
-        pnBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnBarMousePressed(evt);
-            }
-        });
         pnBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.setBackground(new java.awt.Color(123, 156, 225));
@@ -1187,23 +1177,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnManager.setVisible(false);
     }//GEN-LAST:event_btnRequestMousePressed
 
-    private void pnBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBarMouseDragged
-        // TODO add your handling code here:
-
-        //source to drag
-//        int x = evt.getXOnScreen();
-//        int y = evt.getYOnScreen();
-//        this.setLocation(x - xx, y - xy);
-    }//GEN-LAST:event_pnBarMouseDragged
-
     int xx, xy;
-    private void pnBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnBarMousePressed
-        // TODO add your handling code here:
-        //drag this pane
-//        xx = evt.getX();
-//        xy = evt.getY();
-    }//GEN-LAST:event_pnBarMousePressed
-
     private void btExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExitMouseClicked
         // TODO add your handling code here:
         this.dispose();
