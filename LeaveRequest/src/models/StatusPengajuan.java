@@ -54,7 +54,21 @@ public class StatusPengajuan implements Serializable {
 
     public StatusPengajuan() {
     }
+    
+    public StatusPengajuan(String id, Date date, String keterangan, Pengajuan pengajuan, Status status) {
+        this.id=id;
+        this.datetime=date;
+        this.keterangan=keterangan;
+        this.pengajuan=pengajuan;
+        this.status=status;
+    }
 
+    public StatusPengajuan(String id, Date date, Status status) {
+        this.id = id;
+        this.datetime=date;
+        this.status=status;
+    }
+    
     public StatusPengajuan(String id) {
         this.id = id;
     }

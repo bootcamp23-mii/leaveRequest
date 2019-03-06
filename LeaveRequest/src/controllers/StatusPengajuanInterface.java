@@ -13,13 +13,14 @@ import models.StatusPengajuan;
  * @author Pandu
  */
 public interface StatusPengajuanInterface {
+
     public List<StatusPengajuan> getHistory(String id, Boolean type);
 
     public List<StatusPengajuan> getAll(String key);
-    
+
     public List<StatusPengajuan> getData(String key);
 
 //    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti);
-//    public String update(String id, String start, String end, String total, String karyawan, String jenisCuti);
+    public String update(String id, String date, String keterangan, String Pengajuan, String status);
 //    public String delete(String id);
 }
