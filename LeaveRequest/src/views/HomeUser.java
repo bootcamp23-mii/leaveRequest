@@ -1175,6 +1175,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             JasperViewer.viewReport(jp, false);
         } catch (Exception ex) {
             System.out.println(ex.toString());
+            
         }
     }//GEN-LAST:event_btReportActionPerformed
 
