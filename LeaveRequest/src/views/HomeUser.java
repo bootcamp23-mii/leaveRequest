@@ -15,6 +15,7 @@ import controllers.StatusPengajuanController;
 import controllers.StatusPengajuanInterface;
 import java.awt.Button;
 import java.awt.Color;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -68,6 +69,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         userCutiInit();
+        jFileChooser1.setVisible(false);
 //        FAKE THE ROLE
 //        if (var.equals("11205")) {
 //            btnManager.setVisible(false);
@@ -168,6 +170,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
         sisaCutiCounter = new javax.swing.JLabel();
         pnUser = new javax.swing.JPanel();
         pnUserHeader = new javax.swing.JPanel();
+        lblShow = new javax.swing.JLabel();
+        btShow = new javax.swing.JButton();
+        jFileChooser1 = new javax.swing.JFileChooser();
         pnUserContent = new javax.swing.JPanel();
         tfUserName = new javax.swing.JTextField();
         tfUserEmail = new javax.swing.JTextField();
@@ -626,15 +631,46 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         pnUserHeader.setBackground(new java.awt.Color(242, 247, 247));
 
+        btShow.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btShow.setText("Upload");
+        btShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btShowActionPerformed(evt);
+            }
+        });
+
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnUserHeaderLayout = new javax.swing.GroupLayout(pnUserHeader);
         pnUserHeader.setLayout(pnUserHeaderLayout);
         pnUserHeaderLayout.setHorizontalGroup(
             pnUserHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(pnUserHeaderLayout.createSequentialGroup()
+                .addGroup(pnUserHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnUserHeaderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblShow, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnUserHeaderLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btShow)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnUserHeaderLayout.setVerticalGroup(
             pnUserHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
+            .addGroup(pnUserHeaderLayout.createSequentialGroup()
+                .addGroup(pnUserHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnUserHeaderLayout.createSequentialGroup()
+                        .addComponent(lblShow, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btShow))
+                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tfUserName.setBackground(new java.awt.Color(120, 168, 252));
@@ -719,7 +755,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                     .addComponent(tfUserPassword))
                 .addGap(39, 39, 39)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnUserLayout = new javax.swing.GroupLayout(pnUser);
@@ -737,13 +773,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGap(0, 540, Short.MAX_VALUE)
             .addGroup(pnUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserLayout.createSequentialGroup()
-                    .addGap(0, 202, Short.MAX_VALUE)
+                    .addGap(0, 222, Short.MAX_VALUE)
                     .addComponent(pnUserContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(pnUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserLayout.createSequentialGroup()
-                    .addContainerGap(85, Short.MAX_VALUE)
+                    .addContainerGap(27, Short.MAX_VALUE)
                     .addComponent(pnUserHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(338, Short.MAX_VALUE)))
+                    .addContainerGap(311, Short.MAX_VALUE)))
         );
 
         dynamicPane.add(pnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
@@ -1179,6 +1215,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btReportActionPerformed
 
+    private void btShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowActionPerformed
+        jFileChooser1.setVisible(true);
+    }//GEN-LAST:event_btShowActionPerformed
+    File file;
+    javax.swing.ImageIcon img;
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        file = jFileChooser1.getSelectedFile();
+        img = new javax.swing.ImageIcon(file.getPath());
+        lblShow.setIcon(img);
+        jFileChooser1.setVisible(false);
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
+
     //SELF METHOD
     private boolean konfirmasi() {
         if (dcStart.getText().equals("")
@@ -1293,6 +1341,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btExit;
     private javax.swing.JButton btReport;
+    private javax.swing.JButton btShow;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;
@@ -1310,6 +1359,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JButton jButton2;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1339,6 +1389,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbCurrentDate;
     private javax.swing.JLabel lbDescriptionManager;
     private javax.swing.JLabel lbDescriptionUserName;
+    private javax.swing.JLabel lblShow;
     private javax.swing.JPanel pnBar;
     private javax.swing.JPanel pnCntentFill;
     private javax.swing.JPanel pnDescription;
