@@ -69,7 +69,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         userCutiInit();
-        jFileChooser1.setVisible(false);
+        fcFile.setVisible(false);
 //        FAKE THE ROLE
 //        if (var.equals("11205")) {
 //            btnManager.setVisible(false);
@@ -172,7 +172,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUserHeader = new javax.swing.JPanel();
         lblShow = new javax.swing.JLabel();
         btShow = new javax.swing.JButton();
-        jFileChooser1 = new javax.swing.JFileChooser();
+        fcFile = new javax.swing.JFileChooser();
         pnUserContent = new javax.swing.JPanel();
         tfUserName = new javax.swing.JTextField();
         tfUserEmail = new javax.swing.JTextField();
@@ -639,9 +639,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
             }
         });
 
-        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+        fcFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser1ActionPerformed(evt);
+                fcFileActionPerformed(evt);
             }
         });
 
@@ -658,7 +658,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                         .addGap(76, 76, 76)
                         .addComponent(btShow)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fcFile, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnUserHeaderLayout.setVerticalGroup(
@@ -669,7 +669,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                         .addComponent(lblShow, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btShow))
-                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(fcFile, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1216,16 +1216,16 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btReportActionPerformed
 
     private void btShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowActionPerformed
-        jFileChooser1.setVisible(true);
+        fcFile.setVisible(true);
     }//GEN-LAST:event_btShowActionPerformed
     File file;
     javax.swing.ImageIcon img;
-    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
-        file = jFileChooser1.getSelectedFile();
+    private void fcFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fcFileActionPerformed
+        file = fcFile.getSelectedFile();
         img = new javax.swing.ImageIcon(file.getPath());
         lblShow.setIcon(img);
-        jFileChooser1.setVisible(false);
-    }//GEN-LAST:event_jFileChooser1ActionPerformed
+        fcFile.setVisible(false);
+    }//GEN-LAST:event_fcFileActionPerformed
 
     //SELF METHOD
     private boolean konfirmasi() {
@@ -1353,13 +1353,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private datechooser.beans.DateChooserCombo dcEnd;
     private datechooser.beans.DateChooserCombo dcStart;
     private javax.swing.JLayeredPane dynamicPane;
+    private javax.swing.JFileChooser fcFile;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JButton jButton2;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
