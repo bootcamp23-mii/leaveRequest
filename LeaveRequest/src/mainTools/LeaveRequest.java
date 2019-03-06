@@ -7,6 +7,8 @@ package mainTools;
 
 import controllers.CutiController;
 import controllers.CutiControllerInterface;
+import controllers.EmailController;
+import controllers.EmailInterface;
 import controllers.JenisCutiController;
 import controllers.JenisCutiInterface;
 import controllers.KaryawanController;
@@ -22,6 +24,7 @@ import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
 import models.Pengajuan;
+import models.SendEmailTemp;
 import models.Session;
 
 /**
@@ -33,14 +36,14 @@ public class LeaveRequest {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String[] args) throws ParseException {
         // TODO code application logic here
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        CutiControllerInterface cc  = new CutiController(sessionFactory);
-        JenisCutiInterface jc       = new JenisCutiController(sessionFactory);
-        KaryawanInterface kc        = new KaryawanController(sessionFactory);
+        CutiControllerInterface cc = new CutiController(sessionFactory);
+        JenisCutiInterface jc = new JenisCutiController(sessionFactory);
+        KaryawanInterface kc = new KaryawanController(sessionFactory);
         GeneralDAO gdao = new GeneralDAO(sessionFactory, kc);
+        EmailInterface emailInterface = new EmailController();
 //        CutiController cc = new CutiController(sessionFactory);
 //        INSERT/UPDATE/DELETE
 //        System.out.println(cc.save("", "04/03/19", "05/03/19", "2", "11205", "JC1"));
@@ -86,6 +89,12 @@ public class LeaveRequest {
 //            System.out.println(pengajuan.getKaryawan().getNama());
 //            
 //        }
+        SendEmailTemp.setFromEmail("revilghost@gmail.com");
+        SendEmailTemp.setToEmail("pandu4431@gmail.com");
+        SendEmailTemp.setMessage("Test coi");
+        SendEmailTemp.setSubject("Test email");
+        SendEmailTemp.setPassword("");
+        emailInterface.sendEmail();
     }
 
 }

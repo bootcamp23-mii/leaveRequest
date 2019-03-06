@@ -18,7 +18,9 @@ import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -26,12 +28,17 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import mainTools.DBConnection;
 import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
 import models.Pengajuan;
 import models.Session;
 import org.hibernate.SessionFactory;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -42,6 +49,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
 //    CONTROLLER
+    DBConnection connection = new DBConnection();
     private final CutiControllerInterface cc = new CutiController(factory);
     private final JenisCutiInterface jc = new JenisCutiController(factory);
     private final KaryawanInterface kc = new KaryawanController(factory);
@@ -61,6 +69,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
         userCutiInit();
+
+//        if (kc.getById(var).get) {
+//
+//        }
 //        FAKE THE ROLE
 //        if (var.equals("11205")) {
 //            btnManager.setVisible(false);
@@ -194,6 +206,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUserHeader1 = new javax.swing.JPanel();
         cbSelectEmployee = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
+        btReport = new javax.swing.JButton();
         pnUserContent1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbManagerUserRequest = new javax.swing.JTable();
@@ -951,6 +964,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
     jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
     jLabel14.setText("Employee Name");
 
+    btReport.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+    btReport.setText("Report");
+    btReport.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btReportActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
     pnUserHeader1.setLayout(pnUserHeader1Layout);
     pnUserHeader1Layout.setHorizontalGroup(
@@ -958,9 +979,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
         .addGroup(pnUserHeader1Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel14)
-                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(394, Short.MAX_VALUE))
+                .addGroup(pnUserHeader1Layout.createSequentialGroup()
+                    .addComponent(jLabel14)
+                    .addContainerGap(530, Short.MAX_VALUE))
+                .addGroup(pnUserHeader1Layout.createSequentialGroup()
+                    .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22))))
     );
     pnUserHeader1Layout.setVerticalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -968,7 +994,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGap(28, 28, 28)
             .addComponent(jLabel14)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap(30, Short.MAX_VALUE))
     );
 
@@ -1266,6 +1294,21 @@ public class HomeUser extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btManagerRejectActionPerformed
 
+    private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
+        try {
+            String fileName = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jrxml";
+            String filetoFill = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jasper";
+            JasperCompileManager.compileReport(fileName);
+            Map param = new HashMap();
+            JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
+            JasperPrint jp = JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
+            JasperViewer.viewReport(jp, false);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+
+        }
+    }//GEN-LAST:event_btReportActionPerformed
+
     //SELF METHOD
 //    private boolean konfirmasi() {
 //        if (dcStart.getText().equals("")
@@ -1361,6 +1404,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel btExit;
     private javax.swing.JButton btManagerAccept;
     private javax.swing.JButton btManagerReject;
+    private javax.swing.JButton btReport;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;

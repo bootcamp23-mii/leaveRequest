@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65b38c9a-7845-4028-8561-ac352017ce07">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     KARYAWAN."ID" AS KARYAWAN_ID,
+     KARYAWAN."NAMA" AS KARYAWAN_NAMA,
+     KARYAWAN."JENISKELAMIN" AS KARYAWAN_JENISKELAMIN,
+     KARYAWAN."JUMLAHCUTI" AS KARYAWAN_JUMLAHCUTI,
+     KARYAWAN."EMAIL" AS KARYAWAN_EMAIL,
+     KARYAWAN."PASSWORD" AS KARYAWAN_PASSWORD,
+     KARYAWAN."STATUSNIKAH" AS KARYAWAN_STATUSNIKAH,
+     KARYAWAN."IDMANAGER" AS KARYAWAN_IDMANAGER,
+     PENGAJUAN."ID" AS PENGAJUAN_ID,
+     PENGAJUAN."TANGGALMULAI" AS PENGAJUAN_TANGGALMULAI,
+     PENGAJUAN."TANGGALAKHIR" AS PENGAJUAN_TANGGALAKHIR,
+     PENGAJUAN."JUMLAH" AS PENGAJUAN_JUMLAH,
+     PENGAJUAN."KARYAWAN" AS PENGAJUAN_KARYAWAN,
+     PENGAJUAN."JENISCUTI" AS PENGAJUAN_JENISCUTI,
+     STATUS_PENGAJUAN."ID" AS STATUS_PENGAJUAN_ID,
+     STATUS_PENGAJUAN."DATETIME" AS STATUS_PENGAJUAN_DATETIME,
+     STATUS_PENGAJUAN."KETERANGAN" AS STATUS_PENGAJUAN_KETERANGAN,
+     STATUS_PENGAJUAN."PENGAJUAN" AS STATUS_PENGAJUAN_PENGAJUAN,
+     STATUS_PENGAJUAN."STATUS" AS STATUS_PENGAJUAN_STATUS
+FROM
+     "LEAVE_REQUEST"."KARYAWAN" KARYAWAN INNER JOIN "LEAVE_REQUEST"."PENGAJUAN" PENGAJUAN ON KARYAWAN."ID" = PENGAJUAN."KARYAWAN"
+     INNER JOIN "LEAVE_REQUEST"."STATUS_PENGAJUAN" STATUS_PENGAJUAN ON PENGAJUAN."ID" = STATUS_PENGAJUAN."PENGAJUAN"]]>
+	</queryString>
+	
+	<field name="KARYAWAN_JENISKELAMIN" class="java.lang.String"/>
+	<field name="KARYAWAN_JUMLAHCUTI" class="java.math.BigDecimal"/>
+	<field name="KARYAWAN_STATUSNIKAH" class="java.lang.String"/>
+	<field name="KARYAWAN_IDMANAGER" class="java.lang.String"/>
+	<field name="PENGAJUAN_ID" class="java.lang.String"/>
+	<field name="PENGAJUAN_TANGGALMULAI" class="java.sql.Timestamp"/>
+	<field name="PENGAJUAN_TANGGALAKHIR" class="java.sql.Timestamp"/>
+	<field name="PENGAJUAN_JUMLAH" class="java.math.BigDecimal"/>
+	<field name="PENGAJUAN_KARYAWAN" class="java.lang.String"/>
+	<field name="PENGAJUAN_JENISCUTI" class="java.lang.String"/>
+	<field name="STATUS_PENGAJUAN_ID" class="java.lang.String"/>
+	<field name="STATUS_PENGAJUAN_DATETIME" class="java.sql.Timestamp"/>
+	<field name="STATUS_PENGAJUAN_KETERANGAN" class="java.lang.String"/>
+	<field name="STATUS_PENGAJUAN_PENGAJUAN" class="java.lang.String"/>
+	<field name="STATUS_PENGAJUAN_STATUS" class="java.lang.String"/>
+	<group name="KARYAWAN_ID">
+		<groupExpression><![CDATA[$F{KARYAWAN_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="62">
+				<textField>
+					<reportElement style="SubTitle" x="50" y="13" width="175" height="24" forecolor="#333333" uuid="c122b2b3-28fb-4c9d-806e-871568608709"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KARYAWAN_ID}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="0261b1b4-59f6-4f94-9e22-ed7eeb593ca6"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<group name="KARYAWAN_NAMA">
+		<groupExpression><![CDATA[$F{KARYAWAN_NAMA}]]></groupExpression>
+		<groupHeader>
+			<band height="70">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="d6c4b24e-a210-4eeb-a6bc-9e790fd44ccb"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{KARYAWAN_NAMA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="KARYAWAN_JUMLAHCUTI">
+		<groupExpression><![CDATA[$F{KARYAWAN_JUMLAHCUTI}]]></groupExpression>
+	</group>
+	<group name="STATUS_PENGAJUAN_STATUS">
+		<groupExpression><![CDATA[$F{STATUS_PENGAJUAN_STATUS}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="04e5f061-85e1-4bf1-b1e1-c6c52353a6db"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="1f586d46-3c27-4006-854e-6b497317dbc9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leave Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="799db219-b84e-426b-bacc-2a16c245ae89"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="32" y="19" width="79" height="15" uuid="48d12d27-08ec-4da8-92cf-dc4156ab0b79"/>
+				<text><![CDATA[STATUS_NIKAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="115" y="19" width="74" height="15" uuid="77db9daf-7d97-442d-95ff-d97940128a35"/>
+				<text><![CDATA[IDMANAGER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="197" y="19" width="12" height="15" uuid="7cd2527b-e623-4ddb-8808-5a736258916e"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="212" y="20" width="62" height="15" uuid="1cc4b153-6d82-4dbd-bb0f-cc55ca092809"/>
+				<text><![CDATA[JUMLAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="264" y="20" width="69" height="15" uuid="05895a48-1854-425d-a3f8-b145d4df8ac5"/>
+				<text><![CDATA[JENISCUTI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="328" y="20" width="116" height="15" uuid="6d97c8fa-e521-4b28-8ced-644bc7896a6d"/>
+				<text><![CDATA[STATUS_PENGAJUAN_DATETIME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="442" y="19" width="86" height="15" uuid="25ffdc09-05f7-4703-b20e-a0bcfd4c4893"/>
+				<text><![CDATA[KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="526" y="19" width="49" height="15" uuid="33f6b035-90a3-4049-a7b1-94c6f90db39f"/>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="6456e8a1-874c-4757-85bc-cc8b6dd3b1f9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="37" height="15" uuid="d2c32928-ecb7-4c59-aabd-994fee894402"/>
+				<textFieldExpression><![CDATA[$F{KARYAWAN_JENISKELAMIN}]]></textFieldExpression>
+			</textField>
+			<textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="37" height="15" uuid="dcabf0cf-2649-4eeb-9beb-8661c1de3d87"/>
+				<textFieldExpression><![CDATA[$F{KARYAWAN_STATUSNIKAH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="148" y="0" width="37" height="15" uuid="bc3fce10-8c9a-48fd-9124-d09b6d43f440"/>
+				<textFieldExpression><![CDATA[$F{KARYAWAN_IDMANAGER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="37" height="15" uuid="678af118-28a7-4b33-94e1-eee799054abd"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="37" height="15" uuid="f7a611a6-289c-40da-a4fd-3ae19eb87d09"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_TANGGALMULAI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="259" y="0" width="37" height="15" uuid="10b757f7-024a-4f57-b11b-5929a4eb8b58"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_TANGGALAKHIR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="296" y="0" width="37" height="15" uuid="b666ff61-585b-4429-9078-c1da7a682bcf"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_JUMLAH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="333" y="0" width="37" height="15" uuid="d26601c4-b409-41fc-b178-3da8472d9226"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_KARYAWAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="37" height="15" uuid="b4fd2294-371e-4b30-8f94-7179d6d850ee"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_JENISCUTI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="407" y="0" width="37" height="15" uuid="8f90a0e6-0758-4e0b-83a6-8df5c9d5992c"/>
+				<textFieldExpression><![CDATA[$F{STATUS_PENGAJUAN_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="37" height="15" uuid="16d72587-4b20-49d0-b421-b0e393ef6b8a"/>
+				<textFieldExpression><![CDATA[$F{STATUS_PENGAJUAN_DATETIME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="481" y="0" width="37" height="15" uuid="3a29ab84-4175-45e4-8b48-183dada074ce"/>
+				<textFieldExpression><![CDATA[$F{STATUS_PENGAJUAN_KETERANGAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="518" y="0" width="37" height="15" uuid="722e4d88-294e-4c29-84c3-5bb5816a8bf1"/>
+				<textFieldExpression><![CDATA[$F{STATUS_PENGAJUAN_PENGAJUAN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="117" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="5ad0b1b1-d91f-48d5-9da8-ca26c3ca4d88"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="195" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="16a24583-f7e2-4550-bb53-e202f3d6114a"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="f46bb1b8-c664-4279-ad10-f496801d65b4"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="cc6436ce-7046-45dc-bf27-b02acf96c03b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
