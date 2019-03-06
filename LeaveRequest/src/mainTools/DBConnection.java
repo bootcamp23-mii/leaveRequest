@@ -26,7 +26,7 @@ public class DBConnection {
             this.connection = ods.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
-           // e.getMessage();
+           
         }
         return connection;
     }
