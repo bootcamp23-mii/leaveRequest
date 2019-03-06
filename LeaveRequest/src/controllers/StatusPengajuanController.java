@@ -7,7 +7,16 @@ package controllers;
 
 import daos.GeneralDAO;
 import daos.Interface;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.JenisCuti;
+import models.Karyawan;
+import models.KeteranganCuti;
+import models.Pengajuan;
+import models.Status;
 import models.StatusPengajuan;
 import org.hibernate.SessionFactory;
 
@@ -17,6 +26,7 @@ import org.hibernate.SessionFactory;
  */
 public class StatusPengajuanController implements StatusPengajuanInterface {
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
     private final Interface<StatusPengajuan> spdao;
 
     public StatusPengajuanController(SessionFactory sessionFactory) {
@@ -38,4 +48,17 @@ public class StatusPengajuanController implements StatusPengajuanInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String update(String id, String date, String keterangan, String pengajuan, String status) {
+    try {
+            if (spdao.saveOrDelete(new StatusPengajuan(id, sdf.parse(date), keterangan, new Pengajuan(pengajuan), new Status(status)), true)) {
+                return "DATA UPDATED FOR ID = " + id;
+            } else {
+                return "UPDATE FAILED";
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(CutiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "FAIL";
+    }
 }
