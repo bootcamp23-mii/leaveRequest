@@ -8,6 +8,7 @@ package controllers;
 import daos.GeneralDAO;
 import daos.Interface;
 import daosBackup.KaryawanDAO;
+import java.text.ParseException;
 import java.util.List;
 import mainTools.BCrypt;
 import models.Karyawan;
@@ -23,12 +24,11 @@ public class KaryawanController implements KaryawanInterface {
 
 //    private KaryawanDAO kdao;
     private Interface<Karyawan> kdao;
-    
-    
+
     public KaryawanController(SessionFactory sessionFactory) {
         kdao = new GeneralDAO<>(sessionFactory, new Karyawan());
     }
-    
+
     @Override
     public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -37,7 +37,7 @@ public class KaryawanController implements KaryawanInterface {
         }
         return "Maaf coba lagi";
     }
-    
+
     @Override
     public boolean login(String username, String password) {
         List<Karyawan> list = kdao.login(username);
@@ -52,24 +52,26 @@ public class KaryawanController implements KaryawanInterface {
         System.out.println("List kosong");
         return false;
     }
+
+    @Override
+    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
+        if (kdao.saveOrDelete(new Karyawan(id, nama, jenisKelamin, Long.valueOf(jumlahCuti), email, password, new StatusNikah(statusNikah), new Karyawan(idManager)), true))    
+            return "SUCCESSFULLY UPDATE YOUR DATA";
+        return "FAIL TO UPDATE";    
+    }
     
     @Override
     public Karyawan getById(String key) {
         return kdao.getById(key);
     }
-    
+
     @Override
     public List<Karyawan> getAll(String key) {
         return kdao.getData(key);
     }
-    
+
     @Override
     public void delete(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public void update(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -92,5 +94,6 @@ public class KaryawanController implements KaryawanInterface {
     public List<Karyawan> getKarByMang(String key) {
         return kdao.getByKarByMang(key);
     }
+
 
 }

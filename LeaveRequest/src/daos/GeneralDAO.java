@@ -12,6 +12,7 @@ package daos;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import models.Karyawan;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -215,4 +216,5 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
+
 }

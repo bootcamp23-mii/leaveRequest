@@ -106,7 +106,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         for (Karyawan karyawan : kc.getIdKar(var)) {
             tfUserName.setText(karyawan.getNama());
             tfUserEmail.setText(karyawan.getEmail());
-            tfUserUsername.setText(karyawan.getId());
+            tfUserID.setText(karyawan.getId());
+            tfIdManager.setText(karyawan.getIdmanager().getId());
+            tfLeaveLeft.setText(karyawan.getJumlahcuti().toString());
+            tfUserPassword.setText(karyawan.getPassword());
+//            cbMarital.addItem(karyawan.getStatusnikah().getStatus());
+//            cbGender.addItem(karyawan.getJeniskelamin());
         }
 
         for (Karyawan karyawan : kc.getIdKar(var)) {
@@ -166,13 +171,21 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnUserContent = new javax.swing.JPanel();
         tfUserName = new javax.swing.JTextField();
         tfUserEmail = new javax.swing.JTextField();
-        tfUserUsername = new javax.swing.JTextField();
+        tfUserID = new javax.swing.JTextField();
         tfUserPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btUserUpdate = new javax.swing.JButton();
+        tfIdManager = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        cbMarital = new javax.swing.JComboBox<>();
+        cbGender = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        tfLeaveLeft = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
         pnRequest = new javax.swing.JPanel();
         btUserSubmitRequest = new javax.swing.JButton();
         cbJenisCuti = new javax.swing.JComboBox<>();
@@ -630,28 +643,31 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tfUserName.setBackground(new java.awt.Color(120, 168, 252));
         tfUserName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfUserName.setForeground(new java.awt.Color(255, 255, 255));
-        tfUserName.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tfUserName.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         tfUserEmail.setBackground(new java.awt.Color(120, 168, 252));
         tfUserEmail.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfUserEmail.setForeground(new java.awt.Color(255, 255, 255));
-        tfUserEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tfUserEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         tfUserEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUserEmailActionPerformed(evt);
             }
         });
 
-        tfUserUsername.setBackground(new java.awt.Color(120, 168, 252));
-        tfUserUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tfUserUsername.setForeground(new java.awt.Color(255, 255, 255));
-        tfUserUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tfUserID.setEditable(false);
+        tfUserID.setBackground(new java.awt.Color(120, 168, 252));
+        tfUserID.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tfUserID.setForeground(new java.awt.Color(255, 255, 255));
+        tfUserID.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
+        tfUserPassword.setEditable(false);
         tfUserPassword.setBackground(new java.awt.Color(120, 168, 252));
-        tfUserPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tfUserPassword.setForeground(new java.awt.Color(120, 168, 252));
+        tfUserPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel1.setText("Name");
+        jLabel1.setText("ID");
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel13.setText("Email");
@@ -662,31 +678,92 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel16.setText("Username");
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButton2.setText("SUBMIT");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
+        btUserUpdate.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btUserUpdate.setText("SUBMIT");
+        btUserUpdate.setBorder(null);
+        btUserUpdate.setBorderPainted(false);
+        btUserUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUserUpdateActionPerformed(evt);
+            }
+        });
+
+        tfIdManager.setEditable(false);
+        tfIdManager.setBackground(new java.awt.Color(120, 168, 252));
+        tfIdManager.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tfIdManager.setForeground(new java.awt.Color(255, 255, 255));
+        tfIdManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel17.setText("ID Manager");
+
+        cbMarital.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SN1 - Single", "SN2 - Married" }));
+
+        cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pria", "Wanita" }));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel18.setText("Marital");
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel19.setText("Gender");
+
+        tfLeaveLeft.setEditable(false);
+        tfLeaveLeft.setBackground(new java.awt.Color(120, 168, 252));
+        tfLeaveLeft.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tfLeaveLeft.setForeground(new java.awt.Color(255, 255, 255));
+        tfLeaveLeft.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel21.setText("Leave Available");
 
         javax.swing.GroupLayout pnUserContentLayout = new javax.swing.GroupLayout(pnUserContent);
         pnUserContent.setLayout(pnUserContentLayout);
         pnUserContentLayout.setHorizontalGroup(
             pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContentLayout.createSequentialGroup()
+            .addGroup(pnUserContentLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(tfUserUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfUserEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfUserPassword))
-                .addGap(63, 63, 63))
+                    .addGroup(pnUserContentLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnUserContentLayout.createSequentialGroup()
+                        .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnUserContentLayout.createSequentialGroup()
+                        .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnUserContentLayout.createSequentialGroup()
+                                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfLeaveLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnUserContentLayout.createSequentialGroup()
+                                        .addGap(18, 130, Short.MAX_VALUE)
+                                        .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tfUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel13)))
+                                    .addGroup(pnUserContentLayout.createSequentialGroup()
+                                        .addGap(130, 130, 130)
+                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(pnUserContentLayout.createSequentialGroup()
+                                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfIdManager, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tfUserPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnUserContentLayout.createSequentialGroup()
+                                            .addComponent(cbMarital, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btUserUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(63, 63, 63))))
         );
         pnUserContentLayout.setVerticalGroup(
             pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,20 +773,34 @@ public class HomeUser extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
+                    .addComponent(tfUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbMarital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfIdManager, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUserPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfUserUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(tfUserPassword))
-                .addGap(39, 39, 39)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(btUserUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfLeaveLeft, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnUserLayout = new javax.swing.GroupLayout(pnUser);
@@ -1121,30 +1212,25 @@ public class HomeUser extends javax.swing.JInternalFrame {
         LocalDateTime from = LocalDateTime.ofInstant(dcStart.getDate().toInstant(), ZoneId.systemDefault());
         LocalDateTime to = LocalDateTime.ofInstant(dcEnd.getDate().toInstant(), ZoneId.systemDefault());
         LocalDateTime now = LocalDateTime.now();
-        
+
         Duration dur = Duration.between(from, to);
         Duration durB = Duration.between(now, from);
-        
 
 //        tfUserTotal.setText(String.valueOf(dur.toDays()+1));
         String start = String.valueOf(sdf.format(dcStart.getDate()));
         String end = String.valueOf(sdf.format(dcEnd.getDate()));
+        
         String tot = String.valueOf(dur.toDays() + 1);
-        String totb =String.valueOf(durB.toDays());
+        String totb = String.valueOf(durB.toDays());
 //        System.out.println(sdf.format(dcStart.getDate()));
 //        System.out.println(sdf.format(dcEnd.getDate()));
 
         if (start.equals("") || end.equals("")) {
             JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
-        } else if (Integer.parseInt(totb)<=7){
+        } else if (Integer.parseInt(totb) <= 7) {
             JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
-        }else{
-            cc.save("",
-                start,
-                end,
-                tot,
-                var,
-                cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
+        } else {
+            cc.save("", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
             JOptionPane.showMessageDialog(null, "YOUR REQUEST HAVE BEEN SUBMITED");
         }
     }//GEN-LAST:event_btUserSubmitRequestActionPerformed
@@ -1206,8 +1292,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
         try {
-            String fileName = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jrxml";
-            String filetoFill = "D:/BOOTCAMP JAVA/leaveRequest 1.1/leaveRequest/LeaveRequest/src/Report/report1.jasper";
+            String fileName = "C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/Report/report1.jrxml";
+            String filetoFill = "C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/Report/report1.jasper";
             JasperCompileManager.compileReport(fileName);
             Map param = new HashMap();
             JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
@@ -1223,14 +1309,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         LocalDateTime from = LocalDateTime.ofInstant(dcStart.getDate().toInstant(), ZoneId.systemDefault());
         LocalDateTime to = LocalDateTime.ofInstant(dcEnd.getDate().toInstant(), ZoneId.systemDefault());
-       
+
         Duration dur = Duration.between(from, to);
-        
-        tfUserTotal.setText(String.valueOf(dur.toDays()+1));
+
+        tfUserTotal.setText(String.valueOf(dur.toDays() + 1));
     }//GEN-LAST:event_jLabel14MouseClicked
 
-//    SELF METHOD
+    private void btUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserUpdateActionPerformed
+        // TODO add your handling code here:
+        kc.update(tfUserID.getText(), tfUserName.getText(), cbGender.getSelectedItem().toString(), tfLeaveLeft.getText(), tfUserEmail.getText(), tfUserPassword.getText(), cbMarital.getSelectedItem().toString().split(" - ")[0], tfIdManager.getText());
+    }//GEN-LAST:event_btUserUpdateActionPerformed
 
+//    SELF METHOD
     private void getRidTheBar() {
         putClientProperty("Home.isPallete", Boolean.TRUE);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -1280,8 +1370,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
             data[i][0] = (i + 1);
             data[i][1] = req.get(i).getId();
             data[i][2] = req.get(i).getDatetime();
-//            data[i][3] = req.get(i).getKeterangan();
-//            data[i][4] = req.get(i).getStatus().getTipe();
             if (req.get(i).getKeterangan() != null) {
                 data[i][3] = req.get(i).getKeterangan() + "";
             } else {
@@ -1317,12 +1405,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JButton btManagerReject;
     private javax.swing.JButton btReport;
     private javax.swing.JButton btUserSubmitRequest;
+    private javax.swing.JButton btUserUpdate;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnManager;
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
+    private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JComboBox<String> cbJenisCuti;
+    private javax.swing.JComboBox<String> cbMarital;
     private com.toedter.calendar.JDateChooser dcEnd;
     private com.toedter.calendar.JDateChooser dcStart;
     private javax.swing.JLayeredPane dynamicPane;
@@ -1331,7 +1422,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_3;
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1340,8 +1430,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1384,11 +1478,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbHistory;
     private javax.swing.JTable tbManagerUserRequest;
     private javax.swing.JTable tbRequestStatus;
+    private javax.swing.JTextField tfIdManager;
+    private javax.swing.JTextField tfLeaveLeft;
     private javax.swing.JTextField tfSelectedUser;
     private javax.swing.JTextField tfUserEmail;
+    private javax.swing.JTextField tfUserID;
     private javax.swing.JTextField tfUserName;
     private javax.swing.JPasswordField tfUserPassword;
     private javax.swing.JTextField tfUserTotal;
-    private javax.swing.JTextField tfUserUsername;
     // End of variables declaration//GEN-END:variables
 }

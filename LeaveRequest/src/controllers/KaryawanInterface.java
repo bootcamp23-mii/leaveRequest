@@ -32,6 +32,6 @@ public interface KaryawanInterface {
 
     public void delete(String key);
 
-    public void update(String key);
+    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
 
 }
