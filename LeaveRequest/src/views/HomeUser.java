@@ -17,6 +17,9 @@ import java.awt.Button;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +48,8 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Pandu
  */
 public class HomeUser extends javax.swing.JInternalFrame {
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     private SessionFactory factory = HibernateUtil.getSessionFactory();
 //    JDesktopPane desktop;
@@ -171,15 +176,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnRequest = new javax.swing.JPanel();
         btUserSubmitRequest = new javax.swing.JButton();
         cbJenisCuti = new javax.swing.JComboBox<>();
-        dcStart = new datechooser.beans.DateChooserCombo();
-        dcEnd = new datechooser.beans.DateChooserCombo();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tfUserTotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        dcStart = new com.toedter.calendar.JDateChooser();
+        dcEnd = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
         pnHistory = new javax.swing.JPanel();
         pnCntentFill = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -751,344 +755,301 @@ public class HomeUser extends javax.swing.JInternalFrame {
         cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
         pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 210, 40));
 
-        dcStart.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
-            new datechooser.view.appearance.ViewAppearance("custom",
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
-                    new java.awt.Color(0, 0, 255),
-                    true,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(0, 0, 255),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(128, 128, 128),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
-                    new java.awt.Color(187, 187, 187),
-                    new java.awt.Color(255, 0, 0),
-                    false,
-                    false,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                (datechooser.view.BackRenderer)null,
-                false,
-                true)));
-    dcStart.setCalendarBackground(new java.awt.Color(51, 153, 255));
-    pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 85, 210, 40));
+        jLabel3.setText("Start Leave");
+        pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
-    dcEnd.setCalendarBackground(new java.awt.Color(51, 153, 255));
-    pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 85, 210, 40));
+        jLabel4.setText("End Leave");
+        pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
-    jLabel3.setText("Start Leave");
-    pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+        jLabel5.setText("Leave Type");
+        pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
-    jLabel4.setText("End Leave");
-    pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
+        tfUserTotal.setEditable(false);
+        tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
+        pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 160, 40));
 
-    jLabel5.setText("Leave Type");
-    pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
+        jLabel6.setText("TOTAL");
+        pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
-    tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
-    pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 210, 40));
+        dcStart.setDateFormatString("dd-MM-yyyy");
+        pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 210, 40));
+        pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 210, 40));
 
-    jLabel6.setText("TOTAL");
-    pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_refresh_25px.png"))); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        pnRequest.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 160, 40, 40));
 
-    jTextArea1.setBackground(new java.awt.Color(120, 168, 252));
-    jTextArea1.setColumns(20);
-    jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-    jTextArea1.setLineWrap(true);
-    jTextArea1.setRows(5);
-    jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    jScrollPane2.setViewportView(jTextArea1);
+        dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
-    pnRequest.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 190));
+        pnHistory.setBackground(new java.awt.Color(255, 255, 255));
 
-    dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+        pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
 
-    pnHistory.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
 
-    pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
+        javax.swing.GroupLayout pnCntentFillLayout = new javax.swing.GroupLayout(pnCntentFill);
+        pnCntentFill.setLayout(pnCntentFillLayout);
+        pnCntentFillLayout.setHorizontalGroup(
+            pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCntentFillLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pnCntentFillLayout.setVerticalGroup(
+            pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnCntentFillLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
-    jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-    javax.swing.GroupLayout pnCntentFillLayout = new javax.swing.GroupLayout(pnCntentFill);
-    pnCntentFill.setLayout(pnCntentFillLayout);
-    pnCntentFillLayout.setHorizontalGroup(
-        pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnCntentFillLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(24, Short.MAX_VALUE))
-    );
-    pnCntentFillLayout.setVerticalGroup(
-        pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnCntentFillLayout.createSequentialGroup()
-            .addGap(22, 22, 22)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(15, Short.MAX_VALUE))
-    );
+        tbHistory.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tbHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Start", "End", "Total", "Leave Type", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-    jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbHistory.setGridColor(new java.awt.Color(255, 255, 255));
+        tbHistory.setRowHeight(22);
+        jScrollPane1.setViewportView(tbHistory);
 
-    tbHistory.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-    tbHistory.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null},
-            {null, null, null, null, null, null}
-        },
-        new String [] {
-            "ID", "Start", "End", "Total", "Leave Type", "Status"
-        }
-    ) {
-        boolean[] canEdit = new boolean [] {
-            false, false, false, false, false, false
-        };
+        tbRequestStatus.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    tbHistory.setGridColor(new java.awt.Color(255, 255, 255));
-    tbHistory.setRowHeight(22);
-    jScrollPane1.setViewportView(tbHistory);
+            },
+            new String [] {
+                "NO", "ID", "Request Date", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-    tbRequestStatus.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tbRequestStatus);
 
-        },
-        new String [] {
-            "NO", "ID", "Request Date", "Status"
-        }
-    ) {
-        boolean[] canEdit = new boolean [] {
-            false, false, false, false
-        };
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    jScrollPane3.setViewportView(tbRequestStatus);
-
-    javax.swing.GroupLayout pnHistoryLayout = new javax.swing.GroupLayout(pnHistory);
-    pnHistory.setLayout(pnHistoryLayout);
-    pnHistoryLayout.setHorizontalGroup(
-        pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnHistoryLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnHistoryLayout.createSequentialGroup()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(pnHistoryLayout.createSequentialGroup()
-                    .addComponent(jScrollPane1)
-                    .addContainerGap())))
-    );
-    pnHistoryLayout.setVerticalGroup(
-        pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnHistoryLayout.createSequentialGroup()
-            .addGap(85, 85, 85)
-            .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGap(18, 18, 18)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
-
-    pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
-
-    btReport.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-    btReport.setText("Report");
-    btReport.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btReportActionPerformed(evt);
-        }
-    });
-
-    javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
-    pnUserHeader1.setLayout(pnUserHeader1Layout);
-    pnUserHeader1Layout.setHorizontalGroup(
-        pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnUserHeader1Layout.createSequentialGroup()
-            .addContainerGap(533, Short.MAX_VALUE)
-            .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(22, 22, 22))
-    );
-    pnUserHeader1Layout.setVerticalGroup(
-        pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnUserHeader1Layout.createSequentialGroup()
-            .addGap(53, 53, 53)
-            .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap(30, Short.MAX_VALUE))
-    );
-
-    tbManagerUserRequest.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-
-        },
-        new String [] {
-            "NO", "ID", "Requested", "Type", "Action", "Description"
-        }
-    ) {
-        boolean[] canEdit = new boolean [] {
-            false, false, false, false, false, false
-        };
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    tbManagerUserRequest.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            tbManagerUserRequestMouseClicked(evt);
-        }
-    });
-    jScrollPane4.setViewportView(tbManagerUserRequest);
-
-    tfSelectedUser.setBackground(new java.awt.Color(120, 168, 252));
-    tfSelectedUser.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-    tfSelectedUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-    btManagerReject.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-    btManagerReject.setForeground(new java.awt.Color(0, 0, 0));
-    btManagerReject.setText("REJECT");
-    btManagerReject.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    btManagerReject.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btManagerRejectActionPerformed(evt);
-        }
-    });
-
-    btManagerAccept.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-    btManagerAccept.setForeground(new java.awt.Color(0, 0, 0));
-    btManagerAccept.setText("ACCEPT");
-    btManagerAccept.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    btManagerAccept.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btManagerAcceptActionPerformed(evt);
-        }
-    });
-
-    strID.setEditable(false);
-    strID.setBackground(new java.awt.Color(255, 255, 102));
-
-    strDate.setEditable(false);
-    strDate.setBackground(new java.awt.Color(255, 255, 102));
-
-    strRequestId.setEditable(false);
-    strRequestId.setBackground(new java.awt.Color(255, 255, 102));
-
-    strType.setEditable(false);
-    strType.setBackground(new java.awt.Color(255, 255, 102));
-
-    strDesc.setEditable(false);
-    strDesc.setBackground(new java.awt.Color(255, 255, 102));
-
-    javax.swing.GroupLayout pnUserContent1Layout = new javax.swing.GroupLayout(pnUserContent1);
-    pnUserContent1.setLayout(pnUserContent1Layout);
-    pnUserContent1Layout.setHorizontalGroup(
-        pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(pnUserContent1Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(pnUserContent1Layout.createSequentialGroup()
-                    .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnUserContent1Layout.createSequentialGroup()
-                    .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(btManagerAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(btManagerReject, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 20, Short.MAX_VALUE))
-    );
-    pnUserContent1Layout.setVerticalGroup(
-        pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContent1Layout.createSequentialGroup()
-            .addContainerGap(16, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(9, 9, 9)
-            .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(btManagerReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btManagerAccept, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap())
-    );
-
-    javax.swing.GroupLayout pnManagerLayout = new javax.swing.GroupLayout(pnManager);
-    pnManager.setLayout(pnManagerLayout);
-    pnManagerLayout.setHorizontalGroup(
-        pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 650, Short.MAX_VALUE)
-        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnUserHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnUserContent1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    pnManagerLayout.setVerticalGroup(
-        pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 540, Short.MAX_VALUE)
-        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnManagerLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnHistoryLayout = new javax.swing.GroupLayout(pnHistory);
+        pnHistory.setLayout(pnHistoryLayout);
+        pnHistoryLayout.setHorizontalGroup(
+            pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnHistoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnHistoryLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnHistoryLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+        );
+        pnHistoryLayout.setVerticalGroup(
+            pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnHistoryLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(pnUserHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE)))
-        .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnManagerLayout.createSequentialGroup()
-                .addGap(0, 200, Short.MAX_VALUE)
-                .addComponent(pnUserContent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-    );
+                .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-    dynamicPane.add(pnManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+        dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
-    getContentPane().add(dynamicPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 920, 540));
+        pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
 
-    pack();
+        btReport.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btReport.setText("Report");
+        btReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btReportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
+        pnUserHeader1.setLayout(pnUserHeader1Layout);
+        pnUserHeader1Layout.setHorizontalGroup(
+            pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnUserHeader1Layout.createSequentialGroup()
+                .addContainerGap(533, Short.MAX_VALUE)
+                .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        pnUserHeader1Layout.setVerticalGroup(
+            pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnUserHeader1Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        tbManagerUserRequest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NO", "ID", "Requested", "Type", "Action", "Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbManagerUserRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbManagerUserRequestMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tbManagerUserRequest);
+
+        tfSelectedUser.setBackground(new java.awt.Color(120, 168, 252));
+        tfSelectedUser.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tfSelectedUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        btManagerReject.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btManagerReject.setForeground(new java.awt.Color(0, 0, 0));
+        btManagerReject.setText("REJECT");
+        btManagerReject.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btManagerReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btManagerRejectActionPerformed(evt);
+            }
+        });
+
+        btManagerAccept.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btManagerAccept.setForeground(new java.awt.Color(0, 0, 0));
+        btManagerAccept.setText("ACCEPT");
+        btManagerAccept.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btManagerAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btManagerAcceptActionPerformed(evt);
+            }
+        });
+
+        strID.setEditable(false);
+        strID.setBackground(new java.awt.Color(255, 255, 102));
+
+        strDate.setEditable(false);
+        strDate.setBackground(new java.awt.Color(255, 255, 102));
+
+        strRequestId.setEditable(false);
+        strRequestId.setBackground(new java.awt.Color(255, 255, 102));
+
+        strType.setEditable(false);
+        strType.setBackground(new java.awt.Color(255, 255, 102));
+
+        strDesc.setEditable(false);
+        strDesc.setBackground(new java.awt.Color(255, 255, 102));
+
+        javax.swing.GroupLayout pnUserContent1Layout = new javax.swing.GroupLayout(pnUserContent1);
+        pnUserContent1.setLayout(pnUserContent1Layout);
+        pnUserContent1Layout.setHorizontalGroup(
+            pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnUserContent1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnUserContent1Layout.createSequentialGroup()
+                        .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnUserContent1Layout.createSequentialGroup()
+                        .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btManagerAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btManagerReject, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+        pnUserContent1Layout.setVerticalGroup(
+            pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContent1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btManagerReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btManagerAccept, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnManagerLayout = new javax.swing.GroupLayout(pnManager);
+        pnManager.setLayout(pnManagerLayout);
+        pnManagerLayout.setHorizontalGroup(
+            pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnUserHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnUserContent1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnManagerLayout.setVerticalGroup(
+            pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnManagerLayout.createSequentialGroup()
+                    .addGap(85, 85, 85)
+                    .addComponent(pnUserHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(337, Short.MAX_VALUE)))
+            .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnManagerLayout.createSequentialGroup()
+                    .addGap(0, 200, Short.MAX_VALUE)
+                    .addComponent(pnUserContent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        dynamicPane.add(pnManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+
+        getContentPane().add(dynamicPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 920, 540));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMousePressed
@@ -1156,21 +1117,36 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void btUserSubmitRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserSubmitRequestActionPerformed
         // TODO add your handling code here:
 //        PLIS, -7 HARI, YOU CANT AFFORD THE LEAVE
-        cc.save("",
-                dcStart.getText(),
-                dcEnd.getText(),
-                tfUserTotal.getText(),
+
+        LocalDateTime from = LocalDateTime.ofInstant(dcStart.getDate().toInstant(), ZoneId.systemDefault());
+        LocalDateTime to = LocalDateTime.ofInstant(dcEnd.getDate().toInstant(), ZoneId.systemDefault());
+        LocalDateTime now = LocalDateTime.now();
+        
+        Duration dur = Duration.between(from, to);
+        Duration durB = Duration.between(now, from);
+        
+
+//        tfUserTotal.setText(String.valueOf(dur.toDays()+1));
+        String start = String.valueOf(sdf.format(dcStart.getDate()));
+        String end = String.valueOf(sdf.format(dcEnd.getDate()));
+        String tot = String.valueOf(dur.toDays() + 1);
+        String totb =String.valueOf(durB.toDays());
+//        System.out.println(sdf.format(dcStart.getDate()));
+//        System.out.println(sdf.format(dcEnd.getDate()));
+
+        if (start.equals("") || end.equals("")) {
+            JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
+        } else if (Integer.parseInt(totb)<=7){
+            JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
+        }else{
+            cc.save("",
+                start,
+                end,
+                tot,
                 var,
                 cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
-//        tfUserTotal.setText(dcStart.getText());
-//        if (konfirmasi()) {
-//            if (isEmpty()) {
-//                JOptionPane.showMessageDialog(null, cc.save("P5", dcStart.getText().toString(), dcEnd.getText().toString(), tfUserTotal.getText(), var, cbJenisCuti.getSelectedItem().toString()));
-//                clear();
-//            } else {
-//                tableData(cc.getByIdKaryawan(var));
-//            }
-//        }
+            JOptionPane.showMessageDialog(null, "YOUR REQUEST HAVE BEEN SUBMITED");
+        }
     }//GEN-LAST:event_btUserSubmitRequestActionPerformed
 
     private void btnManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManagerMouseClicked
@@ -1242,6 +1218,16 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_btReportActionPerformed
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        LocalDateTime from = LocalDateTime.ofInstant(dcStart.getDate().toInstant(), ZoneId.systemDefault());
+        LocalDateTime to = LocalDateTime.ofInstant(dcEnd.getDate().toInstant(), ZoneId.systemDefault());
+       
+        Duration dur = Duration.between(from, to);
+        
+        tfUserTotal.setText(String.valueOf(dur.toDays()+1));
+    }//GEN-LAST:event_jLabel14MouseClicked
 
     //SELF METHOD
 //    private boolean konfirmasi() {
@@ -1346,8 +1332,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbJenisCuti;
-    private datechooser.beans.DateChooserCombo dcEnd;
-    private datechooser.beans.DateChooserCombo dcStart;
+    private com.toedter.calendar.JDateChooser dcEnd;
+    private com.toedter.calendar.JDateChooser dcStart;
     private javax.swing.JLayeredPane dynamicPane;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
@@ -1360,6 +1346,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -1375,10 +1362,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCurrentDate;
     private javax.swing.JLabel lbDescriptionManager;
