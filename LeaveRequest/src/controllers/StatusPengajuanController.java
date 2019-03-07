@@ -54,9 +54,9 @@ public class StatusPengajuanController implements StatusPengajuanInterface {
     }
 
     @Override
-    public String update(String id, String date, String keterangan, String pengajuan, String status) {
+    public String insert(String id, String date, String keterangan, String pengajuan, String status) {
     try {
-            if (spdao.saveOrDelete(new StatusPengajuan(id, sdf.parse(date), keterangan, new Pengajuan(pengajuan), new Status(status)), true)) {
+            if (spdao.insertOrUpdate(new StatusPengajuan(id, sdf.parse(date), keterangan, new Pengajuan(pengajuan), new Status(status)), true)) {
                 return "DATA UPDATED FOR ID = " + id;
             } else {
                 return "UPDATE FAILED";
@@ -66,4 +66,19 @@ public class StatusPengajuanController implements StatusPengajuanInterface {
         }
         return "FAIL";
     }
+    
+    @Override
+    public String update(String id, String date, String keterangan, String pengajuan, String status) {
+    try {
+            if (spdao.insertOrUpdate(new StatusPengajuan(id, sdf.parse(date), keterangan, new Pengajuan(pengajuan), new Status(status)), false)) {
+                return "DATA UPDATED FOR ID = " + id;
+            } else {
+                return "UPDATE FAILED";
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(CutiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "FAIL";
+    }
+    
 }

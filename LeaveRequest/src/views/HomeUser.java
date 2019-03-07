@@ -13,7 +13,6 @@ import controllers.KaryawanController;
 import controllers.KaryawanInterface;
 import controllers.StatusPengajuanController;
 import controllers.StatusPengajuanInterface;
-import java.awt.Button;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,15 +26,12 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.DBConnection;
 import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
-import models.Pengajuan;
 import models.Session;
 import org.hibernate.SessionFactory;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -196,13 +192,17 @@ public class HomeUser extends javax.swing.JInternalFrame {
         dcEnd = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         pnHistory = new javax.swing.JPanel();
-        pnCntentFill = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        tfSelectedRequest = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbRequestStatus = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbHistory = new javax.swing.JTable();
+        pnCntentFill = new javax.swing.JPanel();
+        btCancel = new javax.swing.JLabel();
+        tfSelectedRequest = new javax.swing.JTextField();
+        tfSelectedRequestDesc = new javax.swing.JTextField();
+        tfSelectedRequestStatus = new javax.swing.JTextField();
+        tfSelectedRequestDate = new javax.swing.JTextField();
+        tfSelectedRequestPengajuan = new javax.swing.JTextField();
         pnManager = new javax.swing.JPanel();
         pnUserHeader1 = new javax.swing.JPanel();
         btReport = new javax.swing.JButton();
@@ -877,37 +877,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
         pnHistory.setBackground(new java.awt.Color(255, 255, 255));
-
-        pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
-
-        tfSelectedRequest.setEditable(false);
-        tfSelectedRequest.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequest.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequest.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequest.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequest.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
-        javax.swing.GroupLayout pnCntentFillLayout = new javax.swing.GroupLayout(pnCntentFill);
-        pnCntentFill.setLayout(pnCntentFillLayout);
-        pnCntentFillLayout.setHorizontalGroup(
-            pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCntentFillLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSelectedRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-        pnCntentFillLayout.setVerticalGroup(
-            pnCntentFillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnCntentFillLayout.createSequentialGroup()
-                .addComponent(tfSelectedRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        pnHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbRequestStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -931,6 +901,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane3.setViewportView(tbRequestStatus);
+
+        pnHistory.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 124, 530, 80));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -961,32 +933,61 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tbHistory.setRowHeight(22);
         jScrollPane1.setViewportView(tbHistory);
 
-        javax.swing.GroupLayout pnHistoryLayout = new javax.swing.GroupLayout(pnHistory);
-        pnHistory.setLayout(pnHistoryLayout);
-        pnHistoryLayout.setHorizontalGroup(
-            pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnHistoryLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnHistoryLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnHistoryLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
-        );
-        pnHistoryLayout.setVerticalGroup(
-            pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnHistoryLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(pnHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pnCntentFill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 222, 638, 335));
+
+        pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
+        pnCntentFill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btCancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
+        btCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCancelMouseClicked(evt);
+            }
+        });
+        pnCntentFill.add(btCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 70, 74));
+
+        tfSelectedRequest.setEditable(false);
+        tfSelectedRequest.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequest.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequest.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequest.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequest.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+
+        tfSelectedRequestDesc.setEditable(false);
+        tfSelectedRequestDesc.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestDesc.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestDesc.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestDesc.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 130, 20));
+
+        tfSelectedRequestStatus.setEditable(false);
+        tfSelectedRequestStatus.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestStatus.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestStatus.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestStatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 70, 20));
+
+        tfSelectedRequestDate.setEditable(false);
+        tfSelectedRequestDate.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestDate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestDate.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestDate.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 20));
+
+        tfSelectedRequestPengajuan.setEditable(false);
+        tfSelectedRequestPengajuan.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestPengajuan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestPengajuan.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestPengajuan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestPengajuan.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestPengajuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 40, 20));
+
+        pnHistory.add(pnCntentFill, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 650, 120));
 
         dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
 
@@ -1013,7 +1014,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnUserHeader1Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -1142,7 +1143,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 .addGroup(pnManagerLayout.createSequentialGroup()
                     .addGap(85, 85, 85)
                     .addComponent(pnUserHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(337, Short.MAX_VALUE)))
+                    .addContainerGap(335, Short.MAX_VALUE)))
             .addGroup(pnManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnManagerLayout.createSequentialGroup()
                     .addGap(0, 200, Short.MAX_VALUE)
@@ -1229,14 +1230,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
         Duration dur = Duration.between(from, to);
         Duration durB = Duration.between(now, from);
 
-//        tfUserTotal.setText(String.valueOf(dur.toDays()+1));
         String start = String.valueOf(sdf.format(dcStart.getDate()));
         String end = String.valueOf(sdf.format(dcEnd.getDate()));
 
         String tot = String.valueOf(dur.toDays() + 1);
         String totb = String.valueOf(durB.toDays());
-//        System.out.println(sdf.format(dcStart.getDate()));
-//        System.out.println(sdf.format(dcEnd.getDate()));
 
         if (start.equals("") || end.equals("")) {
             JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
@@ -1249,7 +1247,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btUserSubmitRequestActionPerformed
 
     private void btnManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManagerMouseClicked
-        // TODO add your handling code here:
         setColor(btnManager);
         ind_5.setOpaque(true);
         resetColor(new JPanel[]{btnHistory, btnUser, btnHome, btnRequest}, new JPanel[]{ind_2, ind_3, ind_1, ind_4});
@@ -1262,7 +1259,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnManagerMouseClicked
 
     private void tbManagerUserRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbManagerUserRequestMouseClicked
-        // TODO add your handling code here:
         strID.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 1).toString());
         strDate.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 2).toString().split(" ")[0]);
         strType.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 3).toString());
@@ -1272,7 +1268,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) != null) {
             strDesc.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) + "");
         }
-
         tfSelectedUser.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_tbManagerUserRequestMouseClicked
 
@@ -1285,12 +1280,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
         } else {
             JOptionPane.showMessageDialog(pnHomeContent, "SOMETHING WENT WRONG");
-
         }
     }//GEN-LAST:event_btManagerAcceptActionPerformed
 
     private void btManagerRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManagerRejectActionPerformed
-        // TODO add your handling code here:
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S3");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
@@ -1299,7 +1292,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
         } else {
             JOptionPane.showMessageDialog(pnHomeContent, "SOMETHING WENT WRONG");
-
         }
     }//GEN-LAST:event_btManagerRejectActionPerformed
 
@@ -1314,7 +1306,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
             JasperViewer.viewReport(jp, false);
         } catch (Exception ex) {
             System.out.println(ex.toString());
-
         }
     }//GEN-LAST:event_btReportActionPerformed
 
@@ -1332,9 +1323,24 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btUserUpdateActionPerformed
 
     private void tbRequestStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRequestStatusMouseClicked
-        // TODO add your handling code here:
         tfSelectedRequest.setText(tbRequestStatus.getValueAt(tbRequestStatus.getSelectedRow(), 1).toString());
+        tfSelectedRequestDate.setText(tbRequestStatus.getValueAt(tbRequestStatus.getSelectedRow(), 2).toString());
+        tfSelectedRequestDesc.setText(tbRequestStatus.getValueAt(tbRequestStatus.getSelectedRow(), 3).toString());
+        tfSelectedRequestPengajuan.setText(tbRequestStatus.getValueAt(tbRequestStatus.getSelectedRow(), 4).toString());
+        tfSelectedRequestStatus.setText(tbRequestStatus.getValueAt(tbRequestStatus.getSelectedRow(), 5).toString());
     }//GEN-LAST:event_tbRequestStatusMouseClicked
+
+    private void btCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCancelMouseClicked
+        spc.update(tfSelectedRequest.getText(), dateFormat.format(date), tfSelectedRequestDesc.getText(), tfSelectedRequestPengajuan.getText(), "S4");
+
+        tfSelectedRequest.setText("");
+        tfSelectedRequestDate.setText("");
+        tfSelectedRequestDesc.setText("");
+        tfSelectedRequestPengajuan.setText("");
+        tfSelectedRequestStatus.setText("");
+
+        tbRequestStatus.setModel(myTable);
+    }//GEN-LAST:event_btCancelMouseClicked
 
 //    SELF METHOD
     private void getRidTheBar() {
@@ -1363,13 +1369,19 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }
 
     private void tableRequestStatus(List<models.StatusPengajuan> req) {
-        Object[] columnNames = {"Nomor", "ID", "Date", "Status"};
+        Object[] columnNames = {"Nomor", "ID", "Date", "Keterangan", "Pengajuan", "Status"};
         Object[][] data = new Object[req.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);
             data[i][1] = req.get(i).getId();
             data[i][2] = req.get(i).getDatetime();
-            data[i][3] = req.get(i).getStatus().getTipe();
+            if (req.get(i).getKeterangan() != null) {
+                data[i][3] = req.get(i).getKeterangan() + "";
+            } else {
+                data[i][3] = "";
+            }
+            data[i][4] = req.get(i).getPengajuan().getId();
+            data[i][5] = req.get(i).getStatus().getTipe();
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbRequestStatus.setModel(myTable);
@@ -1412,6 +1424,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     //PRINTHILAN TEXT
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btCancel;
     private javax.swing.JLabel btExit;
     private javax.swing.JButton btManagerAccept;
     private javax.swing.JButton btManagerReject;
@@ -1445,7 +1458,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
@@ -1493,6 +1505,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfIdManager;
     private javax.swing.JTextField tfLeaveLeft;
     private javax.swing.JTextField tfSelectedRequest;
+    private javax.swing.JTextField tfSelectedRequestDate;
+    private javax.swing.JTextField tfSelectedRequestDesc;
+    private javax.swing.JTextField tfSelectedRequestPengajuan;
+    private javax.swing.JTextField tfSelectedRequestStatus;
     private javax.swing.JTextField tfSelectedUser;
     private javax.swing.JTextField tfUserEmail;
     private javax.swing.JTextField tfUserID;

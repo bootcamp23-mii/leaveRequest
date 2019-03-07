@@ -24,5 +24,7 @@ public interface StatusPengajuanInterface {
 
 //    public String save(String id, String start, String end, String total, String karyawan, String jenisCuti);
     public String update(String id, String date, String keterangan, String Pengajuan, String status);
+
+    public String insert(String id, String date, String keterangan, String Pengajuan, String status);
 //    public String delete(String id);
 }

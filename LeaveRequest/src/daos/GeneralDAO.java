@@ -163,11 +163,7 @@ public class GeneralDAO<T> implements Interface<T> {
 
             } else {
                 System.out.println("THERE NO NEED TO WORRY");
-            }//            if (isS1) {
-//                obj = session.createQuery("from StatusPengajuan where status is not 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
-//            } else {
-//                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
-//            }
+            }
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
@@ -187,6 +183,30 @@ public class GeneralDAO<T> implements Interface<T> {
                 session.saveOrUpdate(entity);
             } else {
                 session.delete(entity);
+            }
+            transaction.commit();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public boolean insertOrUpdate(T entity, boolean isSave) {
+        boolean result = false;
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            if (isSave) {
+                session.save(entity);
+            } else {
+                session.update(entity);
             }
             transaction.commit();
             result = true;

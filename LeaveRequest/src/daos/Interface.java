@@ -15,6 +15,8 @@ import models.Karyawan;
 public interface Interface<T> {
 
     public boolean saveOrDelete(T entity, boolean isSave);
+    
+    public boolean insertOrUpdate(T entity, boolean isSave);
 
     public List<T> getData(Object keyword);
 
