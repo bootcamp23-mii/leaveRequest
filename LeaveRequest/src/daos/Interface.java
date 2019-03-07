@@ -19,13 +19,15 @@ public interface Interface<T> {
     public List<T> getData(Object keyword);
 
     public List<T> getByKar(Object keyword);
-    
+
     public List<T> getByKarByMang(Object keyword);
-    
+
     public List<T> getByIdKar(Object keyword);
 
     public List<T> getHistory(Object keyword, Boolean status);
-    
+
+    public List<T> getHistoryByMang(Object keyword, Boolean status);
+
     public List<T> login(Object keyword);
 
     public T getById(Object id);

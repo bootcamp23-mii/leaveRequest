@@ -73,13 +73,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
 //        if (kc.getById(var).get) {
 //            
 //        }
-//        
-//        
-//        FAKE THE ROLE
-//        if (var.equals("11205")) {
-//            btnManager.setVisible(false);
-//            pnManager.setVisible(false);
-//        }
 
         //CONTENT BASED SESSION CONTROLL
     }
@@ -95,18 +88,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         lbCurrentDate.setText(dateFormat.format(date));
 
 //        TABLE CONTROLLER
-        tableHistory(spc.getHistory(var, true));
-        tableRequestStatus(spc.getHistory(var, false));
-
 //        COMBO BOX CONTROLLER
         for (JenisCuti jenisCuti : jc.getAll("")) {
             cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
         }
-
-        for (Karyawan karyawan : kc.getKarByMang(var)) {
-            cbSelectEmployee.addItem(karyawan.getId() + " - " + karyawan.getNama());
-        }
-
 //        GIMMICK CONTROLLER
         for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionUserName.setText(karyawan.getNama());
@@ -204,8 +189,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tbRequestStatus = new javax.swing.JTable();
         pnManager = new javax.swing.JPanel();
         pnUserHeader1 = new javax.swing.JPanel();
-        cbSelectEmployee = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
         btReport = new javax.swing.JButton();
         pnUserContent1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -944,16 +927,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
 
-    cbSelectEmployee.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-    cbSelectEmployee.addItemListener(new java.awt.event.ItemListener() {
-        public void itemStateChanged(java.awt.event.ItemEvent evt) {
-            cbSelectEmployeeItemStateChanged(evt);
-        }
-    });
-
-    jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-    jLabel14.setText("Employee Name");
-
     btReport.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
     btReport.setText("Report");
     btReport.addActionListener(new java.awt.event.ActionListener() {
@@ -967,26 +940,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
     pnUserHeader1Layout.setHorizontalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnUserHeader1Layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnUserHeader1Layout.createSequentialGroup()
-                    .addComponent(jLabel14)
-                    .addContainerGap(530, Short.MAX_VALUE))
-                .addGroup(pnUserHeader1Layout.createSequentialGroup()
-                    .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22))))
+            .addContainerGap(533, Short.MAX_VALUE)
+            .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(22, 22, 22))
     );
     pnUserHeader1Layout.setVerticalGroup(
         pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pnUserHeader1Layout.createSequentialGroup()
-            .addGap(28, 28, 28)
-            .addComponent(jLabel14)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(cbSelectEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(53, 53, 53)
+            .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap(30, Short.MAX_VALUE))
     );
 
@@ -1151,6 +1113,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHistory.setVisible(true);
         pnRequest.setVisible(false);
         pnManager.setVisible(false);
+
+        tableHistory(spc.getHistory(var, true));
+        tableRequestStatus(spc.getHistory(var, false));
     }//GEN-LAST:event_btnHistoryMouseReleased
 
     private void btnUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMousePressed
@@ -1218,13 +1183,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         pnManager.setVisible(true);
+        tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
     }//GEN-LAST:event_btnManagerMouseClicked
-
-    private void cbSelectEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbSelectEmployeeItemStateChanged
-        // TODO add your handling code here:
-        //KETIKA DIPILIH SI USER
-        tableEmployeeRequestOnManager(spc.getHistory(cbSelectEmployee.getSelectedItem().toString().split(" - ")[0], false));
-    }//GEN-LAST:event_cbSelectEmployeeItemStateChanged
 
     private void tbManagerUserRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbManagerUserRequestMouseClicked
         // TODO add your handling code here:
@@ -1244,7 +1204,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void btManagerAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManagerAcceptActionPerformed
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
-            tableEmployeeRequestOnManager(spc.getHistory(cbSelectEmployee.getSelectedItem().toString().split(" - ")[0], false));
+            tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1258,7 +1218,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S3");
-            tableEmployeeRequestOnManager(spc.getHistory(cbSelectEmployee.getSelectedItem().toString().split(" - ")[0], false));
+            tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1386,7 +1346,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbJenisCuti;
-    private javax.swing.JComboBox<String> cbSelectEmployee;
     private datechooser.beans.DateChooserCombo dcEnd;
     private datechooser.beans.DateChooserCombo dcStart;
     private javax.swing.JLayeredPane dynamicPane;
@@ -1401,7 +1360,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;

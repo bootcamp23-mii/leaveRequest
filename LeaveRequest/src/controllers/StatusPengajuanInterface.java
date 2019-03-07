@@ -16,6 +16,8 @@ public interface StatusPengajuanInterface {
 
     public List<StatusPengajuan> getHistory(String id, Boolean type);
 
+    public List<StatusPengajuan> getHistoryByMang(String id, Boolean type);
+
     public List<StatusPengajuan> getAll(String key);
 
     public List<StatusPengajuan> getData(String key);

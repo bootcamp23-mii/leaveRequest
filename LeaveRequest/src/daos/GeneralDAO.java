@@ -81,7 +81,7 @@ public class GeneralDAO<T> implements Interface<T> {
         }
         return obj;
     }
-    
+
     @Override
     public List<T> getByKarByMang(Object id) {
         List<T> obj = new ArrayList<>();
@@ -142,6 +142,31 @@ public class GeneralDAO<T> implements Interface<T> {
             } else {
                 obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<T> getHistoryByMang(Object keyword, Boolean isS1) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            if (isS1) {
+                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan in(from Karyawan where idmanager = '" + keyword + "'))").list();
+
+            } else {
+                System.out.println("THERE NO NEED TO WORRY");
+            }//            if (isS1) {
+//                obj = session.createQuery("from StatusPengajuan where status is not 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+//            } else {
+//                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {

@@ -37,6 +37,11 @@ public class StatusPengajuanController implements StatusPengajuanInterface {
     public List<StatusPengajuan> getHistory(String id, Boolean isS1) {
         return spdao.getHistory(id, isS1);
     }
+    
+    @Override
+    public List<StatusPengajuan> getHistoryByMang(String id, Boolean isS1) {
+        return spdao.getHistoryByMang(id, isS1);
+    }
 
     @Override
     public List<StatusPengajuan> getAll(String key) {
