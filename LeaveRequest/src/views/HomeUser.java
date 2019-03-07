@@ -1229,17 +1229,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tfUserTotal.setText(String.valueOf(dur.toDays()+1));
     }//GEN-LAST:event_jLabel14MouseClicked
 
-    //SELF METHOD
-//    private boolean konfirmasi() {
-//        if (dcStart.getText().equals("")
-//                || dcEnd.getText().equals("")
-//                || tfUserTotal.getText().equals("")
-//                || cbJenisCuti.getSelectedItem().equals("")) {
-//            JOptionPane.showMessageDialog(null, "DATA CANNOT BE EMPTY");
-//            return false;
-//        }
-//        return true;
-//    }
+//    SELF METHOD
+
     private void getRidTheBar() {
         putClientProperty("Home.isPallete", Boolean.TRUE);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
