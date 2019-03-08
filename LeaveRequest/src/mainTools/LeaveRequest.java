@@ -14,18 +14,10 @@ import controllers.JenisCutiInterface;
 import controllers.KaryawanController;
 import controllers.KaryawanInterface;
 import daos.GeneralDAO;
-import daos.Interface;
-import daosBackup.CutiDAO;
 import java.text.ParseException;
-import java.util.Iterator;
-import java.text.SimpleDateFormat;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
-import models.JenisCuti;
-import models.Karyawan;
-import models.Pengajuan;
 import models.SendEmailTemp;
-import models.Session;
 
 /**
  *
@@ -73,7 +65,7 @@ public class LeaveRequest {
 
 ////        LOGIN
 //        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
-//        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qwe", "SN1", "11201"));
+//        System.out.println(kc.register("11200", "admin", "Pria", "3", "loli@alo.com", "admin", "SN1", "11201"));
 //        System.out.println(kc.login("loli", "qwe"));
 //        System.out.println(kc.login("loli", "qwe"));
 //        System.out.println(Session.getId());

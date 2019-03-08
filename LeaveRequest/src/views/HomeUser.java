@@ -7,6 +7,8 @@ package views;
 
 import controllers.CutiController;
 import controllers.CutiControllerInterface;
+import controllers.EmailController;
+import controllers.EmailInterface;
 import controllers.JenisCutiController;
 import controllers.JenisCutiInterface;
 import controllers.KaryawanController;
@@ -32,6 +34,7 @@ import mainTools.DBConnection;
 import mainTools.HibernateUtil;
 import models.JenisCuti;
 import models.Karyawan;
+import models.SendEmailTemp;
 import models.Session;
 import org.hibernate.SessionFactory;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -59,8 +62,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
     DefaultTableModel myTable = new DefaultTableModel();
     Date date = new Date();
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    EmailInterface emailInterface = new EmailController();
 
     String var = Session.getId();
+    String username = kc.getById(var).getNama();
+    String email = kc.getById(var).getEmail();
 
     /**
      * Creates new form Home
@@ -69,17 +75,25 @@ public class HomeUser extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
-        userCutiInit();
-//
-//        if (kc.getById(var).get) {
-//            
-//        }
 
+        if (kc.getById(var).getIdmanager().getId().equals(var)) {
+            pnAdmin.setVisible(true);
+            pnMenu.setVisible(false);
+            pnManager.setVisible(false);
+            pnHome.setVisible(false);
+            pnUser.setVisible(false);
+            pnRequest.setVisible(false);
+            pnHistory.setVisible(false);
+
+            tableAll(kc.getAll());
+        } else {
+            pnAdmin.setVisible(false);
+        }
+        userCutiInit();
         //CONTENT BASED SESSION CONTROLL
     }
 
     private void userCutiInit() {
-
 //        PANEL CONTROLLER
         pnHome.setVisible(true);
         pnUser.setVisible(false);
@@ -126,6 +140,29 @@ public class HomeUser extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnAdmin = new javax.swing.JPanel();
+        pnSignUp = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        tfRegFirstName = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        tfRegLastName = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        tfRegEmail = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        cbRegMarried = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        cbRegGender = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        tfRegUsername = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        tfRegPass1 = new javax.swing.JPasswordField();
+        tfRegPass2 = new javax.swing.JPasswordField();
+        btRegSignUp = new javax.swing.JButton();
+        tfRegManager = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        pnAllUser = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbAllUser = new javax.swing.JTable();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -206,6 +243,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnManager = new javax.swing.JPanel();
         pnUserHeader1 = new javax.swing.JPanel();
         btReport = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pnUserContent1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbManagerUserRequest = new javax.swing.JTable();
@@ -221,6 +259,136 @@ public class HomeUser extends javax.swing.JInternalFrame {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnSignUp.setBackground(new java.awt.Color(255, 255, 255));
+        pnSignUp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel22.setText("First Name");
+        pnSignUp.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 140, -1));
+
+        tfRegFirstName.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegFirstName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegFirstName.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegFirstName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 200, 35));
+
+        jLabel23.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel23.setText("Last Name");
+        pnSignUp.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 140, -1));
+
+        tfRegLastName.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegLastName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegLastName.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegLastName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 200, 40));
+
+        jLabel24.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel24.setText("Email");
+        pnSignUp.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 170, -1));
+
+        tfRegEmail.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegEmail.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegEmail.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 470, 40));
+
+        jLabel25.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel25.setText("Married Status");
+        pnSignUp.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 100, -1));
+
+        cbRegMarried.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SN1", "SN2" }));
+        pnSignUp.add(cbRegMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 200, 40));
+
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel26.setText("Gender");
+        pnSignUp.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 154, -1));
+
+        cbRegGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pria", "Wanita" }));
+        pnSignUp.add(cbRegGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 200, 40));
+
+        jLabel27.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel27.setText("ID Manager");
+        pnSignUp.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 90, 20));
+
+        tfRegUsername.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegUsername.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegUsername.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 200, 30));
+
+        jLabel28.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel28.setText("Password");
+        pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 162, -1));
+
+        tfRegPass1.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegPass1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegPass1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 200, 35));
+
+        tfRegPass2.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegPass2.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegPass2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 200, 40));
+
+        btRegSignUp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btRegSignUp.setText("SIGN UP");
+        btRegSignUp.setBorder(null);
+        btRegSignUp.setBorderPainted(false);
+        btRegSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegSignUpActionPerformed(evt);
+            }
+        });
+        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 470, 42));
+
+        tfRegManager.setBackground(new java.awt.Color(120, 168, 252));
+        tfRegManager.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegManager.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(tfRegManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 199, 30));
+
+        jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel29.setText("Username");
+        pnSignUp.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 90, 20));
+
+        pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 390));
+
+        tbAllUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tbAllUser);
+
+        javax.swing.GroupLayout pnAllUserLayout = new javax.swing.GroupLayout(pnAllUser);
+        pnAllUser.setLayout(pnAllUserLayout);
+        pnAllUserLayout.setHorizontalGroup(
+            pnAllUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnAllUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnAllUserLayout.setVerticalGroup(
+            pnAllUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAllUserLayout.createSequentialGroup()
+                .addContainerGap(395, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnAdmin.add(pnAllUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 610));
+
+        getContentPane().add(pnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 650, 540));
 
         pnMenu.setBackground(new java.awt.Color(23, 35, 51));
         pnMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -843,6 +1011,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnRequest.add(btUserSubmitRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 210, 40));
 
         cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
+        cbJenisCuti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbJenisCutiActionPerformed(evt);
+            }
+        });
         pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 210, 40));
 
         jLabel3.setText("Start Leave");
@@ -1001,12 +1174,22 @@ public class HomeUser extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("---");
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnUserHeader1Layout = new javax.swing.GroupLayout(pnUserHeader1);
         pnUserHeader1.setLayout(pnUserHeader1Layout);
         pnUserHeader1Layout.setHorizontalGroup(
             pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnUserHeader1Layout.createSequentialGroup()
-                .addContainerGap(533, Short.MAX_VALUE)
+                .addContainerGap(357, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addComponent(btReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -1014,8 +1197,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
             pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnUserHeader1Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(pnUserHeader1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btReport, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         tbManagerUserRequest.setModel(new javax.swing.table.DefaultTableModel(
@@ -1236,9 +1421,19 @@ public class HomeUser extends javax.swing.JInternalFrame {
         String tot = String.valueOf(dur.toDays() + 1);
         String totb = String.valueOf(durB.toDays());
 
+        String jc = cbJenisCuti.getSelectedItem().toString().split(" - ")[0];
+//        if (start.equals("") || end.equals("")) {
+//            JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
+//        } else if (Integer.parseInt(totb) <= 7) {
+//            JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
+//        } else {
+//            cc.save("P11", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
+//            JOptionPane.showMessageDialog(null, "YOUR REQUEST HAVE BEEN SUBMITED");
+//        }
+
         if (start.equals("") || end.equals("")) {
             JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
-        } else if (Integer.parseInt(totb) <= 7) {
+        } else if (jc.equals("JC1") && Integer.parseInt(totb) <= 7) {
             JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
         } else {
             cc.save("", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
@@ -1268,6 +1463,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) != null) {
             strDesc.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) + "");
         }
+        //String getPengajuan = ;
+        //tfSelectedUser.setText(spc.get)
         tfSelectedUser.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_tbManagerUserRequestMouseClicked
 
@@ -1275,6 +1472,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
+            String message = "THANKS FOR REQUESTING, WE'VE ACCEPT YOUR REQUEST";
+            emailSend(message);
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1287,6 +1486,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S3");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
+            String message = "SORRY, YOUR REQUEST CANT BE PROCCESSED";
+            emailSend(message);
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1342,12 +1543,68 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tbRequestStatus.setModel(myTable);
     }//GEN-LAST:event_btCancelMouseClicked
 
+    private void cbJenisCutiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJenisCutiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbJenisCutiActionPerformed
+
+    private void btRegSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegSignUpActionPerformed
+        String id = "";
+        String nama = tfRegFirstName.getText() + tfRegLastName.getText();
+        String gender = cbGender.getSelectedItem().toString();
+        String jumcut = "";
+        String email = tfRegEmail.getText();
+        String pass1 = tfRegPass1.getText();
+        String pass2 = tfRegPass2.getText();
+        String marital = cbRegMarried.getSelectedItem().toString();
+        String idmanagaer = tfRegManager.getText();
+
+        if (pass1.equals(pass2)) {
+            kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer);
+        }
+    }//GEN-LAST:event_btRegSignUpActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        tableEmployeeRequestOnManager(spc.getHistory("", isIcon));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 //    SELF METHOD
+    private void emailSend(String var) {
+        SendEmailTemp.setFromEmail("lgg121770@gmail.com");
+        SendEmailTemp.setToEmail("pandu4431@gmail.com");
+        SendEmailTemp.setMessage(var);
+        SendEmailTemp.setSubject("Test email");
+        SendEmailTemp.setPassword("123Q123Q@");
+        emailInterface.sendEmail();
+    }
+
     private void getRidTheBar() {
         putClientProperty("Home.isPallete", Boolean.TRUE);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.setBorder(null);
+    }
+
+    private void tableAll(List<models.Karyawan> kar) {
+        Object[] columnNames = {"Nomor", "ID", "Nama", "Gender", "Cuti", "Email", "Marital", "Manager"};
+        Object[][] data = new Object[kar.size()][columnNames.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i][0] = (i + 1);
+            data[i][1] = kar.get(i).getId();
+            data[i][2] = kar.get(i).getNama();
+            data[i][3] = kar.get(i).getJeniskelamin();
+            data[i][4] = kar.get(i).getJumlahcuti();
+            data[i][5] = kar.get(i).getEmail();
+            data[i][6] = kar.get(i).getStatusnikah().getStatus();
+
+            if (kar.get(i).getIdmanager() != null) {
+                data[i][7] = kar.get(i).getIdmanager().getNama() + "";
+            } else {
+                data[i][7] = "";
+            }
+        }
+        myTable = new DefaultTableModel(data, columnNames);
+        tbAllUser.setModel(myTable);
     }
 
     private void tableEmployeeRequestOnManager(List<models.StatusPengajuan> kar) {
@@ -1400,7 +1657,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 data[i][3] = "";
             }
             data[i][4] = req.get(i).getStatus().getTipe();
-
         }
         myTable = new DefaultTableModel(data, columnNames);
         tbHistory.setModel(myTable);
@@ -1413,7 +1669,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void resetColor(JPanel[] pane, JPanel[] indicators) {
         for (int i = 0; i < pane.length; i++) {
             pane[i].setBackground(new Color(23, 35, 51));
-
         }
         for (int i = 0; i < indicators.length; i++) {
             indicators[i].setOpaque(false);
@@ -1428,6 +1683,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel btExit;
     private javax.swing.JButton btManagerAccept;
     private javax.swing.JButton btManagerReject;
+    private javax.swing.JButton btRegSignUp;
     private javax.swing.JButton btReport;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JButton btUserUpdate;
@@ -1439,6 +1695,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JComboBox<String> cbJenisCuti;
     private javax.swing.JComboBox<String> cbMarital;
+    private javax.swing.JComboBox<String> cbRegGender;
+    private javax.swing.JComboBox<String> cbRegMarried;
     private com.toedter.calendar.JDateChooser dcEnd;
     private com.toedter.calendar.JDateChooser dcStart;
     private javax.swing.JLayeredPane dynamicPane;
@@ -1447,6 +1705,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_3;
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1460,6 +1719,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1471,12 +1738,15 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCurrentDate;
     private javax.swing.JLabel lbDescriptionManager;
     private javax.swing.JLabel lbDescriptionUserName;
+    private javax.swing.JPanel pnAdmin;
+    private javax.swing.JPanel pnAllUser;
     private javax.swing.JPanel pnBar;
     private javax.swing.JPanel pnCntentFill;
     private javax.swing.JPanel pnDescription;
@@ -1487,6 +1757,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnManager;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnRequest;
+    private javax.swing.JPanel pnSignUp;
     private javax.swing.JPanel pnUser;
     private javax.swing.JPanel pnUserContent;
     private javax.swing.JPanel pnUserContent1;
@@ -1499,11 +1770,19 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JTextField strID;
     private javax.swing.JTextField strRequestId;
     private javax.swing.JTextField strType;
+    private javax.swing.JTable tbAllUser;
     private javax.swing.JTable tbHistory;
     private javax.swing.JTable tbManagerUserRequest;
     private javax.swing.JTable tbRequestStatus;
     private javax.swing.JTextField tfIdManager;
     private javax.swing.JTextField tfLeaveLeft;
+    private javax.swing.JTextField tfRegEmail;
+    private javax.swing.JTextField tfRegFirstName;
+    private javax.swing.JTextField tfRegLastName;
+    private javax.swing.JTextField tfRegManager;
+    private javax.swing.JPasswordField tfRegPass1;
+    private javax.swing.JPasswordField tfRegPass2;
+    private javax.swing.JTextField tfRegUsername;
     private javax.swing.JTextField tfSelectedRequest;
     private javax.swing.JTextField tfSelectedRequestDate;
     private javax.swing.JTextField tfSelectedRequestDesc;

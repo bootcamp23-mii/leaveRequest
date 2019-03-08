@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/controllers/StatusPengajuanController.java</file>
             <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/views/HomeUser.java</file>
-            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/controllers/StatusPengajuanInterface.java</file>
+            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/views/ViewTester.java</file>
+            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/mainTools/LeaveRequest.java</file>
             <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/daos/GeneralDAO.java</file>
-            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/daos/Interface.java</file>
-            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/controllers/CutiController.java</file>
+            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/views/Landing.java</file>
+            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/controllers/EmailController.java</file>
+            <file>file:/C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/controllers/KaryawanController.java</file>
         </group>
     </open-files>
 </project-private>
