@@ -30,9 +30,10 @@ public class KaryawanController implements KaryawanInterface {
     }
 
     @Override
-    public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
+    public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String foto) {
+        byte[] foto_blob = foto.getBytes();
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
-        if (kdao.saveOrDelete(new Karyawan(id, nama, jenisKelamin, new Long(jumlahCuti), email, passwordHash, new StatusNikah(statusNikah), new Karyawan(idManager)), true)) {
+        if (kdao.saveOrDelete(new Karyawan(id, nama, jenisKelamin, new Long(jumlahCuti), email, passwordHash, new StatusNikah(statusNikah), new Karyawan(idManager), foto_blob), true)) {
             return "Selamat penambahan karyawan berhasil";
         }
         return "Maaf coba lagi";
@@ -54,8 +55,9 @@ public class KaryawanController implements KaryawanInterface {
     }
 
     @Override
-    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager) {
-        if (kdao.saveOrDelete(new Karyawan(id, nama, jenisKelamin, Long.valueOf(jumlahCuti), email, password, new StatusNikah(statusNikah), new Karyawan(idManager)), true))    
+    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String foto) {
+        byte[] foto_blob = foto.getBytes();
+        if (kdao.saveOrDelete(new Karyawan(id, nama, jenisKelamin, Long.valueOf(jumlahCuti), email, password, new StatusNikah(statusNikah), new Karyawan(idManager), foto_blob), true))    
             return "SUCCESSFULLY UPDATE YOUR DATA";
         return "FAIL TO UPDATE";    
     }

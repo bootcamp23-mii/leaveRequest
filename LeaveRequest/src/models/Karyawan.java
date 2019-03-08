@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Pandu
+ * @author Panji Sadewo
  */
 @Entity
 @Table(name = "KARYAWAN")
@@ -53,37 +54,33 @@ public class Karyawan implements Serializable {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private List<Role> roleList;
-    @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private List<Pengajuan> pengajuanList;
-    @OneToMany(mappedBy = "karyawan", fetch = FetchType.LAZY)
-    private List<RiwayatCuti> riwayatCutiList;
+    @Lob
+    @Column(name = "GAMBAR")
+    private Serializable gambar;
     @OneToMany(mappedBy = "idmanager", fetch = FetchType.LAZY)
     private List<Karyawan> karyawanList;
     @JoinColumn(name = "IDMANAGER", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Karyawan idmanager;
-    @JoinColumn(name = "STATUSNIKAH", referencedColumnName = "ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private StatusNikah statusnikah;
 
     public Karyawan() {
     }
 
-      public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager) {
-        this.id=id;
-        this.nama=name;
-        this.jeniskelamin=gender;
-        this.jumlahcuti=jumlahcuti;
-        this.email=email;
-        this.password=password;
-        this.statusnikah=statusNikah;
-        this.idmanager=manager;
-    }
-      
     public Karyawan(String id) {
         this.id = id;
+    }
+
+    public Karyawan(String id, String nama, String jenisKelamin, Long aLong, String email, String passwordHash, StatusNikah statusNikah, Karyawan karyawan, byte[] foto_blob) {
+        this.id = id;
+        this.id = nama;
+        this.id = jenisKelamin;
+        this.id = aLong.toString();
+        this.id = email;
+        this.id = passwordHash;
+        this.id = statusNikah.getId();
+        this.id = karyawan.getId();
+        this.id = foto_blob.toString();
+        
     }
 
     public String getId() {
@@ -134,31 +131,12 @@ public class Karyawan implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Role> getRoleList() {
-        return roleList;
+    public Serializable getGambar() {
+        return gambar;
     }
 
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-
-    @XmlTransient
-    public List<Pengajuan> getPengajuanList() {
-        return pengajuanList;
-    }
-
-    public void setPengajuanList(List<Pengajuan> pengajuanList) {
-        this.pengajuanList = pengajuanList;
-    }
-
-    @XmlTransient
-    public List<RiwayatCuti> getRiwayatCutiList() {
-        return riwayatCutiList;
-    }
-
-    public void setRiwayatCutiList(List<RiwayatCuti> riwayatCutiList) {
-        this.riwayatCutiList = riwayatCutiList;
+    public void setGambar(Serializable gambar) {
+        this.gambar = gambar;
     }
 
     @XmlTransient
@@ -176,14 +154,6 @@ public class Karyawan implements Serializable {
 
     public void setIdmanager(Karyawan idmanager) {
         this.idmanager = idmanager;
-    }
-
-    public StatusNikah getStatusnikah() {
-        return statusnikah;
-    }
-
-    public void setStatusnikah(StatusNikah statusnikah) {
-        this.statusnikah = statusnikah;
     }
 
     @Override

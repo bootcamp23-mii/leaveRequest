@@ -7,6 +7,12 @@ package views;
 
 import controllers.KaryawanController;
 import controllers.KaryawanInterface;
+import java.awt.Image;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import mainTools.HibernateUtil;
 import org.hibernate.SessionFactory;
@@ -20,6 +26,13 @@ public class Landing extends javax.swing.JFrame {
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     KaryawanController kc = new KaryawanController(sessionFactory);
     KaryawanInterface karyawanInterface = new KaryawanController(sessionFactory);
+    
+    private ImageIcon format =null;
+    //strin filename
+    String filename = null;
+    byte[] person_image = null;
+    
+    private String gender;
 
     /**
      * Creates new form Landing
@@ -58,6 +71,8 @@ public class Landing extends javax.swing.JFrame {
         tfRegPass2 = new javax.swing.JPasswordField();
         btRegSignUp = new javax.swing.JButton();
         btRegLogin = new javax.swing.JButton();
+        jlblGambar = new javax.swing.JLabel();
+        jbtnFileChoose = new javax.swing.JButton();
         pnGimmick = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -150,63 +165,90 @@ public class Landing extends javax.swing.JFrame {
             }
         });
 
+        jbtnFileChoose.setText("Pilih Gambar");
+        jbtnFileChoose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnFileChooseMouseClicked(evt);
+            }
+        });
+        jbtnFileChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFileChooseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnSignUpLayout = new javax.swing.GroupLayout(pnSignUp);
         pnSignUp.setLayout(pnSignUpLayout);
         pnSignUpLayout.setHorizontalGroup(
             pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnSignUpLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSignUpLayout.createSequentialGroup()
+                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnSignUpLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(250, 250, 250))
-                    .addGroup(pnSignUpLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(250, 250, 250))
-                    .addGroup(pnSignUpLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(258, 258, 258))
-                    .addComponent(tfRegEmail)
-                    .addComponent(tfRegUsername)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSignUpLayout.createSequentialGroup()
-                        .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfRegFirstName)
-                            .addGroup(pnSignUpLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(60, 60, 60)))
-                        .addGap(20, 20, 20)
-                        .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnSignUpLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(60, 60, 60))
-                            .addComponent(tfRegLastName)))
-                    .addGroup(pnSignUpLayout.createSequentialGroup()
-                        .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btRegSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(tfRegPass1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btRegLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(tfRegPass2)))
-                    .addGroup(pnSignUpLayout.createSequentialGroup()
-                        .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbRegMarried, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(pnSignUpLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(56, 56, 56)))
+                        .addGap(222, 222, 222)
+                        .addComponent(jlblGambar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(jbtnFileChoose)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
                         .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbManagerName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnSignUpLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(43, 43, 43)))
-                        .addGap(2, 2, 2)))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(250, 250, 250))
+                            .addGroup(pnSignUpLayout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(250, 250, 250))
+                            .addGroup(pnSignUpLayout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(258, 258, 258))
+                            .addComponent(tfRegEmail)
+                            .addComponent(tfRegUsername)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnSignUpLayout.createSequentialGroup()
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfRegFirstName)
+                                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(60, 60, 60)))
+                                .addGap(20, 20, 20)
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(60, 60, 60))
+                                    .addComponent(tfRegLastName)))
+                            .addGroup(pnSignUpLayout.createSequentialGroup()
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btRegSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(tfRegPass1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btRegLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(tfRegPass2)))
+                            .addGroup(pnSignUpLayout.createSequentialGroup()
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbRegMarried, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(56, 56, 56)))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbManagerName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(43, 43, 43)))
+                                .addGap(2, 2, 2)))))
                 .addGap(121, 121, 121))
         );
         pnSignUpLayout.setVerticalGroup(
             pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnSignUpLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jlblGambar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnSignUpLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jbtnFileChoose)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -217,7 +259,7 @@ public class Landing extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfRegEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(tfRegEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnSignUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,7 +271,7 @@ public class Landing extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfRegUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(tfRegUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -441,6 +483,40 @@ public class Landing extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPFPasswordLoginActionPerformed
 
+    private void jbtnFileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFileChooseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnFileChooseActionPerformed
+
+    private void jbtnFileChooseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnFileChooseMouseClicked
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        
+        filename =f.getAbsolutePath();
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(filename).getImage().getScaledInstance(jlblGambar.getWidth(), jlblGambar.getHeight(), Image.SCALE_DEFAULT));
+        jlblGambar.setIcon(imageIcon);
+      try {
+
+            File image = new File(filename);
+            FileInputStream fis = new FileInputStream (image);
+            ByteArrayOutputStream bos= new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+
+            for(int readNum; (readNum=fis.read(buf))!=-1; ){
+
+                bos.write(buf,0,readNum);
+            }
+            person_image=bos.toByteArray();
+            JOptionPane.showMessageDialog(rootPane, person_image);
+        }
+
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+
+        }
+    }//GEN-LAST:event_jbtnFileChooseMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -497,6 +573,8 @@ public class Landing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPFPasswordLogin;
     private javax.swing.JTextField jTFUsernameLogin;
+    private javax.swing.JButton jbtnFileChoose;
+    private javax.swing.JLabel jlblGambar;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel pnGimmick;
     private javax.swing.JPanel pnLogin;
