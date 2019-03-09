@@ -160,9 +160,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         btRegSignUp = new javax.swing.JButton();
         tfRegManager = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        pnAllUser = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllUser = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        pnAllUser = new javax.swing.JPanel();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JPanel();
         ind_1 = new javax.swing.JPanel();
@@ -228,11 +229,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         dcStart = new com.toedter.calendar.JDateChooser();
         dcEnd = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
-        pnHistory = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tbRequestStatus = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbHistory = new javax.swing.JTable();
         pnCntentFill = new javax.swing.JPanel();
         btCancel = new javax.swing.JLabel();
         tfSelectedRequest = new javax.swing.JTextField();
@@ -240,6 +236,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tfSelectedRequestStatus = new javax.swing.JTextField();
         tfSelectedRequestDate = new javax.swing.JTextField();
         tfSelectedRequestPengajuan = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbRequestStatus = new javax.swing.JTable();
+        pnHistory = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbHistory = new javax.swing.JTable();
         pnManager = new javax.swing.JPanel();
         pnUserHeader1 = new javax.swing.JPanel();
         btReport = new javax.swing.JButton();
@@ -267,71 +268,71 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel22.setText("First Name");
-        pnSignUp.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 140, -1));
+        pnSignUp.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
         tfRegFirstName.setBackground(new java.awt.Color(120, 168, 252));
         tfRegFirstName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegFirstName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegFirstName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 200, 35));
+        pnSignUp.add(tfRegFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 170, 30));
 
         jLabel23.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel23.setText("Last Name");
-        pnSignUp.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 140, -1));
+        pnSignUp.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 140, -1));
 
         tfRegLastName.setBackground(new java.awt.Color(120, 168, 252));
         tfRegLastName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegLastName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegLastName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 200, 40));
+        pnSignUp.add(tfRegLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 170, 30));
 
         jLabel24.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel24.setText("Email");
-        pnSignUp.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 170, -1));
+        pnSignUp.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 170, -1));
 
         tfRegEmail.setBackground(new java.awt.Color(120, 168, 252));
         tfRegEmail.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegEmail.setForeground(new java.awt.Color(255, 255, 255));
         tfRegEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 470, 40));
+        pnSignUp.add(tfRegEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 170, 30));
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel25.setText("Married Status");
-        pnSignUp.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 100, -1));
+        pnSignUp.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 100, -1));
 
         cbRegMarried.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SN1", "SN2" }));
-        pnSignUp.add(cbRegMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 200, 40));
+        pnSignUp.add(cbRegMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 170, 30));
 
         jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel26.setText("Gender");
-        pnSignUp.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 154, -1));
+        pnSignUp.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 154, -1));
 
         cbRegGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pria", "Wanita" }));
-        pnSignUp.add(cbRegGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 200, 40));
+        pnSignUp.add(cbRegGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 170, 30));
 
         jLabel27.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel27.setText("ID Manager");
-        pnSignUp.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 90, 20));
+        pnSignUp.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 90, 20));
 
         tfRegUsername.setBackground(new java.awt.Color(120, 168, 252));
         tfRegUsername.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegUsername.setForeground(new java.awt.Color(255, 255, 255));
         tfRegUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 200, 30));
+        pnSignUp.add(tfRegUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 170, 30));
 
         jLabel28.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel28.setText("Password");
-        pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 162, -1));
+        pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 162, -1));
 
         tfRegPass1.setBackground(new java.awt.Color(120, 168, 252));
         tfRegPass1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegPass1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 200, 35));
+        pnSignUp.add(tfRegPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 170, 30));
 
         tfRegPass2.setBackground(new java.awt.Color(120, 168, 252));
         tfRegPass2.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegPass2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 200, 40));
+        pnSignUp.add(tfRegPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, 30));
 
         btRegSignUp.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btRegSignUp.setText("SIGN UP");
@@ -342,19 +343,17 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btRegSignUpActionPerformed(evt);
             }
         });
-        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 470, 42));
+        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 400, 42));
 
         tfRegManager.setBackground(new java.awt.Color(120, 168, 252));
         tfRegManager.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
         tfRegManager.setForeground(new java.awt.Color(255, 255, 255));
         tfRegManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pnSignUp.add(tfRegManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 199, 30));
+        pnSignUp.add(tfRegManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 30));
 
         jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel29.setText("Username");
-        pnSignUp.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 90, 20));
-
-        pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 390));
+        pnSignUp.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 90, 20));
 
         tbAllUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -369,26 +368,27 @@ public class HomeUser extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tbAllUser);
 
+        pnSignUp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 630, 209));
+
+        jButton2.setText("jButton2");
+        pnSignUp.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 170, -1));
+
+        pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 610));
+
         javax.swing.GroupLayout pnAllUserLayout = new javax.swing.GroupLayout(pnAllUser);
         pnAllUser.setLayout(pnAllUserLayout);
         pnAllUserLayout.setHorizontalGroup(
             pnAllUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnAllUserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         pnAllUserLayout.setVerticalGroup(
             pnAllUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAllUserLayout.createSequentialGroup()
-                .addContainerGap(395, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
-        pnAdmin.add(pnAllUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 610));
+        pnAdmin.add(pnAllUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 650, 350));
 
-        getContentPane().add(pnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 650, 540));
+        getContentPane().add(pnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 650, 580));
 
         pnMenu.setBackground(new java.awt.Color(23, 35, 51));
         pnMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1008,7 +1008,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btUserSubmitRequestActionPerformed(evt);
             }
         });
-        pnRequest.add(btUserSubmitRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 210, 40));
+        pnRequest.add(btUserSubmitRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 210, 30));
 
         cbJenisCuti.setBackground(new java.awt.Color(120, 168, 252));
         cbJenisCuti.addActionListener(new java.awt.event.ActionListener() {
@@ -1016,27 +1016,27 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 cbJenisCutiActionPerformed(evt);
             }
         });
-        pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 210, 40));
+        pnRequest.add(cbJenisCuti, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 210, 30));
 
         jLabel3.setText("Start Leave");
-        pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+        pnRequest.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         jLabel4.setText("End Leave");
-        pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
+        pnRequest.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
 
         jLabel5.setText("Leave Type");
         pnRequest.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
         tfUserTotal.setEditable(false);
         tfUserTotal.setBackground(new java.awt.Color(120, 168, 252));
-        pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 160, 40));
+        pnRequest.add(tfUserTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 170, 30));
 
         jLabel6.setText("TOTAL");
         pnRequest.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         dcStart.setDateFormatString("dd-MM-yyyy");
-        pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 210, 40));
-        pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 210, 40));
+        pnRequest.add(dcStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
+        pnRequest.add(dcEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 210, 30));
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_refresh_25px.png"))); // NOI18N
@@ -1045,12 +1045,59 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 jLabel14MouseClicked(evt);
             }
         });
-        pnRequest.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 160, 40, 40));
+        pnRequest.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 30, 30));
 
-        dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+        pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
+        pnCntentFill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnHistory.setBackground(new java.awt.Color(255, 255, 255));
-        pnHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btCancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
+        btCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCancelMouseClicked(evt);
+            }
+        });
+        pnCntentFill.add(btCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 70, 74));
+
+        tfSelectedRequest.setEditable(false);
+        tfSelectedRequest.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequest.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequest.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequest.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequest.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+
+        tfSelectedRequestDesc.setEditable(false);
+        tfSelectedRequestDesc.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestDesc.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestDesc.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestDesc.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 130, 20));
+
+        tfSelectedRequestStatus.setEditable(false);
+        tfSelectedRequestStatus.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestStatus.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestStatus.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestStatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 70, 20));
+
+        tfSelectedRequestDate.setEditable(false);
+        tfSelectedRequestDate.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestDate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestDate.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestDate.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 20));
+
+        tfSelectedRequestPengajuan.setEditable(false);
+        tfSelectedRequestPengajuan.setBackground(new java.awt.Color(255, 255, 255));
+        tfSelectedRequestPengajuan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfSelectedRequestPengajuan.setForeground(new java.awt.Color(0, 0, 0));
+        tfSelectedRequestPengajuan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfSelectedRequestPengajuan.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        pnCntentFill.add(tfSelectedRequestPengajuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 50, 20));
 
         tbRequestStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1075,7 +1122,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(tbRequestStatus);
 
-        pnHistory.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 124, 530, 80));
+        pnCntentFill.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 530, 220));
+
+        pnRequest.add(pnCntentFill, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 650, 270));
+
+        dynamicPane.add(pnRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 580));
+
+        pnHistory.setBackground(new java.awt.Color(255, 255, 255));
+        pnHistory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -1108,61 +1162,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         pnHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 222, 638, 335));
 
-        pnCntentFill.setBackground(new java.awt.Color(242, 247, 247));
-        pnCntentFill.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btCancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_close_window_96px.png"))); // NOI18N
-        btCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btCancelMouseClicked(evt);
-            }
-        });
-        pnCntentFill.add(btCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 70, 74));
-
-        tfSelectedRequest.setEditable(false);
-        tfSelectedRequest.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequest.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequest.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequest.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequest.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        pnCntentFill.add(tfSelectedRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-
-        tfSelectedRequestDesc.setEditable(false);
-        tfSelectedRequestDesc.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequestDesc.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequestDesc.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequestDesc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequestDesc.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        pnCntentFill.add(tfSelectedRequestDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 130, 20));
-
-        tfSelectedRequestStatus.setEditable(false);
-        tfSelectedRequestStatus.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequestStatus.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequestStatus.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequestStatus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequestStatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        pnCntentFill.add(tfSelectedRequestStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 70, 20));
-
-        tfSelectedRequestDate.setEditable(false);
-        tfSelectedRequestDate.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequestDate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequestDate.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequestDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequestDate.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        pnCntentFill.add(tfSelectedRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 20));
-
-        tfSelectedRequestPengajuan.setEditable(false);
-        tfSelectedRequestPengajuan.setBackground(new java.awt.Color(255, 255, 255));
-        tfSelectedRequestPengajuan.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        tfSelectedRequestPengajuan.setForeground(new java.awt.Color(0, 0, 0));
-        tfSelectedRequestPengajuan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfSelectedRequestPengajuan.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        pnCntentFill.add(tfSelectedRequestPengajuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 40, 20));
-
-        pnHistory.add(pnCntentFill, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 650, 120));
-
-        dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+        dynamicPane.add(pnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 580));
 
         pnUserHeader1.setBackground(new java.awt.Color(242, 247, 247));
 
@@ -1706,6 +1706,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
