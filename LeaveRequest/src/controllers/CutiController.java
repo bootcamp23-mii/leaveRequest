@@ -23,7 +23,7 @@ import org.hibernate.SessionFactory;
  */
 public class CutiController implements CutiControllerInterface {
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
     private final Interface<Pengajuan> cdao;
 
     public CutiController(SessionFactory sessionFactory) {
