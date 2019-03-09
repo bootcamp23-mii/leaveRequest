@@ -66,7 +66,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     String var = Session.getId();
     String username = kc.getById(var).getNama();
-    String email = kc.getById(var).getEmail();
+    String email = "";
 
     /**
      * Creates new form Home
@@ -163,6 +163,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllUser = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        cbJobs = new javax.swing.JComboBox<>();
+        jLabel32 = new javax.swing.JLabel();
         pnAllUser = new javax.swing.JPanel();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JPanel();
@@ -274,7 +276,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnSignUp.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
         tfRegFirstName.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegFirstName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegFirstName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegFirstName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegFirstName.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 170, 30));
@@ -284,7 +286,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnSignUp.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 140, -1));
 
         tfRegLastName.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegLastName.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegLastName.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegLastName.setForeground(new java.awt.Color(255, 255, 255));
         tfRegLastName.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 170, 30));
@@ -294,7 +296,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnSignUp.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 170, -1));
 
         tfRegEmail.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegEmail.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegEmail.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegEmail.setForeground(new java.awt.Color(255, 255, 255));
         tfRegEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 170, 30));
@@ -303,7 +305,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel25.setText("Married Status");
         pnSignUp.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 100, -1));
 
-        cbRegMarried.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SN1", "SN2" }));
+        cbRegMarried.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SN1 - Single", "SN2 - Married" }));
         pnSignUp.add(cbRegMarried, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 170, 30));
 
         jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -318,7 +320,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnSignUp.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 90, 20));
 
         tfRegUsername.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegUsername.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegUsername.setForeground(new java.awt.Color(255, 255, 255));
         tfRegUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 170, 30));
@@ -328,12 +330,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 162, -1));
 
         tfRegPass1.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegPass1.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegPass1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegPass1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 170, 30));
 
         tfRegPass2.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegPass2.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegPass2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegPass2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, 30));
 
@@ -346,10 +348,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btRegSignUpActionPerformed(evt);
             }
         });
-        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 400, 42));
+        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 170, 42));
 
         tfRegManager.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegManager.setFont(new java.awt.Font("Mayeka Light Demo", 0, 18)); // NOI18N
+        tfRegManager.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfRegManager.setForeground(new java.awt.Color(255, 255, 255));
         tfRegManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 30));
@@ -375,6 +377,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         jButton2.setText("jButton2");
         pnSignUp.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 170, -1));
+
+        cbJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J3 - Developer", "J2 - Manager" }));
+        pnSignUp.add(cbJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 170, 30));
+
+        jLabel32.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel32.setText("Position");
+        pnSignUp.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 162, 20));
 
         pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 580));
 
@@ -1569,7 +1578,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         String id = "";
         String nama = tfRegFirstName.getText() + tfRegLastName.getText();
         String gender = cbGender.getSelectedItem().toString();
-        String jumcut = "";
+        String jumcut = "0";
         String email = tfRegEmail.getText();
         String pass1 = tfRegPass1.getText();
         String pass2 = tfRegPass2.getText();
@@ -1582,14 +1591,13 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btRegSignUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         tableEmployeeRequestOnManager(spc.getHistory("", isIcon));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    SELF METHOD
     private void emailSend(String var) {
         SendEmailTemp.setFromEmail("lgg121770@gmail.com");
-        SendEmailTemp.setToEmail("pandu4431@gmail.com");
+        SendEmailTemp.setToEmail(email);
         SendEmailTemp.setMessage(var);
         SendEmailTemp.setSubject("Test email");
         SendEmailTemp.setPassword("123Q123Q@");
@@ -1712,6 +1720,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JComboBox<String> cbJenisCuti;
+    private javax.swing.JComboBox<String> cbJobs;
     private javax.swing.JComboBox<String> cbMarital;
     private javax.swing.JComboBox<String> cbRegGender;
     private javax.swing.JComboBox<String> cbRegMarried;
@@ -1750,6 +1759,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
