@@ -62,7 +62,8 @@ public class LeaveRequest {
 //            System.out.println("TYPE    : " + pengajuan.getJeniscuti().getJenis());
 //        }
 //
-
+//        System.out.println(cc.getById("P1").getKaryawan().getId());
+        System.out.println(kc.getById(cc.getById("P1").getKaryawan().getId()).getEmail());
 ////        LOGIN
 //        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
 //        System.out.println(kc.register("11200", "admin", "Pria", "3", "loli@alo.com", "admin", "SN1", "11201"));
@@ -81,12 +82,12 @@ public class LeaveRequest {
 //            System.out.println(pengajuan.getKaryawan().getNama());
 //            
 //        }
-        SendEmailTemp.setFromEmail("revilghost@gmail.com");
-        SendEmailTemp.setToEmail("pandu4431@gmail.com");
-        SendEmailTemp.setMessage("Test coi");
-        SendEmailTemp.setSubject("Test email");
-        SendEmailTemp.setPassword("");
-        emailInterface.sendEmail();
+//        SendEmailTemp.setFromEmail("revilghost@gmail.com");
+//        SendEmailTemp.setToEmail("pandu4431@gmail.com");
+//        SendEmailTemp.setMessage("Test coi");
+//        SendEmailTemp.setSubject("Test email");
+//        SendEmailTemp.setPassword("");
+//        emailInterface.sendEmail();
     }
 
 }

@@ -66,7 +66,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     String var = Session.getId();
     String username = kc.getById(var).getNama();
-    String email = "";
+//    String email = "";
 
     /**
      * Creates new form Home
@@ -1490,8 +1490,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) != null) {
             strDesc.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) + "");
         }
-        //String getPengajuan = ;
-        //tfSelectedUser.setText(spc.get)
         tfSelectedUser.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_tbManagerUserRequestMouseClicked
 
@@ -1500,7 +1498,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             String message = "THANKS FOR REQUESTING, WE'VE ACCEPT YOUR REQUEST";
-            emailSend(message);
+            String emailTo = kc.getById(cc.getById(strRequestId.getText()).getKaryawan().getId()).getEmail();
+            emailSend(message, emailTo);
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1514,7 +1513,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S3");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             String message = "SORRY, YOUR REQUEST CANT BE PROCCESSED";
-            emailSend(message);
+            String emailTo = kc.getById(cc.getById(strRequestId.getText()).getKaryawan().getId()).getEmail();
+            emailSend(message, emailTo);
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1587,6 +1587,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         if (pass1.equals(pass2)) {
             kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer);
+//            String userEmail = tfRegEmail.getText();
+            String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
+            emailSend(message, email);
         }
     }//GEN-LAST:event_btRegSignUpActionPerformed
 
@@ -1595,11 +1598,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    SELF METHOD
-    private void emailSend(String var) {
+    private void emailSend(String var, String email) {
         SendEmailTemp.setFromEmail("lgg121770@gmail.com");
         SendEmailTemp.setToEmail(email);
         SendEmailTemp.setMessage(var);
-        SendEmailTemp.setSubject("Test email");
+        SendEmailTemp.setSubject("Leave Request Respond");
         SendEmailTemp.setPassword("123Q123Q@");
         emailInterface.sendEmail();
     }
