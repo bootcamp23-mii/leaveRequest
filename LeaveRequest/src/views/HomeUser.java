@@ -1253,6 +1253,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(tbManagerUserRequest);
 
+        tfSelectedUser.setEditable(false);
         tfSelectedUser.setBackground(new java.awt.Color(120, 168, 252));
         tfSelectedUser.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tfSelectedUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -1289,8 +1290,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         strType.setEditable(false);
         strType.setBackground(new java.awt.Color(255, 255, 102));
 
-        strDesc.setEditable(false);
-        strDesc.setBackground(new java.awt.Color(255, 255, 102));
+        strDesc.setBackground(new java.awt.Color(120, 168, 252));
 
         javax.swing.GroupLayout pnUserContent1Layout = new javax.swing.GroupLayout(pnUserContent1);
         pnUserContent1.setLayout(pnUserContent1Layout);
@@ -1519,7 +1519,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
         } else {
-            JOptionPane.showMessageDialog(pnHomeContent, "SOMETHING WENT WRONG");
+            JOptionPane.showMessageDialog(pnHomeContent, "SOMETHING WENT WRONG, PLEASE CHECK AGAIN");
         }
     }//GEN-LAST:event_btManagerRejectActionPerformed
 
@@ -1637,14 +1637,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }
 
     private void tableEmployeeRequestOnManager(List<models.StatusPengajuan> kar) {
-        Object[] columnNames = {"Nomor", "ID", "Date", "Status", "ID Pengajuan", "Description"};
+        Object[] columnNames = {"Nomor", "Requester", "Date", "Status", "ID Pengajuan", "Description"};
         Object[][] data = new Object[kar.size()][columnNames.length];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);
             data[i][1] = kar.get(i).getId();
+            
+//            THIS METHOD BELOW ARE WORK, THE PROBLEM IS WE GOT NO NDEX WHEN UPDATING THE STATUS THEN
+//            data[i][1] = cc.getById(kar.get(i).getPengajuan().getId()).getKaryawan().getNama();
             data[i][2] = kar.get(i).getDatetime();
             data[i][3] = kar.get(i).getStatus().getTipe();
             data[i][4] = kar.get(i).getPengajuan().getId();
+
             if (kar.get(i).getKeterangan() != null) {
                 data[i][5] = kar.get(i).getKeterangan() + "";
             } else {

@@ -2333,6 +2333,7 @@
                 </Container>
                 <Component class="javax.swing.JTextField" name="tfSelectedUser">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fc" green="a8" red="78" type="rgb"/>
                     </Property>
@@ -2418,9 +2419,8 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="strDesc">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="ff" red="ff" type="rgb"/>
+                      <Color blue="fc" green="a8" red="78" type="rgb"/>
                     </Property>
                   </Properties>
                 </Component>
