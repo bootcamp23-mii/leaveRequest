@@ -246,34 +246,16 @@ public class Landing extends javax.swing.JFrame {
         getContentPane().add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 550, 610));
 
         pnGimmick.setBackground(new java.awt.Color(71, 120, 197));
+        pnGimmick.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/BG.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/BG Mii.png"))); // NOI18N
+        pnGimmick.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 172, -1, 195));
 
         jLabel12.setFont(new java.awt.Font("Cocogoose Pro Thin", 1, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("HAVE A SAFE LEAVE");
-
-        javax.swing.GroupLayout pnGimmickLayout = new javax.swing.GroupLayout(pnGimmick);
-        pnGimmick.setLayout(pnGimmickLayout);
-        pnGimmickLayout.setHorizontalGroup(
-            pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnGimmickLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addGroup(pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
-        pnGimmickLayout.setVerticalGroup(
-            pnGimmickLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnGimmickLayout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addGap(217, 217, 217))
-        );
+        pnGimmick.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 373, 223, -1));
 
         getContentPane().add(pnGimmick, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 610));
 

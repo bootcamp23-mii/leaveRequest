@@ -16,6 +16,14 @@ import controllers.KaryawanInterface;
 import controllers.StatusPengajuanController;
 import controllers.StatusPengajuanInterface;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -25,9 +33,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import mainTools.DBConnection;
@@ -74,7 +85,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         initComponents();
         getRidTheBar();
         setColor(btnHome);
-
+        getTheDamnPhotos();
         userCutiInit();
         //CONTENT BASED SESSION CONTROLL
     }
@@ -90,6 +101,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
             pnUser.setVisible(false);
             pnRequest.setVisible(false);
             pnHistory.setVisible(false);
+            
+            for (Karyawan karyawan : kc.getByJob("J2")) {
+                cbGetManager.addItem(karyawan.getId());
+            }
 
             tableAll(kc.getAll());
         } else if (kc.getById(var).getJobs().getId().equals("J2")) {
@@ -159,13 +174,17 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tfRegPass1 = new javax.swing.JPasswordField();
         tfRegPass2 = new javax.swing.JPasswordField();
         btRegSignUp = new javax.swing.JButton();
-        tfRegManager = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllUser = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         cbJobs = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
+        btSelectImage = new javax.swing.JButton();
+        tfLocationFile = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        cbGetManager = new javax.swing.JComboBox<>();
         pnAllUser = new javax.swing.JPanel();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JPanel();
@@ -321,15 +340,18 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel27.setText("ID Manager");
         pnSignUp.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 90, 20));
 
+        tfRegUsername.setEditable(false);
         tfRegUsername.setBackground(new java.awt.Color(120, 168, 252));
         tfRegUsername.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tfRegUsername.setForeground(new java.awt.Color(255, 255, 255));
+        tfRegUsername.setForeground(new java.awt.Color(204, 204, 204));
+        tfRegUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfRegUsername.setText("AUTO GENERATED");
         tfRegUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
         pnSignUp.add(tfRegUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 170, 30));
 
         jLabel28.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel28.setText("Password");
-        pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 162, -1));
+        jLabel28.setText("Re-Type Password");
+        pnSignUp.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 162, -1));
 
         tfRegPass1.setBackground(new java.awt.Color(120, 168, 252));
         tfRegPass1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -352,14 +374,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
         });
         pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 170, 42));
 
-        tfRegManager.setBackground(new java.awt.Color(120, 168, 252));
-        tfRegManager.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tfRegManager.setForeground(new java.awt.Color(255, 255, 255));
-        tfRegManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        pnSignUp.add(tfRegManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 30));
-
         jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel29.setText("Username");
+        jLabel29.setText("ID");
         pnSignUp.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 90, 20));
 
         tbAllUser.setModel(new javax.swing.table.DefaultTableModel(
@@ -386,6 +402,31 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel32.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel32.setText("Position");
         pnSignUp.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 162, 20));
+
+        btSelectImage.setText("SELECT");
+        btSelectImage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btSelectImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSelectImageActionPerformed(evt);
+            }
+        });
+        pnSignUp.add(btSelectImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 50, 30));
+
+        tfLocationFile.setBackground(new java.awt.Color(120, 168, 252));
+        tfLocationFile.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        tfLocationFile.setForeground(new java.awt.Color(255, 255, 255));
+        tfLocationFile.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        pnSignUp.add(tfLocationFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 110, 30));
+
+        jLabel33.setText("Photos");
+        pnSignUp.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+
+        jLabel35.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel35.setText("Password");
+        pnSignUp.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 162, -1));
+
+        cbGetManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        pnSignUp.add(cbGetManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 30));
 
         pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 580));
 
@@ -704,7 +745,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
         );
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 270, -1));
-        jPanel4.add(profilePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 86, -1));
+
+        profilePic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(profilePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, 80, 70));
 
         lbDescriptionUserName.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
         lbDescriptionUserName.setForeground(new java.awt.Color(255, 255, 255));
@@ -1194,7 +1237,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         tbHistory.setRowHeight(22);
         jScrollPane1.setViewportView(tbHistory);
 
-        pnHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 87, 630, 380));
+        pnHistory.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 87, 630, 480));
 
         jLabel31.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(120, 168, 252));
@@ -1598,20 +1641,36 @@ public class HomeUser extends javax.swing.JInternalFrame {
         String email = tfRegEmail.getText();
         String pass1 = tfRegPass1.getText();
         String pass2 = tfRegPass2.getText();
-        String marital = cbRegMarried.getSelectedItem().toString();
-        String idmanagaer = tfRegManager.getText();
+        String marital = cbRegMarried.getSelectedItem().toString().split(" - ")[0];
+        String idmanagaer = cbGetManager.getSelectedItem().toString();
         String jobs = cbJobs.getSelectedItem().toString().split(" - ")[0];
 
         if (pass1.equals(pass2)) {
+//            System.out.println(id + " " + nama + " " + gender + " " + jumcut + " " + email + " " + pass1 + " " + marital + " " + idmanagaer + " " + jobs);
             kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
             String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
+            weirdButWorksPhotoUploader();
             emailSend(message, email);
+            JOptionPane.showMessageDialog(pnHomeContent, "Account Successfully Created");
         }
     }//GEN-LAST:event_btRegSignUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tableEmployeeRequestOnManager(spc.getHistory("", isIcon));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btSelectImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelectImageActionPerformed
+        // TODO add your handling code here:
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+        JFileChooser jf = new JFileChooser();
+        jf.setCurrentDirectory(new java.io.File("C:/User"));
+        jf.setDialogTitle("Chose Profile Image");
+        jf.setFileFilter(filter);
+        if (jf.showOpenDialog(pnMenu) == JFileChooser.APPROVE_OPTION) {
+            //
+        }
+        tfLocationFile.setText(jf.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_btSelectImageActionPerformed
 
 //    SELF METHOD
     private void emailSend(String messages, String email) {
@@ -1630,10 +1689,43 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
-    private void getTheDamnPhotos(){
-        
+    private void getTheDamnPhotos() {
+        try {
+            byte[] imageBytes;
+            Image image;
+            Connection connect = connection.getConnection();
+            Statement stm = connect.createStatement();
+            String sql = "SELECT PHOTO FROM KARYAWAN WHERE ID = " + var;
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                imageBytes = rs.getBytes("photo");
+                image = getToolkit().createImage(imageBytes);
+                ImageIcon icon = new ImageIcon(image);
+                profilePic.setIcon(icon);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-    
+
+    private void weirdButWorksPhotoUploader() {
+        String s = tfLocationFile.getText();
+        String nama = tfRegFirstName.getText() + tfRegLastName.getText();
+
+        try {
+            Connection connect = connection.getConnection();
+            Statement stm = connect.createStatement();
+            PreparedStatement ps = connect.prepareStatement("UPDATE KARYAWAN SET PHOTO=?  WHERE NAMA = '" + nama + "'");
+            InputStream is = new FileInputStream(new File(s));
+            ps.setBlob(1, is);
+            ps.executeUpdate();
+//            JOptionPane.showMessageDialog(null, "Data Inserted");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void tableAll(List<models.Karyawan> kar) {
         Object[] columnNames = {"Nomor", "ID", "Nama", "Gender", "Cuti", "Email", "Marital", "Manager"};
         Object[][] data = new Object[kar.size()][columnNames.length];
@@ -1738,6 +1830,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JButton btManagerReject;
     private javax.swing.JButton btRegSignUp;
     private javax.swing.JButton btReport;
+    private javax.swing.JButton btSelectImage;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JButton btUserUpdate;
     private javax.swing.JPanel btnHistory;
@@ -1746,6 +1839,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel btnRequest;
     private javax.swing.JPanel btnUser;
     private javax.swing.JComboBox<String> cbGender;
+    private javax.swing.JComboBox<String> cbGetManager;
     private javax.swing.JComboBox<String> cbJenisCuti;
     private javax.swing.JComboBox<String> cbJobs;
     private javax.swing.JComboBox<String> cbMarital;
@@ -1787,6 +1881,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1836,10 +1932,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfIdManager;
     private javax.swing.JTextField tfJobsTitle;
     private javax.swing.JTextField tfLeaveLeft;
+    private javax.swing.JTextField tfLocationFile;
     private javax.swing.JTextField tfRegEmail;
     private javax.swing.JTextField tfRegFirstName;
     private javax.swing.JTextField tfRegLastName;
-    private javax.swing.JTextField tfRegManager;
     private javax.swing.JPasswordField tfRegPass1;
     private javax.swing.JPasswordField tfRegPass2;
     private javax.swing.JTextField tfRegUsername;

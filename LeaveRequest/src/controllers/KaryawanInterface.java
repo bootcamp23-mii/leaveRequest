@@ -22,6 +22,8 @@ public interface KaryawanInterface {
 
     public List<Karyawan> getKar(String key);
 
+    public List<Karyawan> getByJob(String key);
+
     public List<Karyawan> getKarByMang(String key);
 
     public List<Karyawan> getIdKar(String key);
@@ -30,7 +32,7 @@ public interface KaryawanInterface {
 
     public Karyawan getById(String key);
 
-    public void delete(String key);
+    public String delete(String key);
 
     public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String jobs);
 

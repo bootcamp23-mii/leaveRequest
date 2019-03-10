@@ -84,6 +84,22 @@ public class GeneralDAO<T> implements Interface<T> {
     }
 
     @Override
+    public List<T> getKarType(Object id) {
+        List<T> obj = new ArrayList<>();
+        session = this.factory.openSession();
+        transaction = session.beginTransaction();
+        try {
+            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE jobs = '" + id + "'").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return obj;
+    }
+
+    @Override
     public List<T> getByKarByMang(Object id) {
         List<T> obj = new ArrayList<>();
         session = this.factory.openSession();
@@ -139,9 +155,9 @@ public class GeneralDAO<T> implements Interface<T> {
         try {
 //            obj = session.createQuery("FROM " + t.getClass().getSimpleName() + " WHERE karyawan = '" + keyword + "' AND ").list();
             if (isS1) {
-                obj = session.createQuery("from StatusPengajuan where status is not 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+                obj = session.createQuery("from StatusPengajuan where status is not 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "') order by datetime desc").list();
             } else {
-                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "')").list();
+                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan = '" + keyword + "') order by datetime desc").list();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,7 +175,7 @@ public class GeneralDAO<T> implements Interface<T> {
         transaction = session.beginTransaction();
         try {
             if (isS1) {
-                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan in(from Karyawan where idmanager = '" + keyword + "'))").list();
+                obj = session.createQuery("from StatusPengajuan where status = 'S1' and pengajuan in(from Pengajuan where karyawan in(from Karyawan where idmanager = '" + keyword + "')) order by datetime desc").list();
 
             } else {
                 System.out.println("THERE NO NEED TO WORRY");

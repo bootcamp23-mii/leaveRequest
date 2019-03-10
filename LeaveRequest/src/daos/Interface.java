@@ -15,7 +15,7 @@ import models.Karyawan;
 public interface Interface<T> {
 
     public boolean saveOrDelete(T entity, boolean isSave);
-    
+
     public boolean insertOrUpdate(T entity, boolean isSave);
 
     public List<T> getData(Object keyword);
@@ -25,6 +25,8 @@ public interface Interface<T> {
     public List<T> getByKarByMang(Object keyword);
 
     public List<T> getByIdKar(Object keyword);
+
+    public List<T> getKarType(Object keyword);
 
     public List<T> getHistory(Object keyword, Boolean status);
 
