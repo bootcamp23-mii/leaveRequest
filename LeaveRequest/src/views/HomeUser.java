@@ -76,7 +76,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
         getRidTheBar();
         setColor(btnHome);
 
-        if (kc.getById(var).getIdmanager().getId().equals(var)) {
+        userCutiInit();
+        //CONTENT BASED SESSION CONTROLL
+    }
+
+    private void userCutiInit() {
+//        PANEL CONTROLLER
+
+        if (kc.getById(var).getJobs().getId().equals("J0")) {
             pnAdmin.setVisible(true);
             pnMenu.setVisible(false);
             pnManager.setVisible(false);
@@ -86,40 +93,35 @@ public class HomeUser extends javax.swing.JInternalFrame {
             pnHistory.setVisible(false);
 
             tableAll(kc.getAll());
+        } else if (kc.getById(var).getJobs().getId().equals("J2")) {
+            pnAdmin.setVisible(false);
+            pnHome.setVisible(true);
+            pnUser.setVisible(false);
+            pnHistory.setVisible(false);
+            pnRequest.setVisible(false);
+            pnManager.setVisible(false);
+            btnManager.setVisible(true);
         } else {
             pnAdmin.setVisible(false);
+            pnHome.setVisible(true);
+            pnUser.setVisible(false);
+            pnHistory.setVisible(false);
+            pnRequest.setVisible(false);
+            pnManager.setVisible(false);
+            btnManager.setVisible(false);
         }
-        userCutiInit();
-        //CONTENT BASED SESSION CONTROLL
-    }
 
-    private void userCutiInit() {
-//        PANEL CONTROLLER
-        pnHome.setVisible(true);
-        pnUser.setVisible(false);
-        pnHistory.setVisible(false);
-        pnRequest.setVisible(false);
-        pnManager.setVisible(false);
         lbCurrentDate.setText(dateFormat.format(date));
 
-//        TABLE CONTROLLER
 //        COMBO BOX CONTROLLER
         for (JenisCuti jenisCuti : jc.getAll("")) {
             cbJenisCuti.addItem(jenisCuti.getId() + " - " + jenisCuti.getJenis());
         }
+
 //        GIMMICK CONTROLLER
         for (Karyawan karyawan : kc.getIdKar(var)) {
             lbDescriptionUserName.setText(karyawan.getNama());
             sisaCutiCounter.setText(karyawan.getJumlahcuti().toString());
-        }
-
-        for (Karyawan karyawan : kc.getIdKar(var)) {
-            tfUserName.setText(karyawan.getNama());
-            tfUserEmail.setText(karyawan.getEmail());
-            tfUserID.setText(karyawan.getId());
-            tfIdManager.setText(karyawan.getIdmanager().getId());
-            tfLeaveLeft.setText(karyawan.getJumlahcuti().toString());
-            tfUserPassword.setText(karyawan.getPassword());
         }
 
         for (Karyawan karyawan : kc.getIdKar(var)) {
@@ -220,6 +222,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel19 = new javax.swing.JLabel();
         tfLeaveLeft = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        tfJobsTitle = new javax.swing.JTextField();
         pnRequest = new javax.swing.JPanel();
         btUserSubmitRequest = new javax.swing.JButton();
         cbJenisCuti = new javax.swing.JComboBox<>();
@@ -378,7 +381,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jButton2.setText("jButton2");
         pnSignUp.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 170, -1));
 
-        cbJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J3 - Developer", "J2 - Manager" }));
+        cbJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J1 - Direktur", "J2 - Manager", "J3 - Developer", "J0 - Admin" }));
         pnSignUp.add(cbJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 170, 30));
 
         jLabel32.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -895,6 +898,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel21.setText("Leave Available");
 
+        tfJobsTitle.setEditable(false);
+        tfJobsTitle.setBackground(new java.awt.Color(120, 168, 252));
+        tfJobsTitle.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tfJobsTitle.setForeground(new java.awt.Color(255, 255, 255));
+        tfJobsTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
         javax.swing.GroupLayout pnUserContentLayout = new javax.swing.GroupLayout(pnUserContent);
         pnUserContent.setLayout(pnUserContentLayout);
         pnUserContentLayout.setHorizontalGroup(
@@ -918,14 +927,16 @@ public class HomeUser extends javax.swing.JInternalFrame {
                                     .addComponent(tfLeaveLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnUserContentLayout.createSequentialGroup()
-                                        .addGap(18, 130, Short.MAX_VALUE)
-                                        .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel13)))
-                                    .addGroup(pnUserContentLayout.createSequentialGroup()
                                         .addGap(130, 130, 130)
                                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContentLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                                        .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tfUserEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel13))
+                                            .addComponent(tfJobsTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(pnUserContentLayout.createSequentialGroup()
                                 .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfIdManager, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -976,10 +987,12 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btUserUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfLeaveLeft, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(pnUserContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfLeaveLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfJobsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btUserUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnUserLayout = new javax.swing.GroupLayout(pnUser);
@@ -1393,7 +1406,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnManager.setVisible(false);
 
         tableHistory(spc.getHistory(var, true));
-        tableRequestStatus(spc.getHistory(var, false));
     }//GEN-LAST:event_btnHistoryMouseReleased
 
     private void btnUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMousePressed
@@ -1406,6 +1418,16 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHistory.setVisible(false);
         pnRequest.setVisible(false);
         pnManager.setVisible(false);
+
+        for (Karyawan karyawan : kc.getIdKar(var)) {
+            tfUserName.setText(karyawan.getNama());
+            tfUserEmail.setText(karyawan.getEmail());
+            tfUserID.setText(karyawan.getId());
+            tfIdManager.setText(karyawan.getIdmanager().getId());
+            tfLeaveLeft.setText(karyawan.getJumlahcuti().toString());
+            tfUserPassword.setText(karyawan.getPassword());
+            tfJobsTitle.setText(karyawan.getJobs().getId());
+        }
     }//GEN-LAST:event_btnUserMousePressed
 
     private void btnRequestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRequestMousePressed
@@ -1418,6 +1440,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         pnHistory.setVisible(false);
         pnRequest.setVisible(true);
         pnManager.setVisible(false);
+        tableRequestStatus(spc.getHistory(var, false));
     }//GEN-LAST:event_btnRequestMousePressed
 
     int xx, xy;
@@ -1433,7 +1456,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private void btUserSubmitRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserSubmitRequestActionPerformed
         // TODO add your handling code here:
-//        PLIS, -7 HARI, YOU CANT AFFORD THE LEAVE
 
         LocalDateTime from = LocalDateTime.ofInstant(dcStart.getDate().toInstant(), ZoneId.systemDefault());
         LocalDateTime to = LocalDateTime.ofInstant(dcEnd.getDate().toInstant(), ZoneId.systemDefault());
@@ -1448,19 +1470,11 @@ public class HomeUser extends javax.swing.JInternalFrame {
         String tot = String.valueOf(dur.toDays() + 1);
         String totb = String.valueOf(durB.toDays());
 
-        String jc = cbJenisCuti.getSelectedItem().toString().split(" - ")[0];
-//        if (start.equals("") || end.equals("")) {
-//            JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
-//        } else if (Integer.parseInt(totb) <= 7) {
-//            JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
-//        } else {
-//            cc.save("P11", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
-//            JOptionPane.showMessageDialog(null, "YOUR REQUEST HAVE BEEN SUBMITED");
-//        }
+        String jcut = cbJenisCuti.getSelectedItem().toString().split(" - ")[0];
 
         if (start.equals("") || end.equals("")) {
             JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
-        } else if (jc.equals("JC1") && Integer.parseInt(totb) <= 7) {
+        } else if (jcut.equals("JC1") && Integer.parseInt(totb) <= 7) {
             JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
         } else {
             cc.save("", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
@@ -1486,7 +1500,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         strType.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 3).toString());
         strRequestId.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 4).toString());
 
-        String y = String.valueOf(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5));
+//        String y = String.valueOf(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5));
         if (tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) != null) {
             strDesc.setText(tbManagerUserRequest.getValueAt(tbManagerUserRequest.getSelectedRow(), 5) + "");
         }
@@ -1547,7 +1561,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void btUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserUpdateActionPerformed
-        kc.update(tfUserID.getText(), tfUserName.getText(), cbGender.getSelectedItem().toString(), tfLeaveLeft.getText(), tfUserEmail.getText(), tfUserPassword.getText(), cbMarital.getSelectedItem().toString().split(" - ")[0], tfIdManager.getText());
+        kc.update(tfUserID.getText(), tfUserName.getText(), cbGender.getSelectedItem().toString(), tfLeaveLeft.getText(), tfUserEmail.getText(), tfUserPassword.getText(), cbMarital.getSelectedItem().toString().split(" - ")[0], tfIdManager.getText(), tfJobsTitle.getText());
+        emailSend("YOUR ACCOUNT HAS BEEN UPDATED", tfUserEmail.getText());
+        JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS UPDATE YOUR PROFILE \n PLEASE CHECK YOUR EMAIL FOR THIS");
     }//GEN-LAST:event_btUserUpdateActionPerformed
 
     private void tbRequestStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRequestStatusMouseClicked
@@ -1584,9 +1600,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         String pass2 = tfRegPass2.getText();
         String marital = cbRegMarried.getSelectedItem().toString();
         String idmanagaer = tfRegManager.getText();
+        String jobs = cbJobs.getSelectedItem().toString().split(" - ")[0];
 
         if (pass1.equals(pass2)) {
-            kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer);
+            kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
 //            String userEmail = tfRegEmail.getText();
             String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
             emailSend(message, email);
@@ -1598,10 +1615,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
 //    SELF METHOD
-    private void emailSend(String var, String email) {
+    private void emailSend(String messages, String email) {
         SendEmailTemp.setFromEmail("lgg121770@gmail.com");
         SendEmailTemp.setToEmail(email);
-        SendEmailTemp.setMessage(var);
+        SendEmailTemp.setMessage(messages);
         SendEmailTemp.setSubject("Leave Request Respond");
         SendEmailTemp.setPassword("123Q123Q@");
         emailInterface.sendEmail();
@@ -1642,7 +1659,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         for (int i = 0; i < data.length; i++) {
             data[i][0] = (i + 1);
             data[i][1] = kar.get(i).getId();
-            
+
 //            THIS METHOD BELOW ARE WORK, THE PROBLEM IS WE GOT NO NDEX WHEN UPDATING THE STATUS THEN
 //            data[i][1] = cc.getById(kar.get(i).getPengajuan().getId()).getKaryawan().getNama();
             data[i][2] = kar.get(i).getDatetime();
@@ -1814,6 +1831,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbManagerUserRequest;
     private javax.swing.JTable tbRequestStatus;
     private javax.swing.JTextField tfIdManager;
+    private javax.swing.JTextField tfJobsTitle;
     private javax.swing.JTextField tfLeaveLeft;
     private javax.swing.JTextField tfRegEmail;
     private javax.swing.JTextField tfRegFirstName;

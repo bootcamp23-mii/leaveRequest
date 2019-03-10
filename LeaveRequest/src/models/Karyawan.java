@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -67,11 +68,17 @@ public class Karyawan implements Serializable {
     @JoinColumn(name = "STATUSNIKAH", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private StatusNikah statusnikah;
+//    @Lob
+//    @Column(name = "PHOTO")
+//    private Serializable photo;
+    @JoinColumn(name = "JOBS", referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Pekerjaan jobs;
 
     public Karyawan() {
     }
 
-      public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager) {
+      public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager, Pekerjaan jobs) {
         this.id=id;
         this.nama=name;
         this.jeniskelamin=gender;
@@ -80,6 +87,7 @@ public class Karyawan implements Serializable {
         this.password=password;
         this.statusnikah=statusNikah;
         this.idmanager=manager;
+        this.jobs=jobs;
     }
       
     public Karyawan(String id) {
@@ -209,6 +217,30 @@ public class Karyawan implements Serializable {
     @Override
     public String toString() {
         return "models.Karyawan[ id=" + id + " ]";
+    }
+
+//    public Serializable getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Serializable photo) {
+//        this.photo = photo;
+//    }
+
+//    public Serializable getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Serializable photo) {
+//        this.photo = photo;
+//    }
+
+    public Pekerjaan getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Pekerjaan jobs) {
+        this.jobs = jobs;
     }
     
 }

@@ -14,7 +14,7 @@ import models.Karyawan;
  */
 public interface KaryawanInterface {
 
-    public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
+    public String register(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String jobs);
 
     public boolean login(String username, String password);
 
@@ -32,6 +32,6 @@ public interface KaryawanInterface {
 
     public void delete(String key);
 
-    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager);
+    public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String jobs);
 
 }

@@ -32,6 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pekerjaan.findByJabatan", query = "SELECT p FROM Pekerjaan p WHERE p.jabatan = :jabatan")})
 public class Pekerjaan implements Serializable {
 
+    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY)
+    private List<Karyawan> karyawanList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -97,6 +100,15 @@ public class Pekerjaan implements Serializable {
     @Override
     public String toString() {
         return "models.Pekerjaan[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<Karyawan> getKaryawanList() {
+        return karyawanList;
+    }
+
+    public void setKaryawanList(List<Karyawan> karyawanList) {
+        this.karyawanList = karyawanList;
     }
     
 }

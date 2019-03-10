@@ -410,9 +410,11 @@
             <Component class="javax.swing.JComboBox" name="cbJobs">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="J3 - Developer"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="J1 - Direktur"/>
                     <StringItem index="1" value="J2 - Manager"/>
+                    <StringItem index="2" value="J3 - Developer"/>
+                    <StringItem index="3" value="J0 - Admin"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1297,16 +1299,19 @@
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <EmptySpace type="separate" pref="130" max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="tfUserEmail" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                                                      <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                                                  <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
                                                   <Component id="jLabel18" min="-2" pref="70" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace pref="130" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                          <Component id="tfUserEmail" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                                                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="tfJobsTitle" alignment="1" min="-2" pref="201" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1377,11 +1382,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btUserUpdate" max="32767" attributes="0"/>
-                              <Component id="tfLeaveLeft" pref="30" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfLeaveLeft" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tfJobsTitle" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="59" max="32767" attributes="0"/>
+                          <EmptySpace pref="23" max="32767" attributes="0"/>
+                          <Component id="btUserUpdate" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1602,6 +1609,25 @@
                       <Font name="Century Gothic" size="14" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Leave Available"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfJobsTitle">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="fc" green="a8" red="78" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Century Gothic" size="14" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder bottom="5" left="10" right="10" top="5"/>
+                      </Border>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
