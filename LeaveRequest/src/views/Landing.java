@@ -319,6 +319,7 @@ public class Landing extends javax.swing.JFrame {
         jButton2.setText("SIGN UP");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

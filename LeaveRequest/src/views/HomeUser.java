@@ -66,7 +66,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     String var = Session.getId();
     String username = kc.getById(var).getNama();
-//    String email = "";
 
     /**
      * Creates new form Home
@@ -1446,6 +1445,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     int xx, xy;
     private void btExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExitMouseClicked
         // TODO add your handling code here:
+        var = "";
         this.dispose();
         new Landing().setVisible(true);
     }//GEN-LAST:event_btExitMouseClicked
@@ -1539,8 +1539,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
     private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
         try {
-            String fileName = "C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/Report/report1.jrxml";
-            String filetoFill = "C:/Users/Pandu/Documents/GitHub/leaveRequest/LeaveRequest/src/Report/report1.jasper";
+            String fileName = "./Report/report1.jrxml";
+            String filetoFill = "./Report/report1.jasper";
             JasperCompileManager.compileReport(fileName);
             Map param = new HashMap();
             JasperFillManager.fillReport(filetoFill, param, connection.getConnection());
@@ -1563,7 +1563,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private void btUserUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserUpdateActionPerformed
         kc.update(tfUserID.getText(), tfUserName.getText(), cbGender.getSelectedItem().toString(), tfLeaveLeft.getText(), tfUserEmail.getText(), tfUserPassword.getText(), cbMarital.getSelectedItem().toString().split(" - ")[0], tfIdManager.getText(), tfJobsTitle.getText());
         emailSend("YOUR ACCOUNT HAS BEEN UPDATED", tfUserEmail.getText());
-        JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS UPDATE YOUR PROFILE \n PLEASE CHECK YOUR EMAIL FOR THIS");
+        JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS UPDATE YOUR PROFILE \nPLEASE CHECK YOUR EMAIL FOR THIS");
     }//GEN-LAST:event_btUserUpdateActionPerformed
 
     private void tbRequestStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRequestStatusMouseClicked
@@ -1604,7 +1604,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         if (pass1.equals(pass2)) {
             kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
-//            String userEmail = tfRegEmail.getText();
             String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
             emailSend(message, email);
         }
@@ -1631,6 +1630,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         this.setBorder(null);
     }
 
+    private void getTheDamnPhotos(){
+        
+    }
+    
     private void tableAll(List<models.Karyawan> kar) {
         Object[] columnNames = {"Nomor", "ID", "Nama", "Gender", "Cuti", "Email", "Marital", "Manager"};
         Object[][] data = new Object[kar.size()][columnNames.length];
