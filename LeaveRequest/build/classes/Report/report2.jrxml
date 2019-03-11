@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53f05c90-68df-4880-9e64-3595b284caa4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     PENGAJUAN."ID" AS PENGAJUAN_ID,
+     PENGAJUAN."TANGGALMULAI" AS PENGAJUAN_TANGGALMULAI,
+     PENGAJUAN."TANGGALAKHIR" AS PENGAJUAN_TANGGALAKHIR,
+     PENGAJUAN."JUMLAH" AS PENGAJUAN_JUMLAH,
+     PENGAJUAN."KARYAWAN" AS PENGAJUAN_KARYAWAN,
+     PENGAJUAN."JENISCUTI" AS PENGAJUAN_JENISCUTI,
+     KARYAWAN."ID" AS KARYAWAN_ID,
+     KARYAWAN."NAMA" AS KARYAWAN_NAMA,
+     KARYAWAN."JENISKELAMIN" AS KARYAWAN_JENISKELAMIN,
+     KARYAWAN."JUMLAHCUTI" AS KARYAWAN_JUMLAHCUTI,
+     KARYAWAN."EMAIL" AS KARYAWAN_EMAIL,
+     KARYAWAN."PASSWORD" AS KARYAWAN_PASSWORD,
+     KARYAWAN."STATUSNIKAH" AS KARYAWAN_STATUSNIKAH,
+     KARYAWAN."IDMANAGER" AS KARYAWAN_IDMANAGER,
+     RIWAYAT_CUTI."ID" AS RIWAYAT_CUTI_ID,
+     RIWAYAT_CUTI."DATETIME" AS RIWAYAT_CUTI_DATETIME,
+     RIWAYAT_CUTI."JUMLAH" AS RIWAYAT_CUTI_JUMLAH,
+     RIWAYAT_CUTI."KETERANGANCUTI" AS RIWAYAT_CUTI_KETERANGANCUTI,
+     RIWAYAT_CUTI."KARYAWAN" AS RIWAYAT_CUTI_KARYAWAN
+FROM
+     "LEAVE_REQUEST"."KARYAWAN" KARYAWAN INNER JOIN "LEAVE_REQUEST"."PENGAJUAN" PENGAJUAN ON KARYAWAN."ID" = PENGAJUAN."KARYAWAN"
+     INNER JOIN "LEAVE_REQUEST"."RIWAYAT_CUTI" RIWAYAT_CUTI ON KARYAWAN."ID" = RIWAYAT_CUTI."KARYAWAN" ]]>
+	</queryString>
+	<field name="PENGAJUAN_ID" class="java.lang.String"/>
+	<field name="KARYAWAN_NAMA" class="java.lang.String"/>
+	<field name="PENGAJUAN_JUMLAH" class="java.math.BigDecimal"/>
+	<field name="KARYAWAN_IDMANAGER" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="6a0273f6-1ee9-46ce-acfb-e215c2541685"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="6dde4d9e-dc57-4cca-9a18-936fc833bbde"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Wood Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="df530087-6c71-4f32-949e-79d9f3538005"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Wood SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="024f472f-649f-4cf7-beb0-7b192b7107ae"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="8f44657e-5226-4621-a19f-493cce925cc4"/>
+				<text><![CDATA[PENGAJUAN_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="c7d891bf-4184-4335-95e6-92f4db4e68ca"/>
+				<text><![CDATA[KARYAWAN_NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="138" height="15" uuid="88766b0b-1f24-484d-be62-d33b8fdfb805"/>
+				<text><![CDATA[PENGAJUAN_JUMLAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="19" width="138" height="15" uuid="104b175c-f467-4ec9-8827-8df78266baf6"/>
+				<text><![CDATA[KARYAWAN_IDMANAGER]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="fdba365b-95af-4429-9bd1-5a78d02b26d8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="85847c92-c83b-491b-b9ce-f9270ac3de7b"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="198fdb61-a4cc-4530-94c5-9d143894e8a3"/>
+				<textFieldExpression><![CDATA[$F{KARYAWAN_NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="fcdae2bc-8562-4157-a5f5-2516f6c506d9"/>
+				<textFieldExpression><![CDATA[$F{PENGAJUAN_JUMLAH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="a9bb477b-9989-4eb7-99d7-4a89b537a0c3"/>
+				<textFieldExpression><![CDATA[$F{KARYAWAN_IDMANAGER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="3ede2c31-c17b-4f8a-af7a-5c49d4fcc230"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="42c4ee1d-2483-435b-856a-1570eb4576fc"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="6e8e1105-8085-4160-8019-2dba3b4ee354"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="cce5e19e-08f8-44c9-b281-1e12e5bb9445"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

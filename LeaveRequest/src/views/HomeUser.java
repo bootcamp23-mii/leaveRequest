@@ -101,7 +101,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
             pnUser.setVisible(false);
             pnRequest.setVisible(false);
             pnHistory.setVisible(false);
-            
+
             for (Karyawan karyawan : kc.getByJob("J2")) {
                 cbGetManager.addItem(karyawan.getId());
             }
@@ -177,7 +177,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel29 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllUser = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnDeleteUser = new javax.swing.JButton();
         cbJobs = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
         btSelectImage = new javax.swing.JButton();
@@ -185,6 +185,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         cbGetManager = new javax.swing.JComboBox<>();
+        btUpdateUser = new javax.swing.JButton();
         pnAllUser = new javax.swing.JPanel();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JPanel();
@@ -372,7 +373,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btRegSignUpActionPerformed(evt);
             }
         });
-        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 170, 42));
+        pnSignUp.add(btRegSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 80, 42));
 
         jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel29.setText("ID");
@@ -389,12 +390,24 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbAllUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAllUserMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbAllUser);
 
-        pnSignUp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 630, 209));
+        pnSignUp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 630, 240));
 
-        jButton2.setText("jButton2");
-        pnSignUp.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 170, -1));
+        btnDeleteUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteUser.setText("REMOVE USER");
+        btnDeleteUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUserActionPerformed(evt);
+            }
+        });
+        pnSignUp.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 170, 50));
 
         cbJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J1 - Direktur", "J2 - Manager", "J3 - Developer", "J0 - Admin" }));
         pnSignUp.add(cbJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 170, 30));
@@ -427,6 +440,17 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         cbGetManager.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnSignUp.add(cbGetManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 30));
+
+        btUpdateUser.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btUpdateUser.setText("UPDATE");
+        btUpdateUser.setBorder(null);
+        btUpdateUser.setBorderPainted(false);
+        btUpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUpdateUserActionPerformed(evt);
+            }
+        });
+        pnSignUp.add(btUpdateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 80, 42));
 
         pnAdmin.add(pnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 580));
 
@@ -747,6 +771,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 270, -1));
 
         profilePic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        profilePic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons8_image_file_remove_48px.png"))); // NOI18N
         jPanel4.add(profilePic, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, 80, 70));
 
         lbDescriptionUserName.setFont(new java.awt.Font("Multicolore ", 0, 18)); // NOI18N
@@ -1649,7 +1674,9 @@ public class HomeUser extends javax.swing.JInternalFrame {
 //            System.out.println(id + " " + nama + " " + gender + " " + jumcut + " " + email + " " + pass1 + " " + marital + " " + idmanagaer + " " + jobs);
             kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
             String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
-            weirdButWorksPhotoUploader();
+            if (tfLocationFile.getText() != null) {
+                weirdButWorksPhotoUploader();
+            }
             emailSend(message, email);
             JOptionPane.showMessageDialog(pnHomeContent, "Account Successfully Created");
         }
@@ -1671,6 +1698,44 @@ public class HomeUser extends javax.swing.JInternalFrame {
         }
         tfLocationFile.setText(jf.getSelectedFile().getAbsolutePath());
     }//GEN-LAST:event_btSelectImageActionPerformed
+
+    private void btUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateUserActionPerformed
+        // TODO add your handling code here:
+        String id = "";
+        String nama = tfRegFirstName.getText() + tfRegLastName.getText();
+        String gender = cbGender.getSelectedItem().toString();
+        String jumcut = "0";
+        String email = tfRegEmail.getText();
+        String pass1 = tfRegPass1.getText();
+        String pass2 = tfRegPass2.getText();
+        String marital = cbRegMarried.getSelectedItem().toString().split(" - ")[0];
+        String idmanagaer = cbGetManager.getSelectedItem().toString();
+        String jobs = cbJobs.getSelectedItem().toString().split(" - ")[0];
+
+        if (pass1.equals(pass2)) {
+//            System.out.println(id + " " + nama + " " + gender + " " + jumcut + " " + email + " " + pass1 + " " + marital + " " + idmanagaer + " " + jobs);
+            kc.update(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
+            String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
+            if (tfLocationFile.getText() != null) {
+                weirdButWorksPhotoUploader();
+            }
+            emailSend(message, email);
+            JOptionPane.showMessageDialog(pnHomeContent, "Account Successfully Created");
+        }
+    }//GEN-LAST:event_btUpdateUserActionPerformed
+
+    private void tbAllUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAllUserMouseClicked
+        tfRegFirstName.setText(tbAllUser.getValueAt(tbAllUser.getSelectedRow(), 2).toString());
+        tfRegUsername.setText(tbAllUser.getValueAt(tbAllUser.getSelectedRow(), 1).toString());
+        tfRegEmail.setText(tbAllUser.getValueAt(tbAllUser.getSelectedRow(), 5).toString());
+    }//GEN-LAST:event_tbAllUserMouseClicked
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        int dialogue = JOptionPane.showConfirmDialog(pnHomeContent, "ARE YOU SURE?");
+        if (dialogue == JOptionPane.YES_OPTION) {
+            kc.delete(tfRegUsername.getText());
+        }
+    }//GEN-LAST:event_btnDeleteUserActionPerformed
 
 //    SELF METHOD
     private void emailSend(String messages, String email) {
@@ -1704,7 +1769,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 profilePic.setIcon(icon);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("SORRY NOT PHOTOS AVAILABLE FOR THIS ACC");
+//            profilePic.setIcon();
         }
 
     }
@@ -1831,8 +1897,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JButton btRegSignUp;
     private javax.swing.JButton btReport;
     private javax.swing.JButton btSelectImage;
+    private javax.swing.JButton btUpdateUser;
     private javax.swing.JButton btUserSubmitRequest;
     private javax.swing.JButton btUserUpdate;
+    private javax.swing.JButton btnDeleteUser;
     private javax.swing.JPanel btnHistory;
     private javax.swing.JPanel btnHome;
     private javax.swing.JPanel btnManager;
@@ -1854,7 +1922,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
     private javax.swing.JPanel ind_4;
     private javax.swing.JPanel ind_5;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
