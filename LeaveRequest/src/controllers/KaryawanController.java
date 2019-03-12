@@ -59,6 +59,14 @@ public class KaryawanController implements KaryawanInterface {
         }
         return "FAIL TO UPDATE";
     }
+    
+    @Override
+    public String literallyUpdate(String id, String jumlahCuti) {
+        if (kdao.saveOrDelete(new Karyawan(id, Long.valueOf(jumlahCuti)), true)) {
+            return "SUCCESSFULLY UPDATE YOUR DATA";
+        }
+        return "FAIL TO UPDATE";
+    }
 
     @Override
     public Karyawan getById(String key) {
@@ -88,7 +96,7 @@ public class KaryawanController implements KaryawanInterface {
     public List<Karyawan> getKar(String key) {
         return kdao.getByKar(key);
     }
-    
+
     @Override
     public List<Karyawan> getByJob(String key) {
         return kdao.getKarType(key);

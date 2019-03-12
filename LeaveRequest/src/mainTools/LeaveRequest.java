@@ -61,9 +61,9 @@ public class LeaveRequest {
 //            System.out.println("KARYAWAN: " + pengajuan.getKaryawan().getNama());
 //            System.out.println("TYPE    : " + pengajuan.getJeniscuti().getJenis());
 //        }
-//
+        System.out.println(kc.literallyUpdate("11208", "20"));
 //        System.out.println(cc.getById("P1").getKaryawan().getId());
-        System.out.println(kc.getById(cc.getById("P1").getKaryawan().getId()).getEmail());
+//        System.out.println(kc.getById(cc.getById("P1").getKaryawan().getId()).getEmail());
 ////        LOGIN
 //        System.out.println(kc.register("11206", "loli", "Pria", "3", "loli@alo.com", "qdasd", "SN1", "11201"));
 //        System.out.println(kc.register("11200", "admin", "Pria", "3", "loli@alo.com", "admin", "SN1", "11201"));
@@ -89,5 +89,5 @@ public class LeaveRequest {
 //        SendEmailTemp.setPassword("");
 //        emailInterface.sendEmail();
     }
-
+    
 }

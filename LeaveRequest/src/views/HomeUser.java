@@ -397,9 +397,10 @@ public class HomeUser extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbAllUser);
 
-        pnSignUp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 630, 240));
+        pnSignUp.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 630, 210));
 
-        btnDeleteUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteUser.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnDeleteUser.setForeground(new java.awt.Color(0, 0, 0));
         btnDeleteUser.setText("REMOVE USER");
         btnDeleteUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
@@ -407,7 +408,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 btnDeleteUserActionPerformed(evt);
             }
         });
-        pnSignUp.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 170, 50));
+        pnSignUp.add(btnDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 170, 50));
 
         cbJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J1 - Direktur", "J2 - Manager", "J3 - Developer", "J0 - Admin" }));
         pnSignUp.add(cbJobs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 170, 30));
@@ -865,14 +866,14 @@ public class HomeUser extends javax.swing.JInternalFrame {
             .addGroup(pnHomeLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(pnHomeHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
             .addGroup(pnHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHomeLayout.createSequentialGroup()
                     .addGap(0, 202, Short.MAX_VALUE)
-                    .addComponent(pnHomeContent, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pnHomeContent, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        dynamicPane.add(pnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 540));
+        dynamicPane.add(pnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 650, 580));
 
         pnUser.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1380,16 +1381,6 @@ public class HomeUser extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnUserContent1Layout.createSequentialGroup()
-                        .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnUserContent1Layout.createSequentialGroup()
                         .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btManagerAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1397,12 +1388,24 @@ public class HomeUser extends javax.swing.JInternalFrame {
                         .addComponent(btManagerReject, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(pnUserContent1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(strDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnUserContent1Layout.setVerticalGroup(
             pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUserContent1Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(strID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1410,7 +1413,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
                     .addComponent(strRequestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(strType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(strDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(59, 59, 59)
                 .addGroup(pnUserContent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btManagerReject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfSelectedUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1542,6 +1545,8 @@ public class HomeUser extends javax.swing.JInternalFrame {
 
         if (start.equals("") || end.equals("")) {
             JOptionPane.showMessageDialog(null, "PLEASE, FILL ALL FORM");
+        } else if (Integer.parseInt(tot) > kc.getById(var).getJumlahcuti()) {
+            JOptionPane.showMessageDialog(null, "YOUR CURRENT AVAILABLE REQUEST AREN'T ENOUGH");
         } else if (jcut.equals("JC1") && Integer.parseInt(totb) <= 7) {
             JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
         } else {
@@ -1576,12 +1581,25 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbManagerUserRequestMouseClicked
 
     private void btManagerAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManagerAcceptActionPerformed
+
+//        KINDA LIKE TO WRITE SOME LOGIC TO MINUS THE LEAVE ABVAILABLE HERE
+        String idkar = cc.getById(strRequestId.getText()).getKaryawan().getId();
+        int cutiTotal = cc.getById(strRequestId.getText()).getJumlah();
+        int sisaCuti = kc.getById(String.valueOf(cc.getById(strRequestId.getText()).getKaryawan().getId())).getJumlahcuti().intValue();
+        int newSisa = sisaCuti - cutiTotal;
+        System.out.println(idkar);
+        System.out.println(sisaCuti);
+        System.out.println(newSisa);
+
+//        IF I CANT FIND HOW THE HECK TO UPDATE SINGLE ROW ON HQL, I'LL FORCEFULLY USING LEGACY SQL
+
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             String message = "THANKS FOR REQUESTING, WE'VE ACCEPT YOUR REQUEST";
             String emailTo = kc.getById(cc.getById(strRequestId.getText()).getKaryawan().getId()).getEmail();
             emailSend(message, emailTo);
+            kc.literallyUpdate(idkar, String.valueOf(newSisa));
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
@@ -1673,7 +1691,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         if (pass1.equals(pass2)) {
 //            System.out.println(id + " " + nama + " " + gender + " " + jumcut + " " + email + " " + pass1 + " " + marital + " " + idmanagaer + " " + jobs);
             kc.register(id, nama, gender, jumcut, email, pass1, marital, idmanagaer, jobs);
-            String message = "Yeay your Account " + nama + " has been created, Let's check it out on our App";
+            String message = "Yeay your Account has been created, Let's check it out on our App \nAccount Detail: \nUSERNAME   = " + nama + "\nPASSWORD = " + pass1;
             if (tfLocationFile.getText() != null) {
                 weirdButWorksPhotoUploader();
             }
@@ -1738,6 +1756,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
 //    SELF METHOD
+//    NOTE NOTE : SUBJECT DONT BE STATIC VALUE 
     private void emailSend(String messages, String email) {
         SendEmailTemp.setFromEmail("lgg121770@gmail.com");
         SendEmailTemp.setToEmail(email);

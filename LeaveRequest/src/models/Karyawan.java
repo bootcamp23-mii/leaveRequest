@@ -78,18 +78,23 @@ public class Karyawan implements Serializable {
     public Karyawan() {
     }
 
-      public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager, Pekerjaan jobs) {
-        this.id=id;
-        this.nama=name;
-        this.jeniskelamin=gender;
-        this.jumlahcuti=jumlahcuti;
-        this.email=email;
-        this.password=password;
-        this.statusnikah=statusNikah;
-        this.idmanager=manager;
-        this.jobs=jobs;
+    public Karyawan(String id, Long jumlahCuti) {
+        this.id = id;
+        this.jumlahcuti = jumlahCuti;
     }
-      
+
+    public Karyawan(String id, String name, String gender, Long jumlahcuti, String email, String password, StatusNikah statusNikah, Karyawan manager, Pekerjaan jobs) {
+        this.id = id;
+        this.nama = name;
+        this.jeniskelamin = gender;
+        this.jumlahcuti = jumlahcuti;
+        this.email = email;
+        this.password = password;
+        this.statusnikah = statusNikah;
+        this.idmanager = manager;
+        this.jobs = jobs;
+    }
+
     public Karyawan(String id) {
         this.id = id;
     }
@@ -226,7 +231,6 @@ public class Karyawan implements Serializable {
 //    public void setPhoto(Serializable photo) {
 //        this.photo = photo;
 //    }
-
 //    public Serializable getPhoto() {
 //        return photo;
 //    }
@@ -234,7 +238,6 @@ public class Karyawan implements Serializable {
 //    public void setPhoto(Serializable photo) {
 //        this.photo = photo;
 //    }
-
     public Pekerjaan getJobs() {
         return jobs;
     }
@@ -242,5 +245,5 @@ public class Karyawan implements Serializable {
     public void setJobs(Pekerjaan jobs) {
         this.jobs = jobs;
     }
-    
+
 }

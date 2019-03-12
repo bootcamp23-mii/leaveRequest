@@ -36,4 +36,6 @@ public interface KaryawanInterface {
 
     public String update(String id, String nama, String jenisKelamin, String jumlahCuti, String email, String password, String statusNikah, String idManager, String jobs);
 
+    public String literallyUpdate(String id, String jumlahCuti);
+
 }
