@@ -13,10 +13,13 @@ import controllers.JenisCutiController;
 import controllers.JenisCutiInterface;
 import controllers.KaryawanController;
 import controllers.KaryawanInterface;
+import controllers.StatusPengajuanController;
+import controllers.StatusPengajuanInterface;
 import daos.GeneralDAO;
 import java.text.ParseException;
 import org.hibernate.SessionFactory;
 import mainTools.HibernateUtil;
+import models.Karyawan;
 import models.SendEmailTemp;
 
 /**
@@ -36,6 +39,7 @@ public class LeaveRequest {
         KaryawanInterface kc = new KaryawanController(sessionFactory);
         GeneralDAO gdao = new GeneralDAO(sessionFactory, kc);
         EmailInterface emailInterface = new EmailController();
+        StatusPengajuanInterface spi = new StatusPengajuanController(sessionFactory);
 //        CutiController cc = new CutiController(sessionFactory);
 //        INSERT/UPDATE/DELETE
 //        System.out.println(cc.save("", "04/03/19", "05/03/19", "2", "11205", "JC1"));
@@ -61,7 +65,15 @@ public class LeaveRequest {
 //            System.out.println("KARYAWAN: " + pengajuan.getKaryawan().getNama());
 //            System.out.println("TYPE    : " + pengajuan.getJeniscuti().getJenis());
 //        }
-        System.out.println(kc.literallyUpdate("11208", "20"));
+//        System.out.println(kc.literallyUpdate("11208", "20"));
+//        for (Karyawan karyawan : kc.getIdKar("11205")) {
+//            System.out.println(kc.update(karyawan.getId(), karyawan.getNama(), 
+//                    karyawan.getJeniskelamin(), "99", 
+//                    karyawan.getEmail(), karyawan.getPassword(), 
+//                    karyawan.getStatusnikah().getId(), 
+//                    karyawan.getIdmanager().getId(), karyawan.getJobs().getId()));
+//        }
+        
 //        System.out.println(cc.getById("P1").getKaryawan().getId());
 //        System.out.println(kc.getById(cc.getById("P1").getKaryawan().getId()).getEmail());
 ////        LOGIN

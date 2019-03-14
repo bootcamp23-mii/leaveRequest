@@ -1550,7 +1550,7 @@ public class HomeUser extends javax.swing.JInternalFrame {
         } else if (jcut.equals("JC1") && Integer.parseInt(totb) <= 7) {
             JOptionPane.showMessageDialog(null, "LEAVE REQUEST CANT PROCCESS DUE DURATION OF TIME YOU PICKED");
         } else {
-            cc.save("", start, end, tot, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
+            cc.save("", start, end, totb, var, cbJenisCuti.getSelectedItem().toString().split(" - ")[0]);
             JOptionPane.showMessageDialog(null, "YOUR REQUEST HAVE BEEN SUBMITED");
         }
     }//GEN-LAST:event_btUserSubmitRequestActionPerformed
@@ -1590,16 +1590,25 @@ public class HomeUser extends javax.swing.JInternalFrame {
         System.out.println(idkar);
         System.out.println(sisaCuti);
         System.out.println(newSisa);
+ 
 
 //        IF I CANT FIND HOW THE HECK TO UPDATE SINGLE ROW ON HQL, I'LL FORCEFULLY USING LEGACY SQL
-
+        
         if (tfSelectedUser.getText() != null) {
             spc.update(tfSelectedUser.getText(), dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
             tableEmployeeRequestOnManager(spc.getHistoryByMang(var, true));
             String message = "THANKS FOR REQUESTING, WE'VE ACCEPT YOUR REQUEST";
             String emailTo = kc.getById(cc.getById(strRequestId.getText()).getKaryawan().getId()).getEmail();
             emailSend(message, emailTo);
-            kc.literallyUpdate(idkar, String.valueOf(newSisa));
+            for (Karyawan karyawan : kc.getIdKar(idkar)) {
+            System.out.println(kc.update(karyawan.getId(), karyawan.getNama(), 
+                    karyawan.getJeniskelamin(), String.valueOf(newSisa), 
+                    karyawan.getEmail(), karyawan.getPassword(), 
+                    karyawan.getStatusnikah().getId(), 
+                    karyawan.getIdmanager().getId(), karyawan.getJobs().getId()));
+        }
+            spc.insert("1", dateFormat.format(date), strDesc.getText(), strRequestId.getText(), "S2");
+//            kc.literallyUpdate(idkar, String.valueOf(newSisa));
             JOptionPane.showMessageDialog(pnHomeContent, "SUCCESS");
         } else if (tfSelectedUser.getText() == null) {
             JOptionPane.showMessageDialog(pnHomeContent, "SELECT THE LIST FIRST");
